@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+const Color primaryColor = Color(0xffE78006);
+const Color primaryColor50 = Color(0xffEAB76A);
+const Color primaryDark = Color(0xffA65911);
+const Color textDark = Color(0xff6A4206);
+const Color white = Colors.white;
+
+//font styles
+
+const calistogaRegular24white = TextStyle(
+  fontFamily: "Calistoga",
+  color: white,
+  fontSize: 24,
+  fontWeight: FontWeight.w400,
+);
+
+const calistogaRegular24PrimaryDark = TextStyle(
+  fontFamily: "Calistoga",
+  color: primaryDark,
+  fontSize: 24,
+  fontWeight: FontWeight.w400,
+);
+
+const calistogaRegular20TextDark = TextStyle(
+  fontFamily: "Calistoga",
+  color: textDark,
+  fontSize: 24,
+  fontWeight: FontWeight.w400,
+);
+
+const calistogaRegular16TextDark = TextStyle(
+  fontFamily: "Calistoga",
+  color: textDark,
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+);
+
+const calistogaRegular10TextDark= TextStyle(
+  fontFamily: "Calistoga",
+  color: textDark,
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
+
+
+
+
+
+
