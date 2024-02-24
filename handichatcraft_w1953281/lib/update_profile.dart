@@ -65,13 +65,6 @@ class UpdateProfilePage extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.all(Radius.circular(15)),
-                    /*boxShadow: [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 181, 179, 177),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(4, 4)),
-                    ],*/
                   ),
                   child: const TextField(
                     decoration: InputDecoration(
@@ -103,13 +96,6 @@ class UpdateProfilePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(15)),
-                  /*boxShadow: [
-                    BoxShadow(
-                        color: Color.fromARGB(255, 181, 179, 177),
-                        spreadRadius: 1,
-                        blurRadius: 8,
-                        offset: Offset(4, 4)),
-                  ],*/
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
@@ -139,13 +125,6 @@ class UpdateProfilePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(15)),
-                  /*boxShadow: [
-                    BoxShadow(
-                        color: Color.fromARGB(255, 181, 179, 177),
-                        spreadRadius: 1,
-                        blurRadius: 8,
-                        offset: Offset(4, 4)),
-                  ],*/
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
@@ -175,13 +154,6 @@ class UpdateProfilePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(15)),
-                  /*boxShadow: [
-                    BoxShadow(
-                        color: Color.fromARGB(255, 181, 179, 177),
-                        spreadRadius: 1,
-                        blurRadius: 8,
-                        offset: Offset(4, 4)),
-                  ],*/
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
@@ -211,13 +183,6 @@ class UpdateProfilePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(15)),
-                  /*boxShadow: [
-                    BoxShadow(
-                        color: Color.fromARGB(255, 181, 179, 177),
-                        spreadRadius: 1,
-                        blurRadius: 8,
-                        offset: Offset(4, 4)),
-                  ],*/
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
