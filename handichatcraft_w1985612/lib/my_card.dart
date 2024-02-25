@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/counselor_page.dart';
+import 'package:handichatcraft_w1985612/counselor_profiles.dart';
 
 class MyCard extends StatelessWidget {
   const MyCard({super.key, required this.title, required this.subtitle});
@@ -25,7 +25,7 @@ class MyCard extends StatelessWidget {
           ),
           onTap: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const CounselorPage()),
+              MaterialPageRoute(builder: (context) => const CounselorProfile()),
             );
           },
         ),

@@ -18,32 +18,32 @@ class _CounselorListState extends State<CounselorList> {
     counselors.add(
       CounselorModel(
         "Mr.Saman Kumara",
-        "about",
         "Specialized in batik",
+        "about",
       ),
     );
 
     counselors.add(
       CounselorModel(
         "Mr.Saman Kumara",
-        "about",
         "Specialized in batik",
+        "about",
       ),
     );
 
     counselors.add(
       CounselorModel(
         "Mr.Saman Kumara",
-        "about",
         "Specialized in batik",
+        "about",
       ),
     );
 
     counselors.add(
       CounselorModel(
         "Mr.Saman Kumara",
-        "about",
         "Specialized in batik",
+        "about",
       ),
     );
   }

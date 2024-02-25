@@ -5,7 +5,7 @@ class CounselorModel {
 
   CounselorModel(
     this.name,
-    this.about,
     this.specialize,
+    this.about,
   );
 }
