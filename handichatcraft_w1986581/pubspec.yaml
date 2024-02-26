@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  device_preview: ^1.1.0
   flutter:
     sdk: flutter
 
@@ -88,12 +89,12 @@ flutter:
   #         style: italic
     - family: Aladin
       fonts:
-        - asset: fonts/Aladin.ttf
+        - asset: fonts/Aladin-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
     - family: Lalezar
       fonts:
-        - asset: fonts/Lalezar.ttf
+        - asset: fonts/Lalezar-Regular.ttf
 
     - family: Almendra
       fonts:
