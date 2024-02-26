@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/bottom_nav_bar.dart';
-import 'package:handichatcraft_w1985612/category.dart';
-import 'package:handichatcraft_w1985612/counselor_list.dart';
-import 'package:handichatcraft_w1985612/search_box.dart';
+import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
+import 'package:handichatcraft_w1985612/widget/category.dart';
+import 'package:handichatcraft_w1985612/widget/counselor_list.dart';
+import 'package:handichatcraft_w1985612/widget/search_box.dart';
 
 class CounselorPage extends StatelessWidget {
   const CounselorPage({super.key});
@@ -24,6 +24,7 @@ class CounselorPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -71,7 +72,6 @@ class CounselorPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            BottomNavBar(),
           ],
         ),
       ),

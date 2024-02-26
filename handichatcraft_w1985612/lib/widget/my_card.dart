@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/counselor_profiles.dart';
+import 'package:handichatcraft_w1985612/pages/counselor_profiles.dart';
 
 class MyCard extends StatelessWidget {
   const MyCard({super.key, required this.title, required this.subtitle});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/bottom_nav_bar.dart';
-import 'package:handichatcraft_w1985612/constant.dart';
-import 'package:handichatcraft_w1985612/counselor_model.dart';
-import 'package:handichatcraft_w1985612/schedule_page.dart';
+import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
+import 'package:handichatcraft_w1985612/widget/constant.dart';
+import 'package:handichatcraft_w1985612/model/counselor_model.dart';
+import 'package:handichatcraft_w1985612/pages/schedule_page.dart';
 
 class CounselorProfile extends StatelessWidget {
   const CounselorProfile({super.key});
@@ -22,6 +22,7 @@ class CounselorProfile extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(),
       backgroundColor: primaryColor50,
       body: Column(
         children: [
@@ -95,7 +96,7 @@ class CounselorProfile extends StatelessWidget {
                         Card(
                           child: ListTile(
                             title: Text(
-                                "MR.saman kumara is a batik counselor in sri lanka.Counselors are helpers.."),
+                                "MR.saman kumara is a batik counselor in sri lanka.."),
                           ),
                         )
                       ],
@@ -105,7 +106,8 @@ class CounselorProfile extends StatelessWidget {
                     height: 50,
                     padding: const EdgeInsets.all(14.0),
                     width: double.infinity,
-                    margin: const EdgeInsets.only(right: 120, left: 120, top: 0.1),
+                    margin:
+                        const EdgeInsets.only(right: 120, left: 120, top: 0.1),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: primaryColor,
@@ -116,7 +118,7 @@ class CounselorProfile extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => ShedulePage(
                               counselor: CounselorModel("MR.Saman Kumara",
-                                  "Specialized in batik",""),
+                                  "Specialized in batik", ""),
                             ),
                           ),
                         );
@@ -135,7 +137,6 @@ class CounselorProfile extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
-                  BottomNavBar(),
                 ],
               ),
             ),

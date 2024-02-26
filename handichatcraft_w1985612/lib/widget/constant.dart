@@ -16,14 +16,14 @@ const calistogaRegular24white = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
-const calistogaRegular24PrimaryDark = TextStyle(
+const calistogaRegular20PrimaryDark = TextStyle(
   fontFamily: "Calistoga",
   color: primaryDark,
-  fontSize: 24,
+  fontSize: 20,
   fontWeight: FontWeight.w400,
 );
 
-const calistogaRegular20TextDark = TextStyle(
+const calistogaRegular24TextDark = TextStyle(
   fontFamily: "Calistoga",
   color: textDark,
   fontSize: 24,

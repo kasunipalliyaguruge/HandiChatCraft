@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:handichatcraft_w1985612/counselor_page.dart';
+import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
 
 void main() {
   runApp(

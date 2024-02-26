@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/counselor_model.dart';
-import 'package:handichatcraft_w1985612/my_card.dart';
+import 'package:handichatcraft_w1985612/model/counselor_model.dart';
+import 'package:handichatcraft_w1985612/widget/my_card.dart';
 
 class CounselorList extends StatefulWidget {
   const CounselorList({super.key});

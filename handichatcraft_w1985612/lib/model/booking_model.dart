@@ -1,4 +1,4 @@
-import 'package:handichatcraft_w1985612/counselor_model.dart';
+import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 
 class BookingModel {
   CounselorModel counselor;

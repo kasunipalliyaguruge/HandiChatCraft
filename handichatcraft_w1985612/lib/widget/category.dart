@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/category_model.dart';
+import 'package:handichatcraft_w1985612/model/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key});
@@ -9,6 +9,7 @@ class CategoryCard extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        SizedBox(height: 10,),
         SizedBox(
           height: 100,
           child: ListView.builder(

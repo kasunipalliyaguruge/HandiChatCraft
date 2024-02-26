@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/booking_model.dart';
-import 'package:handichatcraft_w1985612/constant.dart';
-import 'package:handichatcraft_w1985612/counselor_model.dart';
+import 'package:handichatcraft_w1985612/model/booking_model.dart';
+import 'package:handichatcraft_w1985612/widget/constant.dart';
+import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:intl/intl.dart';
 
 class BookingCard extends StatelessWidget {
@@ -42,10 +42,10 @@ Widget userDetails(CounselorModel counselor, BuildContext context) {
         children: [
           Text(
             counselor.name,
-            style: calistogaRegular24PrimaryDark,
+            style: calistogaRegular20PrimaryDark,
           ),
           Text(
-            counselor.about,
+            counselor.specialize,
             style: calistogaRegular16TextDark,
           )
         ],
@@ -87,7 +87,7 @@ Widget bookingDetails(BookingModel bookingModel) {
 List<Widget> styledText(String text) => [
       Text(
         text,
-        style: calistogaRegular20TextDark,
+        style: calistogaRegular16TextDark,
       ),
       const SizedBox(height: 10),
     ];
