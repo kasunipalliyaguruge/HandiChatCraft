@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1953281/notification_page.dart';
 
 //import 'package:handicraft_profile/profile/update_profile.dart';
 //import 'package:settings_screen/settings_screen.dart';
@@ -157,7 +158,7 @@ class AccountSettingPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) => const NotificationPage()));
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
