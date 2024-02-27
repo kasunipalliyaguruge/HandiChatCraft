@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1986581/forgotPassword.dart';
+import 'package:handichatcraft_w1986581/home.dart';
 
 class Client extends StatefulWidget {
   const Client({super.key});
@@ -9,6 +11,7 @@ class Client extends StatefulWidget {
 
 class _ClientState extends State<Client> {
   bool isSignupScreen = true;
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +91,11 @@ class _ClientState extends State<Client> {
             ),
             if (!isSignupScreen)
             Container(
-              margin: const EdgeInsets.only(top: 100),
-              child: const Column(
+              margin: const EdgeInsets.only(top: 190),
+              child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 20.0),
                     child: TextField(
                       decoration: InputDecoration(
                         filled: true,
@@ -119,7 +122,7 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
@@ -147,14 +150,113 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Checkbox(
+                        value: isChecked, 
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked = value ?? false;
+                          });
+                        }
+                      ),
+                      const Text(
+                        "Remember password",
+                        style: TextStyle(
+                          color: Color(0xFFA65911),
+                          fontSize: 15,
+                          fontFamily: 'Calistoga',
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 70,
+                    right: 50,
+                    left: 50,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 140.0, right: 40.0, left: 40.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
+                        },
+                        child: Container(
+                          height: 59,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(231, 211, 118, 3),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Lalezar',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 50,
+                    right: 50,
+                    left: 50,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0, bottom: 40.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const ForgotPassword()));
+                        },
+                        child: const Center(
+                          child: Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                color: Color(0xFFA65911),
+                                fontSize: 16,
+                                fontFamily: 'Calistoga',
+                              ),
+                            ),
+                          ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                     width: 500,
+                     margin: const EdgeInsets.only(bottom: 10),
+                     child: RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(
+                        text: "Don't have an account?",
+                        style: TextStyle(
+                          color: Color(0xFFA65911),
+                          fontSize: 16,
+                          fontFamily: 'Calistoga',
+                        ),
+                        children: [
+                          TextSpan(
+                            text: " Sign Up",
+                            style: TextStyle(
+                              color: Color(0xFF70573F),
+                              fontSize: 16,
+                              fontFamily: 'Calistoga',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ]),
             ),
             if (isSignupScreen)
             Container(
               margin: const EdgeInsets.only(top: 100),
-              child: const Column(
+              child: Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
@@ -182,7 +284,7 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
@@ -210,7 +312,7 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
@@ -238,7 +340,7 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
@@ -266,7 +368,7 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
@@ -294,7 +396,7 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
@@ -322,11 +424,87 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Checkbox(
+                        value: isChecked, 
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked = value ?? false;
+                          });
+                        }
+                      ),
+                      const Text(
+                        "Remember password",
+                        style: TextStyle(
+                          color: Color(0xFFA65911),
+                          fontSize: 15,
+                          fontFamily: 'Calistoga',
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 50,
+                    left: 50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
+                        },
+                        child: Container(
+                          height: 59,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(231, 211, 118, 3),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Lalezar',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 500,
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(
+                        text: "Already have an account?",
+                        style: TextStyle(
+                          color: Color(0xFFA65911),
+                          fontSize: 16,
+                          fontFamily: 'Calistoga',
+                        ),
+                        children: [
+                          TextSpan(
+                            text: " Sign In",
+                            style: TextStyle(
+                              color: Color(0xFF70573F),
+                              fontSize: 16,
+                              fontFamily: 'Calistoga',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),    
         ]),
       ),
-    );  
+    );
   }
 }

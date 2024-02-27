@@ -12,11 +12,6 @@ class Introduction extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
 
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/intro.png"),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Color.fromARGB(255, 242, 234, 223), BlendMode.softLight),
-          ),
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(231, 161, 161, 161),

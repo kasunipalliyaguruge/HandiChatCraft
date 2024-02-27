@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1986581/client.dart';
-import 'package:handichatcraft_w1986581/forgotPassword.dart';
+import 'package:handichatcraft_w1986581/counselor.dart';
 
 class Role extends StatelessWidget {
   const Role({super.key});
@@ -69,7 +69,7 @@ class Role extends StatelessWidget {
                   padding: const EdgeInsets.all(40.0),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const ForgotPassword()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Counselor()));
                     },
                     child: Container(
                       height: 50,
