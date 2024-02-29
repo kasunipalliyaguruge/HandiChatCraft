@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1953281/language_page.dart';
 import 'package:handichatcraft_w1953281/notification_page.dart';
 
 //import 'package:handicraft_profile/profile/update_profile.dart';
@@ -127,7 +128,7 @@ class AccountSettingPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) => const LanguageChangePage()));
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
