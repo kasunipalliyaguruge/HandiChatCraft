@@ -39,6 +39,8 @@ dependencies:
   device_preview: ^1.1.0
   intl: ^0.18.1
   calendar_date_picker2: ^0.5.3
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.15.5
 
 dev_dependencies:
   flutter_test:

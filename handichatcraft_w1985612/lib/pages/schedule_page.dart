@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/pages/booking_confirmed_page.dart';
@@ -19,6 +20,17 @@ class _ShedulePageState extends State<ShedulePage> {
   List<DateTime?> _dates = [];
   late BookingModel appointment =
       BookingModel(widget.counselor, "bbb", DateTime.now());
+  late FirebaseFirestore db;
+  @override
+  void initState() {
+    // TODO: implement initState
+    db = FirebaseFirestore.instance;
+    super.initState();
+  }
+
+  void submit() {
+    db.collection("Appointments").doc().set({"name": "Kamal", "age": 21});
+  }
 
   void setAppointment(DateTime dateTime) {
     appointment.dateTime = appointment.dateTime.copyWith(hour: dateTime.hour);
@@ -82,6 +94,7 @@ class _ShedulePageState extends State<ShedulePage> {
                         color: primaryColor),
                     child: InkWell(
                       onTap: () {
+                        submit();
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
                                 const BookingConfirmedpage()));

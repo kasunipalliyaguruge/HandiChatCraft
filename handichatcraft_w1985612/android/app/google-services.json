@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "228341241320",
+    "project_id": "handichatcraft-a195d",
+    "storage_bucket": "handichatcraft-a195d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228341241320:android:21988df253adaae9ea405d",
+        "android_client_info": {
+          "package_name": "com.example.handichatcraft_w1985612"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFikb1DHO5lckAGkLbofFAFvBpWQBMA-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
