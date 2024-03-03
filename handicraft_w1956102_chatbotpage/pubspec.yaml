@@ -1,4 +1,4 @@
-name: handichatcraft_w1956102
+name: handicraft_w1956102_chatbotpage
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -28,7 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  device_preview: ^1.1.0
   flutter:
     sdk: flutter
 
@@ -36,7 +35,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_test:
