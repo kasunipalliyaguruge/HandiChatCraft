@@ -23,7 +23,7 @@ class BookingConfirmedpage extends StatelessWidget {
           color: white,
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
       backgroundColor: primaryColor50,
       body: Expanded(
         child: Stack(
@@ -34,7 +34,7 @@ class BookingConfirmedpage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 120,
                 ),
                 BookingCard(
@@ -43,7 +43,7 @@ class BookingConfirmedpage extends StatelessWidget {
                             "Mr.Saman Kumara", "specialized in batik", "ggj"),
                         "Nimal",
                         DateTime.now())),
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
                 Botton(context),

@@ -29,7 +29,7 @@ class _ShedulePageState extends State<ShedulePage> {
   }
 
   void submit() {
-    db.collection("Appointments").doc().set({"name": "Kamal", "age": 21});
+    db.collection("Appointments").doc().set({"user name": "Kamal", "age": 21});
   }
 
   void setAppointment(DateTime dateTime) {
@@ -51,7 +51,7 @@ class _ShedulePageState extends State<ShedulePage> {
           color: Colors.orange,
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -83,7 +83,7 @@ class _ShedulePageState extends State<ShedulePage> {
                   TimeSelector(
                       startTime: DateTime.now().copyWith(hour: 10),
                       callback: setAppointment),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(

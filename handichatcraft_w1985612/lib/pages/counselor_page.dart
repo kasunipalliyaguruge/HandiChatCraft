@@ -24,7 +24,7 @@ class CounselorPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -60,16 +60,16 @@ class CounselorPage extends StatelessWidget {
                 ],
               ),
             ),
-            SearchBox(),
-            SizedBox(
+            const SearchBox(),
+            const SizedBox(
               height: 10,
             ),
-            CategoryCard(),
-            SizedBox(
+            const CategoryCard(),
+            const SizedBox(
               height: 30,
             ),
-            CounselorList(),
-            SizedBox(
+            const CounselorList(),
+            const SizedBox(
               height: 20,
             ),
           ],

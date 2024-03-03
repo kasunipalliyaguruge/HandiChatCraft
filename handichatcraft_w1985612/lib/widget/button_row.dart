@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
 import 'package:intl/intl.dart';
 
@@ -37,7 +35,7 @@ class _TimeSelectorState extends State<TimeSelector> {
           active: row,
         ),
         ButtonRow(
-          startTime: widget.startTime.add(Duration(hours: 4)),
+          startTime: widget.startTime.add(const Duration(hours: 4)),
           callback: _update,
           row: 1,
           selected: selected,
