@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:handichatcraft_w1985612/widget/booking_card.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
@@ -8,7 +7,8 @@ import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
 
 class BookingConfirmedpage extends StatelessWidget {
-  const BookingConfirmedpage({super.key});
+  final BookingModel appointmentDetails;
+  const BookingConfirmedpage({super.key,required this.appointmentDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,7 @@ class BookingConfirmedpage extends StatelessWidget {
                   height: 120,
                 ),
                 BookingCard(
-                    bookingModel: BookingModel(
-                        CounselorModel(
-                            "Mr.Saman Kumara", "specialized in batik", "ggj"),
-                        "Nimal",
-                        DateTime.now())),
+                    bookingModel:appointmentDetails),
                 const SizedBox(
                   height: 80,
                 ),

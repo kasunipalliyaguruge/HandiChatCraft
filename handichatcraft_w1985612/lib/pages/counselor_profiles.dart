@@ -118,7 +118,7 @@ class CounselorProfile extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => ShedulePage(
                               counselor: CounselorModel("MR.Saman Kumara",
-                                  "Specialized in batik", ""),
+                                  "Specialized in batik", "", 0),
                             ),
                           ),
                         );

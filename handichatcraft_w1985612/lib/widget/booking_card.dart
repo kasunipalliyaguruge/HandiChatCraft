@@ -37,16 +37,18 @@ Widget userDetails(CounselorModel counselor, BuildContext context) {
         height: MediaQuery.of(context).size.height * 0.1,
         child: Image.asset(userIcon),
       ),
-      const SizedBox(width: 20),
+      const SizedBox(width: 10),
       Column(
         children: [
           Text(
             counselor.name,
             style: calistogaRegular20PrimaryDark,
+            overflow: TextOverflow.fade,
           ),
           Text(
             counselor.specialize,
             style: calistogaRegular16TextDark,
+            overflow: TextOverflow.fade,
           )
         ],
       )

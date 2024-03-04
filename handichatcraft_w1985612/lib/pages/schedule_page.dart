@@ -29,14 +29,23 @@ class _ShedulePageState extends State<ShedulePage> {
   }
 
   void submit() {
-    db.collection("Appointments").doc().set({"user name": "Kamal", "age": 21});
+    appointment.dateTime = appointment.dateTime.copyWith(
+        day: _dates[0]!.day, month: _dates[0]!.month, year: _dates[0]!.year);
+    db.collection("Appointments").doc().set({
+      "Client_name": appointment.userName,
+      "counselor_name": appointment.counselor.name,
+      "dateTime": appointment.dateTime,
+    });
+    print("Appointment successfully");
   }
 
   void setAppointment(DateTime dateTime) {
-    appointment.dateTime = appointment.dateTime.copyWith(hour: dateTime.hour);
-    print(
-      appointment.dateTime.hour.toString(),
-    );
+    appointment.dateTime = appointment.dateTime.copyWith(
+        hour: dateTime.hour,
+        minute: 0,
+        second: 0,
+        microsecond: 0,
+        millisecond: 0);
   }
 
   @override
@@ -95,9 +104,12 @@ class _ShedulePageState extends State<ShedulePage> {
                     child: InkWell(
                       onTap: () {
                         submit();
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                const BookingConfirmedpage()));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => BookingConfirmedpage(
+                                appointmentDetails: appointment),
+                          ),
+                        );
                       },
                       child: const Text(
                         'Book now',

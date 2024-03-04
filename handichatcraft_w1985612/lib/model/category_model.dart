@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class CategoryModel {
   late String categoryname;
   late String imagePath;
@@ -15,7 +13,7 @@ class CategoryModel {
 
 List categoryDataList = [
   CategoryModel(
-      categoryname: "Mask", imagePath: "asset/images/Masks.jpg", active: true),
+      categoryname: "Mask", imagePath: "asset/images/Masks.jpg", active: false),
   CategoryModel(
       categoryname: "cane", imagePath: "asset/images/Cane.jpg", active: false),
   CategoryModel(
@@ -29,6 +27,14 @@ List categoryDataList = [
   CategoryModel(
       categoryname: "Pottery",
       imagePath: "asset/images/Pottery.jpg",
+      active: false),
+  CategoryModel(
+      categoryname: "ResinArt",
+      imagePath: "asset/images/ResinArt.jpg",
+      active: false),
+  CategoryModel(
+      categoryname: "ResinArt",
+      imagePath: "asset/images/ResinArt.jpg",
       active: false),
   CategoryModel(
       categoryname: "ResinArt",

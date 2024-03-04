@@ -1,11 +1,59 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 import 'package:handichatcraft_w1985612/widget/category.dart';
 import 'package:handichatcraft_w1985612/widget/counselor_list.dart';
 import 'package:handichatcraft_w1985612/widget/search_box.dart';
 
-class CounselorPage extends StatelessWidget {
+class CounselorPage extends StatefulWidget {
   const CounselorPage({super.key});
+
+  @override
+  State<CounselorPage> createState() => _CounselorPageState();
+}
+
+class _CounselorPageState extends State<CounselorPage> {
+  int selectedCategory = -1;
+  late List<CounselorModel> counselors = [];
+  late List<CounselorModel> filteredList = [];
+  void filter(int cat) {
+    setState(
+      () {
+        selectedCategory = cat;
+        filteredList = selectedCategory == -1
+            ? counselors
+            : counselors
+                .where((element) => element.catId == selectedCategory)
+                .toList();
+      },
+    );
+    print(
+      selectedCategory.toString(),
+    );
+  }
+
+  void getCounselors() {
+    FirebaseFirestore.instance.collection('Counselors').get().then(
+      (querySnapshot) {
+        counselors = querySnapshot.docs
+            .map((doc) => CounselorModel.fromFirestore(doc))
+            .toList();
+
+        setState(() {
+          filteredList = counselors;
+        });
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCounselors();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,55 +72,57 @@ class CounselorPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      //bottomNavigationBar: const BottomNavBar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              decoration: const BoxDecoration(color: Colors.white),
-              padding: const EdgeInsets.all(20.0),
-              child: const Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Hello Anne",
-                      style: TextStyle(
-                        color: Colors.orange,
-                        fontFamily: "Calistoga",
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Hello Anne",
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontFamily: "Calistoga",
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Find your Counselor",
-                      style: TextStyle(
-                        color: Colors.orange,
-                        fontFamily: "Calistoga",
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            const SearchBox(),
-            const SizedBox(
-              height: 10,
-            ),
-            const CategoryCard(),
-            const SizedBox(
-              height: 30,
-            ),
-            const CounselorList(),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Find your Counselor",
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontFamily: "Calistoga",
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SearchBox(),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 100,
+                child: CategoryCard(
+                  callback: filter,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              CounselorList(
+                filteredList: filteredList,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
       ),
     );

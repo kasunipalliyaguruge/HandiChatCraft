@@ -26,6 +26,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           onTap: () {
             setState(() {
               _currentIndex = index;
+              print(index);
             });
           },
           child: Column(
