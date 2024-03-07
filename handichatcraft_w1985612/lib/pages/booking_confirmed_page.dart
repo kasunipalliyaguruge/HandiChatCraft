@@ -3,7 +3,6 @@ import 'package:handichatcraft_w1985612/widget/booking_card.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
-import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
 
 class BookingConfirmedpage extends StatelessWidget {

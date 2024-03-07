@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/model/counselor_model.dart';
-import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 import 'package:handichatcraft_w1985612/widget/category.dart';
 import 'package:handichatcraft_w1985612/widget/counselor_list.dart';
 import 'package:handichatcraft_w1985612/widget/search_box.dart';

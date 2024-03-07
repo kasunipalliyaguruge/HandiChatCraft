@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/pages/FeedbackPage.dart';
-import 'package:handichatcraft_w1985612/pages/booking_confirmed_page.dart';
 import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
-import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
+import 'package:handichatcraft_w1985612/pages/rating_page.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -36,10 +34,8 @@ class _MyWidgetState extends State<MyWidget> {
               icon: Icon(
                 Icons.feedback_rounded,
                 color: Colors.orange,
-                
               ),
               label: 'feedback'),
-              
         ],
         selectedIndex: _selectedPage,
         onDestinationSelected: (int index) {
@@ -48,7 +44,7 @@ class _MyWidgetState extends State<MyWidget> {
           });
         },
       ),
-      body: [CounselorPage(), FeedbackPage()][_selectedPage],
+      body: [CounselorPage(), RatingPage()][_selectedPage],
     );
   }
 }

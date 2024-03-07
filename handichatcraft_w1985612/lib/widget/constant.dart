@@ -6,6 +6,8 @@ const Color primaryDark = Color(0xffA65911);
 const Color textDark = Color(0xff6A4206);
 const Color white = Colors.white;
 const Color textDark36 = Color(0xff7E500B);
+const Color textDark24 = Color(0xffB67E11);
+const Color textDark1 = Color(0xff80590E);
 
 //font styles
 
