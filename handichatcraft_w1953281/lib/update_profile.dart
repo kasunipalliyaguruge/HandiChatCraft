@@ -41,20 +41,25 @@ class UpdateProfilePage extends StatelessWidget {
               Positioned(
                 top: 113,
                 left: 220,
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      width: 4,
+                child: GestureDetector(
+                  onTap: () {
+                    showPopupMenu(context);
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 4,
+                        color: Colors.white,
+                      ),
+                      color: const Color.fromARGB(255, 233, 129, 60),
+                    ),
+                    child: const Icon(
+                      Icons.edit,
                       color: Colors.white,
                     ),
-                    color: const Color.fromARGB(255, 233, 129, 60),
-                  ),
-                  child: const Icon(
-                    Icons.edit,
-                    color: Colors.white,
                   ),
                 ),
               ),
@@ -263,27 +268,27 @@ class UpdateProfilePage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return PopupMenuButton<String>(
-          padding: const EdgeInsets.only(left: 40, top: 60),
-          onSelected: (String value) {
-            if (value == 'Edit Profile') {
-              // Navigate to edit profile page
-            } else if (value == 'View Profile') {
-              // Navigate to view profile page
-            }
-          },
-          itemBuilder: (BuildContext context) {
-            return [
-              const PopupMenuItem(
-                value: 'Edit Profile',
-                child: Text('Edit Profile'),
+        return AlertDialog(
+          title: const Text('Choose an option'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('Edit Profile'),
+                onTap: () {
+                  // Navigate to edit profile page
+                  Navigator.pop(context); // Close the alert dialog
+                },
               ),
-              const PopupMenuItem(
-                value: 'View Profile',
-                child: Text('View Profile'),
+              ListTile(
+                title: const Text('View Profile'),
+                onTap: () {
+                  // Navigate to view profile page
+                  Navigator.pop(context); // Close the alert dialog
+                },
               ),
-            ];
-          },
+            ],
+          ),
         );
       },
     );
