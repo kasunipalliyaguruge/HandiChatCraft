@@ -21,6 +21,7 @@ class Communitypage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(height: 20),
           _buildRectangle(
               text: "National Crafts Council - Click Here",
               onTap: () {
