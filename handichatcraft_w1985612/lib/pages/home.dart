@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
 import 'package:handichatcraft_w1985612/pages/rating_page.dart';
+import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -22,29 +23,20 @@ class _MyWidgetState extends State<MyWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(title: const Text('The app')),
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(
-              icon: Icon(
-                Icons.home,
-                color: Colors.orange,
-              ),
-              label: 'Home'),
-          NavigationDestination(
-              icon: Icon(
-                Icons.feedback_rounded,
-                color: Colors.orange,
-              ),
-              label: 'feedback'),
-        ],
-        selectedIndex: _selectedPage,
-        onDestinationSelected: (int index) {
+      bottomNavigationBar: BottomNavBar(
+        callback: (int a) {
           setState(() {
-            _selectedPage = index;
+            _selectedPage = a;
           });
         },
       ),
-      body: [CounselorPage(), RatingPage()][_selectedPage],
+      body: [
+        Placeholder(),
+        RatingPage(),
+        Placeholder(),
+        Placeholder(),
+        CounselorPage(),
+      ][_selectedPage],
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:handichatcraft_w1985612/widget/button_row.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
 import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:handichatcraft_w1985612/widget/time_button.dart';
 
 class ShedulePage extends StatefulWidget {
   final CounselorModel counselor;
@@ -19,7 +20,7 @@ class ShedulePage extends StatefulWidget {
 class _ShedulePageState extends State<ShedulePage> {
   List<DateTime?> _dates = [];
   late BookingModel appointment =
-      BookingModel(widget.counselor, "bbb", DateTime.now());
+      BookingModel(widget.counselor, "Anne", DateTime.now());
   late FirebaseFirestore db;
   @override
   void initState() {
@@ -60,7 +61,9 @@ class _ShedulePageState extends State<ShedulePage> {
           color: Colors.orange,
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        callback: (int) {},
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -125,6 +128,7 @@ class _ShedulePageState extends State<ShedulePage> {
                 ],
               ),
             ),
+            TimeButton(),
           ],
         ),
       ),

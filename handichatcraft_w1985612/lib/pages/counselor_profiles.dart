@@ -22,7 +22,9 @@ class CounselorProfile extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        callback: (int) {},
+      ),
       backgroundColor: primaryColor50,
       body: Column(
         children: [
@@ -54,7 +56,7 @@ class CounselorProfile extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: const Column(
                       children: <Widget>[
-                        Text("Mr.saman Kumara",
+                        Text("Mr.Saman Kumara",
                             style: TextStyle(
                                 color: primaryDark,
                                 fontSize: 20,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1985612/pages/home.dart';
 import 'package:handichatcraft_w1985612/widget/booking_card.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
@@ -7,7 +8,7 @@ import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
 
 class BookingConfirmedpage extends StatelessWidget {
   final BookingModel appointmentDetails;
-  const BookingConfirmedpage({super.key,required this.appointmentDetails});
+  const BookingConfirmedpage({super.key, required this.appointmentDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,9 @@ class BookingConfirmedpage extends StatelessWidget {
           color: white,
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        callback: (int) {},
+      ),
       backgroundColor: primaryColor50,
       body: Expanded(
         child: Stack(
@@ -36,8 +39,7 @@ class BookingConfirmedpage extends StatelessWidget {
                 const SizedBox(
                   height: 120,
                 ),
-                BookingCard(
-                    bookingModel:appointmentDetails),
+                BookingCard(bookingModel: appointmentDetails),
                 const SizedBox(
                   height: 80,
                 ),
@@ -80,8 +82,8 @@ Widget Botton(BuildContext context) => Container(
           borderRadius: BorderRadius.circular(30), color: primaryColor),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const CounselorPage()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const MyWidget()));
         },
         child: const Text(
           'Done',

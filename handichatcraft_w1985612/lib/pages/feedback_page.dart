@@ -1,19 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
+import 'package:handichatcraft_w1985612/pages/home.dart';
 import 'package:handichatcraft_w1985612/pages/rating_page.dart';
-import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({super.key});
+  final double rating;
+  const FeedbackPage({super.key, required this.rating});
 
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
-  double rating = 0;
+  double _rating = 0;
+  final _feedback = TextEditingController();
+  late FirebaseFirestore db;
+
+  void submit() {
+    db.collection("Feedbacks").doc().set({
+      "clientName": "Anne",
+      "rating": _rating,
+      "feedback": _feedback.text,
+    }).then(
+      (value) => print("submitted successfully"),
+      onError: (e) => print("Error completing: $e"),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    db = FirebaseFirestore.instance;
+    _rating = widget.rating;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -24,7 +47,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const CounselorPage(),
+                  builder: (context) => const MyWidget(),
                 ),
               );
             },
@@ -32,7 +55,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
             color: Colors.orange,
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
         body: Column(
           children: [
             const Row(
@@ -65,7 +87,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ),
             RatingBar.builder(
               minRating: 1,
-              initialRating: 0,
+              initialRating: widget.rating,
               allowHalfRating: true,
               itemBuilder: (context, _) => const Icon(
                 Icons.star,
@@ -74,7 +96,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               updateOnDrag: true,
               onRatingUpdate: (rating) => setState(
                 () {
-                  this.rating = rating;
+                  _rating = rating;
                 },
               ),
             ),
@@ -92,12 +114,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
             const SizedBox(
               height: 40,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 40, right: 40),
               child: SizedBox(
                 height: 200,
                 width: 400,
                 child: TextField(
+                  controller: _feedback,
                   expands: true,
                   maxLines: null,
                   decoration: InputDecoration(
@@ -121,6 +144,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               ),
               child: InkWell(
                 onTap: () {
+                  submit();
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const RatingPage(),

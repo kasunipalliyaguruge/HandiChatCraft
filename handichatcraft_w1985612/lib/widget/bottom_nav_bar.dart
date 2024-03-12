@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  final Function(int) callback;
+  const BottomNavBar({super.key, required this.callback});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -28,6 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               _currentIndex = index;
               print(index);
             });
+            widget.callback(_currentIndex);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
