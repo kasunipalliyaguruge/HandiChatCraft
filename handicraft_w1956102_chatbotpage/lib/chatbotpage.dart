@@ -8,28 +8,43 @@ const Chatbotpage({super.key});
     @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            Image.asset(
-              'lib/icons/bot.png',
-              height: 30,
-              width: 30,
-            ),
-            SizedBox(height: 5),
-            Text(
-            'Handibot',
-            style: TextStyle(
-            color: Color.fromARGB(222, 222, 133, 24),
-            fontWeight: FontWeight.bold,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0),
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+      child: AppBar(
+         centerTitle: true,
+         title: Column(
+           mainAxisAlignment: MainAxisAlignment.center,
+           // ignore: prefer_const_literals_to_create_immutables
+           children: [
+             Image.asset(
+               'lib/icons/bot.png',
+               height: 30,
+               width: 30,
              ),
-            ),
-          ],
-        )
-     ),
-);
-}
+             SizedBox(height: 10),
+             Text(
+             'Handibot',
+             style: TextStyle(
+             color: Color.fromARGB(222, 222, 133, 24),
+             fontWeight: FontWeight.bold,
+              ),
+             ),
+           ],
+          )
+         ),
+       ),
+      ),
+    );
+  }
 }
