@@ -57,21 +57,7 @@ class _CounselorPageState extends State<CounselorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-          color: Colors.orange,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.account_circle_rounded),
-            color: Colors.orange,
-          ),
-        ],
-      ),
-      //bottomNavigationBar: const BottomNavBar(),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

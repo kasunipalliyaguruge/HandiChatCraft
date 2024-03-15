@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:handichatcraft_w1985612/pages/counselor_profiles.dart';
 
 class MyCard extends StatelessWidget {
-  const MyCard({super.key, required this.title, required this.subtitle});
+  const MyCard({super.key, required this.counselorModel});
 
-  final String title;
-  final String subtitle;
+  
+  final CounselorModel counselorModel;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,8 @@ class MyCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: ListTile(
-          title: Text(title),
-          subtitle: Text(subtitle),
+          title: Text(counselorModel.name),
+          subtitle: Text(counselorModel.specialize),
           trailing: const Icon(Icons.arrow_forward_ios),
           leading: const Icon(
             Icons.account_circle_rounded,
@@ -24,8 +25,8 @@ class MyCard extends StatelessWidget {
             color: Colors.orange,
           ),
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const CounselorProfile()),
+            Navigator.of(context).pushNamed(
+             '/counselorProfile', arguments: counselorModel
             );
           },
         ),

@@ -12,8 +12,8 @@ class CounselorList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: filteredList.length,
       itemBuilder: (context, index) => MyCard(
-          title: filteredList[index].name,
-          subtitle: filteredList[index].specialize),
+        counselorModel: filteredList[index],
+      ),
     );
   }
 }

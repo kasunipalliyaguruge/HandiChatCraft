@@ -9,23 +9,45 @@ import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:handichatcraft_w1985612/widget/time_button.dart';
 
-class ShedulePage extends StatefulWidget {
+class SchedulePage extends StatefulWidget {
   final CounselorModel counselor;
-  const ShedulePage({super.key, required this.counselor});
+  const SchedulePage({super.key, required this.counselor});
 
   @override
-  State<ShedulePage> createState() => _ShedulePageState();
+  State<SchedulePage> createState() => _SchedulePageState();
 }
 
-class _ShedulePageState extends State<ShedulePage> {
+class _SchedulePageState extends State<SchedulePage> {
   List<DateTime?> _dates = [];
   late BookingModel appointment =
       BookingModel(widget.counselor, "Anne", DateTime.now());
   late FirebaseFirestore db;
+  List<DateTime> timeSlots = [];
+
+  void getTimeSlots() {
+    FirebaseFirestore.instance
+        .collection('Appointments')
+        .where('counselor_name', isEqualTo: widget.counselor.name)
+        .where('dateTime',
+            isEqualTo:
+                DateTime(_dates[0]!.year, _dates[0]!.month, _dates[0]!.day))
+        .get()
+        .then(
+      (querySnapshot) {
+        timeSlots = querySnapshot.docs
+            .map((doc) => doc.data()['dateTime'] as DateTime)
+            .toList();
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     db = FirebaseFirestore.instance;
+    _dates.add(DateTime.now());
+    getTimeSlots();
     super.initState();
   }
 
@@ -51,85 +73,84 @@ class _ShedulePageState extends State<ShedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.orange,
-        ),
-      ),
-      bottomNavigationBar: BottomNavBar(
-        callback: (int) {},
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset("asset/images/MaleUser.png"),
-            Text(widget.counselor.name,
-                textAlign: TextAlign.center,
-                style: calistogaRegular20PrimaryDark),
-            Text(widget.counselor.specialize,
-                textAlign: TextAlign.center, style: calistogaRegular10TextDark),
-            const SizedBox(height: 15),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Select date and time",
-                        style: calistogaRegular16TextDark),
-                  ),
-                  CalendarDatePicker2(
-                    config: CalendarDatePicker2Config(),
-                    value: _dates,
-                    onValueChanged: (dates) {
-                      _dates = dates;
+    return Navigator(
+      onGenerateRoute: (settings) => MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back),
+              color: Colors.orange,
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset("asset/images/MaleUser.png"),
+                Text(widget.counselor.name,
+                    textAlign: TextAlign.center,
+                    style: calistogaRegular20PrimaryDark),
+                Text(widget.counselor.specialize,
+                    textAlign: TextAlign.center,
+                    style: calistogaRegular10TextDark),
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Select date and time",
+                            style: calistogaRegular16TextDark),
+                      ),
+                      CalendarDatePicker2(
+                        config: CalendarDatePicker2Config(),
+                        value: _dates,
+                        onValueChanged: (dates) {
+                          _dates = dates;
 
-                      print(_dates.toString());
-                    },
-                  ),
-                  TimeSelector(
-                      startTime: DateTime.now().copyWith(hour: 10),
-                      callback: setAppointment),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 30,
-                    width: 130,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: primaryColor),
-                    child: InkWell(
-                      onTap: () {
-                        submit();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => BookingConfirmedpage(
-                                appointmentDetails: appointment),
+                          print(_dates.toString());
+                        },
+                      ),
+                      TimeSelector(
+                          startTime: DateTime.now().copyWith(hour: 10),
+                          callback: setAppointment),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 30,
+                        width: 130,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: primaryColor),
+                        child: InkWell(
+                          onTap: () {
+                            submit();
+                            Navigator.of(context).pushNamed(
+                                'bookingConfirmation',
+                                arguments: appointment);
+                          },
+                          child: const Text(
+                            'Book now',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        );
-                      },
-                      child: const Text(
-                        'Book now',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                TimeButton(),
+              ],
             ),
-            TimeButton(),
-          ],
+          ),
         ),
       ),
     );
