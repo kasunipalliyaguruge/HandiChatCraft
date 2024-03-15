@@ -1,57 +1,266 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1986581/articles_details.dart';
+import 'package:handichatcraft_w1986581/images_details.dart';
+import 'package:handichatcraft_w1986581/workshop_detail.dart';
 
-class HomeBody extends StatefulWidget {
+class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
 
   @override
-  State<HomeBody> createState() => _HomeBodyState();
-}
-
-class _HomeBodyState extends State<HomeBody> {
-  List<String> categories = ["Batik","Handloom","Jewelry","Resin","Masks","Basket","Pottery"];
-  int selectedIndex = 0;
-  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: SizedBox(
-        height: 25,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) => buildCategory(index),
-        ),
-      ),
-    );
-  }
 
-  Widget buildCategory(int index) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          children: <Widget>[
-            Text(
-                categories[index],
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Calistoga',
-                  color: Color.fromARGB(154, 196, 70, 7),
-                  fontSize: 14,
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width*.01),
+                child: Center(
+                  child: Image(
+                    image: const AssetImage('assets/dance.png'),
+                    width: width * .3,
+                  ),
                 ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 2.0),
-              height: 2,
-              width: 30,
-              color: selectedIndex == index ? const Color.fromARGB(154, 196, 70, 7): Colors.transparent,
-            ),
-          ],
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 0, bottom: 30.0, right: 190.0),
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 26,
+                    fontFamily: 'Lalezar',
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Workshops()));
+                },
+                child: Ink(
+                  height: height * .15,
+                  width: width,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(1.5, 3),
+                      ),
+                    ],
+                    image: const DecorationImage(
+                      image:AssetImage('assets/dashboard.png'),
+                      fit: BoxFit.fill),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        const Color(0xFFF25831).withOpacity(0.7),
+                        const Color.fromRGBO(255, 168, 61, 1).withOpacity(0.7),
+                      ]),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: width*.03, vertical: height*.02),
+                          child: SizedBox(
+                            width: width*.4,
+                            child: const ListTile(
+                              title: Text(
+                                'Workshops',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontFamily: 'Lalezar',
+                                ),
+                              ),
+                              subtitle: Text(
+                                "Upcoming workshops details",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: EdgeInsets.only(right: width*.03),
+                          child: SizedBox(
+                            height: height*.10,
+                            width: width*.3,
+                            child: Image.asset(
+                              "assets/work.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: width*.06),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Articles()));
+                  },
+                  child: Ink(
+                    height: height * .15,
+                    width: width,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(1.5, 3),
+                        ),
+                      ],
+                      image: const DecorationImage(
+                        image:AssetImage('assets/dashboard.png'),
+                        fit: BoxFit.fill),
+                        borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                           const Color.fromARGB(255, 150, 92, 0).withOpacity(0.7),
+                           const Color.fromARGB(255, 224, 165, 45).withOpacity(0.7),
+                        ]),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: width*.03, vertical: height*.02),
+                            child: SizedBox(
+                              width: width*.4,
+                              child: const ListTile(
+                                title: Text(
+                                  'Articles',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontFamily: 'Lalezar',
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  "Articles related to handicraft",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: EdgeInsets.only(right: width*.03),
+                            child: SizedBox(
+                              height: height*.10,
+                              width: width*.3,
+                              child: Image.asset(
+                                "assets/articles.png",
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: width*.06),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Images()));
+                  },
+                  child: Ink(
+                    height: height * .15,
+                  width: width,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(1.5, 3),
+                      ),
+                    ],
+                    image: const DecorationImage(
+                      image:AssetImage('assets/dashboard.png'),
+                      fit: BoxFit.fill),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        const Color.fromARGB(234, 235, 160, 0).withOpacity(0.7),
+                        const Color.fromARGB(255, 255, 137, 1).withOpacity(0.7),
+                      ]),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: width*.03, vertical: height*.02),
+                          child: SizedBox(
+                            width: width*.4,
+                            child: const ListTile(
+                              title: Text(
+                                'Images',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontFamily: 'Lalezar',
+                                ),
+                              ),
+                              subtitle: Text(
+                                "Colorful images collection",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: EdgeInsets.only(right: width*.03),
+                          child: SizedBox(
+                            height: height*.15,
+                            width: width*.3,
+                            child: Image.asset(
+                              "assets/lamp.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

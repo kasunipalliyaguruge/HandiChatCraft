@@ -1,3 +1,7 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1986581/forgotPassword.dart';
 import 'package:handichatcraft_w1986581/home.dart';
@@ -10,8 +14,31 @@ class Client extends StatefulWidget {
 }
 
 class _ClientState extends State<Client> {
-  bool isSignupScreen = true;
+  final bool _isObscure3 = true;
+  bool isSignupScreen = false;
   bool isChecked = false;
+
+  var options = [
+    'Client',
+    'Counselor',
+  ];
+
+  var _currentItemSelected = "Client";
+  var role = "Client";
+
+  final _formkey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
+
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController =  TextEditingController();
+
+  final TextEditingController mailController =  TextEditingController();
+  final TextEditingController passController =  TextEditingController();
+  final TextEditingController confirmPasswordController =  TextEditingController();
+  final TextEditingController nameController =  TextEditingController();
+  final TextEditingController interestController =  TextEditingController();
+  final TextEditingController numberController =  TextEditingController();
+  final TextEditingController specialController =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -94,10 +121,11 @@ class _ClientState extends State<Client> {
               margin: const EdgeInsets.only(top: 190),
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 20.0),
-                    child: TextField(
-                      decoration: InputDecoration(
+                   Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: TextFormField(
+                      controller: emailController,
+                      decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F3F3),
                         prefixIcon: Icon(
@@ -120,12 +148,29 @@ class _ClientState extends State<Client> {
                           color: Color(0xFFB1A4A4),
                         ),
                       ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Email cannot be empty";
+                        }
+                        if (!RegExp(
+                          "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+                            return ("Please enter a valid email");
+                          } else {
+                            return null;
+                          }
+                      },
+                      onSaved: (value) {
+                        emailController.text = value!;
+                      },
+                      keyboardType: TextInputType.emailAddress,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(  
+                      controller: passwordController,
+                      obscureText: _isObscure3,
+                      decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F3F3),
                         prefixIcon: Icon(
@@ -148,6 +193,21 @@ class _ClientState extends State<Client> {
                           color: Color(0xFFB1A4A4),
                         ),
                       ),
+                      validator: (value) {
+                        RegExp regExp = RegExp(r'^.{6}$');
+                        if (value!.isEmpty) {
+                          return "Password cannot be empty";
+                        }
+                        if (!regExp.hasMatch(value)) {
+                          return ("Please enter valid password min. 6 character");
+                        } else {
+                          return null;
+                        }
+                      },
+                      onSaved: (value) {
+                        passwordController.text = value!;
+                      },
+                      keyboardType: TextInputType.visiblePassword,
                     ),
                   ),
                   Row(
@@ -180,6 +240,7 @@ class _ClientState extends State<Client> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
+                          signIn(emailController.text, passwordController.text);
                         },
                         child: Container(
                           height: 59,
@@ -229,9 +290,9 @@ class _ClientState extends State<Client> {
                      margin: const EdgeInsets.only(bottom: 10),
                      child: RichText(
                       textAlign: TextAlign.center,
-                      text: const TextSpan(
+                      text: TextSpan(
                         text: "Don't have an account?",
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xFFA65911),
                           fontSize: 16,
                           fontFamily: 'Calistoga',
@@ -239,11 +300,17 @@ class _ClientState extends State<Client> {
                         children: [
                           TextSpan(
                             text: " Sign Up",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xFF70573F),
                               fontSize: 16,
                               fontFamily: 'Calistoga',
                             ),
+                            recognizer: TapGestureRecognizer()
+                            ..onTap =() {
+                              setState(() {
+                                isSignupScreen = true;
+                              });
+                            },
                           ),
                         ],
                       ),
@@ -251,15 +318,62 @@ class _ClientState extends State<Client> {
                   ),
                 ]),
             ),
+            if(isSignupScreen)
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Role :  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Calistoga',
+                      fontWeight: FontWeight.bold,
+                      color:  Color(0xFFA65911),
+                    ),
+                  ),
+                  DropdownButton<String>(
+                    dropdownColor: Colors.white,
+                    isDense: true,
+                    isExpanded: false,
+                    iconDisabledColor: const Color(0xFFA65911),
+                    focusColor: Colors.white,
+                    items: options.map((String dropDownStringItem) {
+                      return DropdownMenuItem<String>(
+                        value: dropDownStringItem,
+                        child: Text(
+                          dropDownStringItem,
+                          style: const TextStyle(
+                            color:  Color(0xFF70573F),
+                            fontSize: 18,
+                            fontFamily: 'Calistoga',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }).toList(), 
+                    onChanged: (newValueSelected) {
+                      setState(() {
+                        _currentItemSelected = newValueSelected!;
+                        role = newValueSelected;
+                      });
+                    },
+                    value: _currentItemSelected,
+                  ),
+                ],
+              ),
+            ),
             if (isSignupScreen)
             Container(
-              margin: const EdgeInsets.only(top: 100),
+              margin: const EdgeInsets.only(top: 40.0),
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
+                   Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(
+                      controller: nameController,
+                      decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F3F3),
                         prefixIcon: Icon(
@@ -275,7 +389,7 @@ class _ClientState extends State<Client> {
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),       
                         ),
                         contentPadding: EdgeInsets.all(10),
-                        hintText: "First Name",
+                        hintText: "Name (Eg. Anne Marie)",
                         hintStyle: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Calistoga',
@@ -284,38 +398,11 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Last Name",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(
+                      controller: mailController,
+                      decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F3F3),
                         prefixIcon: Icon(
@@ -338,12 +425,26 @@ class _ClientState extends State<Client> {
                           color: Color(0xFFB1A4A4),
                         ),
                       ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Email cannot be empty";
+                        }
+                        if (!RegExp(
+                          "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+                            return ("Please enter a valid email");
+                          } else {
+                            return null;
+                          }
+                      },
+                      onChanged: (value) {},
+                      keyboardType: TextInputType.emailAddress,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(
+                      controller: interestController,
+                      decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F3F3),
                         prefixIcon: Icon(
@@ -359,7 +460,7 @@ class _ClientState extends State<Client> {
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),       
                         ),
                         contentPadding: EdgeInsets.all(10),
-                        hintText: "Interested In",
+                        hintText: "Interested In (for client)",
                         hintStyle: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Calistoga',
@@ -368,10 +469,69 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(
+                      controller: numberController,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xFFF3F3F3),
+                        prefixIcon: Icon(
+                          Icons.phone,
+                          color: Color(0xFFD19C4C),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFAF803A)),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                        ),
+                        contentPadding: EdgeInsets.all(10),
+                        hintText: "Mobile Number (for counselor)",
+                        hintStyle: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Calistoga',
+                          color: Color(0xFFB1A4A4),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(
+                      controller: specialController,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xFFF3F3F3),
+                        prefixIcon: Icon(
+                          Icons.folder_special,
+                          color: Color(0xFFD19C4C),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFAF803A)),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                        ),
+                        contentPadding: EdgeInsets.all(10),
+                        hintText: "Specialized In (for counselor)",
+                        hintStyle: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Calistoga',
+                          color: Color(0xFFB1A4A4),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(
+                      controller: passController,
+                      decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F3F3),
                         prefixIcon: Icon(
@@ -394,12 +554,25 @@ class _ClientState extends State<Client> {
                           color: Color(0xFFB1A4A4),
                         ),
                       ),
+                      validator: (value) {
+                        RegExp regExp = RegExp(r'^.{6}$');
+                        if (value!.isEmpty) {
+                          return "Password cannot be empty";
+                        }
+                        if (!regExp.hasMatch(value)) {
+                          return ("Please enter valid password min. 6 character");
+                        } else {
+                          return null;
+                        }
+                      },
+                      onChanged: (value) {},
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: TextFormField(
+                      controller: confirmPasswordController,
+                      decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F3F3),
                         prefixIcon: Icon(
@@ -422,6 +595,14 @@ class _ClientState extends State<Client> {
                           color: Color(0xFFB1A4A4),
                         ),
                       ),
+                      validator: (value) {
+                        if(confirmPasswordController.text != passController.text) {
+                          return "Password did not match";
+                        } else {
+                          return null;
+                        }
+                      },
+                      onChanged: (value) {},
                     ),
                   ),
                   Row(
@@ -450,10 +631,31 @@ class _ClientState extends State<Client> {
                     right: 50,
                     left: 50,
                     child: Padding(
-                      padding: const EdgeInsets.all(40.0),
+                      padding: const EdgeInsets.only(top: 30.0, left: 40.0, right: 40.0,bottom: 20.0),
                       child: GestureDetector(
                         onTap: () {
+                          if (role == 'Client') {
+                          CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
+                          collectionReference.add({
+                            'name': nameController.text,
+                            'email': mailController.text,
+                            'interested in': interestController.text,
+                            'create password': passController.text,
+                            'confirm password': confirmPasswordController.text,
+                          });
+                          } else if (role == 'Counselor') {
+                          CollectionReference collRef = FirebaseFirestore.instance.collection('Counselors');
+                          collRef.add({
+                            'name': nameController.text,
+                            'email': mailController.text,
+                            'mobile number': numberController.text,
+                            'specialized in': specialController.text,
+                            'create password': passController.text,
+                            'confirm password': confirmPasswordController.text,
+                          });
+                          }
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
+                          signUp(role, nameController.text, mailController.text, interestController.text, numberController.text, specialController.text, passController.text);
                         },
                         child: Container(
                           height: 59,
@@ -475,28 +677,36 @@ class _ClientState extends State<Client> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: 500,
-                    margin: const EdgeInsets.only(bottom: 10),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                        text: "Already have an account?",
-                        style: TextStyle(
-                          color: Color(0xFFA65911),
-                          fontSize: 16,
-                          fontFamily: 'Calistoga',
-                        ),
-                        children: [
-                          TextSpan(
-                            text: " Sign In",
-                            style: TextStyle(
-                              color: Color(0xFF70573F),
-                              fontSize: 16,
-                              fontFamily: 'Calistoga',
-                            ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: SizedBox(
+                      width: 500,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Already have an account?",
+                          style: const TextStyle(
+                            color: Color(0xFFA65911),
+                            fontSize: 16,
+                            fontFamily: 'Calistoga',
                           ),
-                        ],
+                          children: [
+                            TextSpan(
+                              text: " Sign In",
+                              style: const TextStyle(
+                                color: Color(0xFF70573F),
+                                fontSize: 16,
+                                fontFamily: 'Calistoga',
+                              ),
+                              recognizer: TapGestureRecognizer()  
+                              ..onTap =() {
+                                setState(() {
+                                  isSignupScreen = false;
+                                });
+                              },           
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -506,5 +716,69 @@ class _ClientState extends State<Client> {
         ]),
       ),
     );
+  }
+
+  void route() {
+    User? user = FirebaseAuth.instance.currentUser;
+    var kk = FirebaseFirestore.instance
+    .collection('users')
+    .doc(user!.uid)
+    .get()
+    .then((DocumentSnapshot documentSnapshot){
+      if (documentSnapshot.exists) {
+        if(documentSnapshot.get('role') == 'Counselor') {
+          Navigator.pushReplacement(
+            context, MaterialPageRoute(
+              builder: (context) => const Home(),
+            ),
+          );
+        } else {
+          Navigator.pushReplacement(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => const Home(),
+          ),
+        );
+        }
+      } else {
+        print('Document does not exist on the database');
+      }
+    });
+  }
+
+  void signIn(String email, String password) async {
+    if(_formkey.currentState!.validate()) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email, 
+          password: password,
+          );
+          route();
+      } on FirebaseAuthException catch (e) {
+        if(e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if(e.code == 'wrong-password') {
+          print('wrong password provided for that user.');
+        }
+      }
+    }
+  }
+
+  void signUp(String role, String name, String email, String interested, String number, String special, String password) async{
+    const CircularProgressIndicator();
+    if(_formkey.currentState!.validate()) {
+      await _auth
+      .createUserWithEmailAndPassword(
+        email: email, password: password)
+        .then((value) => {postDetailsToFirestore(role, name, email, interested, number, special, password)})
+        .catchError((e) {});
+    }
+  }
+
+  postDetailsToFirestore(String role, String name, String email, String interested, String number, String special, String password) async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    var user = _auth.currentUser;
+    CollectionReference ref = FirebaseFirestore.instance.collection('users');
+    ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
   }
 }

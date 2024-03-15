@@ -1,8 +1,43 @@
+
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1986581/introduction.dart';
 
-class Welcome extends StatelessWidget {
+class Welcome extends StatefulWidget {
   const Welcome({super.key});
+
+  @override
+  State<Welcome> createState() => _WelcomeState();
+}
+
+class _WelcomeState extends State<Welcome> {
+  final LinearGradient _gradient = const LinearGradient(
+    colors: <Color> [
+      Color.fromARGB(255, 255, 171, 46),
+      Color.fromARGB(217, 145, 63, 8),
+    ],
+  );
+  
+  ValueNotifier<ImageInfo?> imageInfoNotifier = ValueNotifier<ImageInfo?>(null);
+
+  getImage() {
+    AssetImage assetImage = const AssetImage(
+      'assets/handi.png');
+      ImageStream imageStream = assetImage.resolve(ImageConfiguration.empty);
+      ImageStreamListener imageStreamListener =
+      ImageStreamListener((image, synchronousCall) {
+        imageInfoNotifier.value = image;
+      });
+      imageStream.addListener(imageStreamListener);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getImage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +45,6 @@ class Welcome extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
-
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -26,33 +60,51 @@ class Welcome extends StatelessWidget {
         child: Center(
           child: Stack(
             children: [
-              const Positioned(
+              Positioned(
                 top: 75,
                 left: 85,
                 right: 30,
-                child: Text(
-                  'Welcome !',
-                  style: TextStyle(
-                    fontSize: 48,
-                    color: Color.fromARGB(217, 145, 63, 8),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Calistoga',
+                child: ShaderMask(
+                  shaderCallback: (Rect rect) {
+                    return _gradient.createShader(rect);
+                  },
+                  child: Text(
+                    'Welcome !',
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontSize: 48,
+                      color: const Color.fromARGB(217, 176, 75, 7),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Calistoga',
+                    ),
                   ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 bottom: 240,
                 left: 50,
                 right: 0,
-                child: Text(
-                  'HandiChatCraft',
-                  style: TextStyle(
-                    fontSize: 55,
-                    color: Color.fromARGB(154, 196, 70, 7),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Aladin',
-                  ),
-                ),
+                child: ValueListenableBuilder(valueListenable: imageInfoNotifier, builder: (context,value,child){
+                  ImageInfo? imageInfo = value;
+                  if(imageInfo != null) {
+                    ui.Image image = imageInfo.image;
+                    Matrix4 matrix4 = Matrix4.identity()..scale(MediaQuery.sizeOf(context).width/image.width);
+                    Float64List float64list = matrix4.storage;
+                    TileMode titleModeX = TileMode.repeated;
+                    TileMode titleModeY = TileMode.repeated;
+                      return Text(
+                      'HandiChatCraft',
+                      style: TextStyle(
+                        fontSize: 55,
+                
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Aladin',
+                        foreground: Paint()..shader = ImageShader(image, titleModeX, titleModeY, float64list)
+                      ),
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                }),
               ),
               Positioned(
                 bottom: 390,

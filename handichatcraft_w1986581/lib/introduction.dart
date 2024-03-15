@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1986581/role.dart';
+import 'package:handichatcraft_w1986581/client.dart';
 
 class Introduction extends StatelessWidget {
   const Introduction({super.key});
+
+  final LinearGradient _gradient = const LinearGradient(
+    colors: <Color> [
+      Color.fromARGB(255, 255, 171, 46),
+      Color.fromARGB(217, 145, 63, 8),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +19,10 @@ class Introduction extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
 
         decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/masks.png"),
+            fit: BoxFit.cover,
+          ),
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(231, 161, 161, 161),
@@ -26,17 +37,22 @@ class Introduction extends StatelessWidget {
         child: Center(
           child: Stack(
             children: [
-              const Positioned(
+               Positioned(
                 top: 90,
                 left: 50,
                 right: 20,
-                child: Text(
-                  'Supporting handicraft industries in Sri Lanka',
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Color.fromARGB(217, 129, 78, 42),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Calistoga',
+                child: ShaderMask(
+                  shaderCallback: (Rect rect) {
+                    return _gradient.createShader(rect);
+                  },
+                  child: Text(
+                    'Supporting handicraft industries in Sri Lanka',
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontSize: 28,
+                      color: const Color.fromARGB(217, 177, 105, 54),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Calistoga',
+                    ),
                   ),
                 ),
               ),
@@ -56,14 +72,14 @@ class Introduction extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 70,
-                right: 50,
-                left: 50,
+                bottom: 130,
+                right: 10,
+                left: 120,
                 child: Padding(
-                  padding: const EdgeInsets.all(40.0),
+                  padding: const EdgeInsets.only(top: 40.0, bottom: 40.0, left: 55.0, right: 25.0),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Role()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Client()));
                     },
                     child: Container(
                       height: 59,

@@ -1,45 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1986581/homeBody.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class NavigationPage extends StatefulWidget {
+  const NavigationPage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<NavigationPage> createState() => _NavigationPageState();
 }
 
-class _HomeState extends State<Home> {
+class _NavigationPageState extends State<NavigationPage> {
   int _currentIndex  = 0;
+
+  List pages = [
+  ];
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: const HomeBody(),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        title: const Text('Hello Anne',
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          color: Color.fromARGB(154, 196, 70, 7), 
-          fontFamily: 'Calistoga', 
-          fontWeight: FontWeight.bold, 
-          fontSize: 24,
-        ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              color:  const Color(0x9AC44607),
-              icon: const Icon(Icons.notifications_active),
-              onPressed:() {},
-            ),
-          ),
-        ],     
-      ),
+      body: pages[0],
       bottomNavigationBar: Container(
-        height: 60,
+        height: 62,
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 237, 236, 236),
         ),

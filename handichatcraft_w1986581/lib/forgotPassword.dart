@@ -1,8 +1,47 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1986581/verifyEmail.dart';
 
-class ForgotPassword extends StatelessWidget {
-const ForgotPassword({super.key});
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
+
+  @override
+  State<ForgotPassword> createState() => _ForgotPasswordState();
+}
+
+class _ForgotPasswordState extends State<ForgotPassword> {
+  final _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  Future passwordReset() async {
+
+    try {
+      print("Test");
+      await FirebaseAuth.instance
+      .sendPasswordResetEmail(email: _emailController.text.trim());
+      showDialog(
+        context: context, 
+        builder: (context) {
+          return const AlertDialog(
+            content: Text('Password reset link sent! check your email'),
+          );
+        },
+      );
+    } on FirebaseException catch (e) {
+      print("e");
+      showDialog(
+        context: context, 
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        });
+    } 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +98,7 @@ const ForgotPassword({super.key});
                   padding: const EdgeInsets.all(40.0),
                   child: GestureDetector(
                     onTap: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const VerifyEmail()));
+                      passwordReset();
                     },
                     child: Container(
                       height: 59,
@@ -85,6 +124,7 @@ const ForgotPassword({super.key});
                 child: Padding(
                   padding: const EdgeInsets.all(40.0),
                   child: TextFormField(
+                    controller: _emailController,
                     decoration: const InputDecoration(
                       labelText: 'Email Address'
                     ),
