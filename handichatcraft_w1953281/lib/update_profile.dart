@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'settings_page.dart';
 
-class UpdateProfilePage extends StatelessWidget {
+class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({super.key});
+
+  @override
+  State<UpdateProfilePage> createState() => _UpdateProfilePageState();
+}
+
+class _UpdateProfilePageState extends State<UpdateProfilePage> {
+  // Variable to hold the image path
+  String _imagePath = 'assets/profile.png';
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +22,7 @@ class UpdateProfilePage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SettingsPage()));
+                MaterialPageRoute(builder: (context) => SettingsPage()));
           },
           icon: const Icon(Icons.arrow_back_outlined),
         ),
@@ -28,11 +37,11 @@ class UpdateProfilePage extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                padding: const EdgeInsets.only(left: 144, right: 20, top: 25),
+                padding: const EdgeInsets.only(left: 124, right: 20, top: 25),
                 child: const CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 1, 39, 70),
                   radius: 60,
-                  backgroundImage: AssetImage('img/profile.png'),
+                  backgroundImage: AssetImage('assets/profile.png'),
                   //child: Text('Sri Lanka',
 
                   //)
@@ -70,6 +79,13 @@ class UpdateProfilePage extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.all(Radius.circular(15)),
+                    /*boxShadow: [
+                        BoxShadow(
+                            color: Color.fromARGB(255, 181, 179, 177),
+                            spreadRadius: 1,
+                            blurRadius: 8,
+                            offset: Offset(4, 4)),
+                      ],*/
                   ),
                   child: const TextField(
                     decoration: InputDecoration(
@@ -101,6 +117,13 @@ class UpdateProfilePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(15)),
+                  /*boxShadow: [
+                      BoxShadow(
+                          color: Color.fromARGB(255, 181, 179, 177),
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: Offset(4, 4)),
+                    ],*/
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
@@ -130,6 +153,13 @@ class UpdateProfilePage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(15)),
+                  /*boxShadow: [
+                      BoxShadow(
+                          color: Color.fromARGB(255, 181, 179, 177),
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: Offset(4, 4)),
+                    ],*/
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
@@ -246,14 +276,28 @@ class UpdateProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16.0),
-              Container(
-                padding: const EdgeInsets.only(left: 20, top: 660),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 221, 127, 12), fontSize: 18),
+              Positioned(
+                top: 113,
+                left: 220,
+                child: GestureDetector(
+                  onTap: () {
+                    showPopupMenu(context);
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 4,
+                        color: Colors.white,
+                      ),
+                      color: const Color.fromARGB(255, 233, 129, 60),
+                    ),
+                    child: const Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -276,19 +320,54 @@ class UpdateProfilePage extends StatelessWidget {
               ListTile(
                 title: const Text('Edit Profile'),
                 onTap: () {
-                  // Navigate to edit profile page
-                  Navigator.pop(context); // Close the alert dialog
+                  // Close the alert dialog
+                  Navigator.pop(context);
+                  // Open the gallery
+                  _getImageFromGallery(context);
                 },
               ),
               ListTile(
                 title: const Text('View Profile'),
                 onTap: () {
-                  // Navigate to view profile page
-                  Navigator.pop(context); // Close the alert dialog
+                  // Close the alert dialog
+                  Navigator.pop(context);
+                  // Show the image
+                  _showProfileImage(context);
                 },
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  void _getImageFromGallery(BuildContext context) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      // Update the image path
+      setState(() {
+        _imagePath = pickedFile.path!;
+      });
+    }
+  }
+
+  void _showProfileImage(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Profile Image'),
+          content: Image.asset(_imagePath),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Close'),
+            ),
+          ],
         );
       },
     );

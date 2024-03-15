@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1953281/update_profile.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -35,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: const CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 1, 39, 70),
                 radius: 58,
-                backgroundImage: AssetImage('img/profile.png'),
+                backgroundImage: AssetImage('assets/profile.png'),
                 //child: Text('Sri Lanka',
 
                 //)
@@ -87,7 +88,12 @@ class _SettingsPageState extends State<SettingsPage> {
                       borderRadius: BorderRadius.circular(15)),
                   backgroundColor: const Color(0xFFF5F6F9),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const UpdateProfilePage()));
+                },
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -116,7 +122,12 @@ class _SettingsPageState extends State<SettingsPage> {
                       borderRadius: BorderRadius.circular(15)),
                   backgroundColor: const Color(0xFFF5F6F9),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const UpdateProfilePage()));
+                },
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
