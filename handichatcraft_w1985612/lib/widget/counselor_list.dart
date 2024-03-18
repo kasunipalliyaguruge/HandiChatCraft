@@ -8,11 +8,13 @@ class CounselorList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: filteredList.length,
-      itemBuilder: (context, index) => MyCard(
-        counselorModel: filteredList[index],
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: filteredList.length,
+        itemBuilder: (context, index) => MyCard(
+          counselorModel: filteredList[index],
+        ),
       ),
     );
   }

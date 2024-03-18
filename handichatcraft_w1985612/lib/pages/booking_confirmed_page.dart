@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/pages/home.dart';
 import 'package:handichatcraft_w1985612/widget/booking_card.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
+import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
 
 class BookingConfirmedpage extends StatelessWidget {
@@ -20,6 +21,10 @@ class BookingConfirmedpage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           color: white,
         ),
+      ),
+      bottomNavigationBar: BottomNavBar(
+        callback: (p0) {},
+        index: 4,
       ),
       backgroundColor: primaryColor50,
       body: Expanded(
@@ -78,7 +83,7 @@ Widget Botton(BuildContext context) => Container(
       child: InkWell(
         onTap: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const MyWidget()));
+              .popUntil((route)=>route.isFirst);
         },
         child: const Text(
           'Done',

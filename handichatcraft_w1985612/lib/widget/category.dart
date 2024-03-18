@@ -35,8 +35,8 @@ class _CategoryCardState extends State<CategoryCard> {
             elevation: 3,
             borderRadius: BorderRadius.circular(10),
             child: Container(
-              height: 80,
-              width: 80,
+              height: 180,
+              width: 100,
               decoration: BoxDecoration(
                   color: categoryDataList[index].active
                       ? Colors.orange
@@ -55,7 +55,7 @@ class _CategoryCardState extends State<CategoryCard> {
                   ),
                   Text(
                     categoryDataList[index].categoryname,
-                    style: const TextStyle(fontSize: 8),
+                    style: const TextStyle(fontSize: 14),
                   )
                 ],
               ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:handichatcraft_w1985612/model/feedback_model.dart';
+import 'package:handichatcraft_w1985612/pages/feedback_page.dart';
 
 class RatingCard extends StatelessWidget {
   final FeedbackModel feedback;
-  const RatingCard({super.key, required this.feedback});
+  final Function(String) callback;
+  const RatingCard({super.key, required this.feedback, required this.callback});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,26 @@ class RatingCard extends StatelessWidget {
         leading: Icon(Icons.account_circle_rounded,
             size: 40.0, color: Colors.orange),
         title: Text(feedback.clientName),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FeedbackPage(
+                    feedback: feedback,
+                  ),
+                ),
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () => callback(feedback.feedbackId),
+            ),
+          ],
+        ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

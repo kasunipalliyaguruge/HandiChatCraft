@@ -27,9 +27,7 @@ class _CounselorPageState extends State<CounselorPage> {
                 .toList();
       },
     );
-    print(
-      selectedCategory.toString(),
-    );
+    
   }
 
   void getCounselors() {
@@ -58,56 +56,56 @@ class _CounselorPageState extends State<CounselorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Hello Anne",
-                  style: TextStyle(
-                    color: Colors.orange,
-                    fontFamily: "Calistoga",
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
+      
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Hello Anne",
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontFamily: "Calistoga",
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Find your Counselor",
-                  style: TextStyle(
-                    color: Colors.orange,
-                    fontFamily: "Calistoga",
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
+            ),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Find your Counselor",
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontFamily: "Calistoga",
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const SearchBox(),
-              const SizedBox(
-                height: 10,
+            ),
+            const SearchBox(),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 100,
+              child: CategoryCard(
+                callback: filter,
               ),
-              Container(
-                height: 100,
-                child: CategoryCard(
-                  callback: filter,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CounselorList(
-                filteredList: filteredList,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            CounselorList(
+              
+              filteredList: filteredList,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
         ),
       ),
     );

@@ -22,21 +22,33 @@ class _SchedulePageState extends State<SchedulePage> {
   late BookingModel appointment =
       BookingModel(widget.counselor, "Anne", DateTime.now());
   late FirebaseFirestore db;
-  List<DateTime> timeSlots = [];
-
+  List<int> timeSlots = [];
+  List<int> availableTimeSlots = [10, 11, 12, 14, 15, 16];
   void getTimeSlots() {
     FirebaseFirestore.instance
         .collection('Appointments')
-        .where('counselor_name', isEqualTo: widget.counselor.name)
+        .where('counselor_name', isEqualTo: appointment.counselor.name)
         .where('dateTime',
-            isEqualTo:
+            isGreaterThanOrEqualTo:
                 DateTime(_dates[0]!.year, _dates[0]!.month, _dates[0]!.day))
+        .where('dateTime',
+            isLessThanOrEqualTo: DateTime(
+                _dates[0]!.year, _dates[0]!.month, _dates[0]!.day, 23, 59, 59))
         .get()
         .then(
-      (querySnapshot) {
-        timeSlots = querySnapshot.docs
-            .map((doc) => doc.data()['dateTime'] as DateTime)
-            .toList();
+      (QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          timeSlots.add((doc["dateTime"] as Timestamp).toDate().hour);
+          //print(doc["counselor_name"]);
+          print((doc["dateTime"] as Timestamp).toDate());
+        });
+        availableTimeSlots
+            .removeWhere((element) => timeSlots.contains(element));
+        List<int> temp = List.from(availableTimeSlots);
+        setState(() {
+          availableTimeSlots = timeSlots;
+        });
+        print(availableTimeSlots);
       },
       onError: (e) => print("Error completing: $e"),
     );
@@ -46,8 +58,11 @@ class _SchedulePageState extends State<SchedulePage> {
   void initState() {
     // TODO: implement initState
     db = FirebaseFirestore.instance;
-    _dates.add(DateTime.now());
+    _dates.add(DateTime.now().copyWith(
+        hour: 0, minute: 0, second: 0, microsecond: 0, millisecond: 0));
+
     getTimeSlots();
+
     super.initState();
   }
 
@@ -73,84 +88,89 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      onGenerateRoute: (settings) => MaterialPageRoute(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back),
-              color: Colors.orange,
-            ),
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset("asset/images/MaleUser.png"),
-                Text(widget.counselor.name,
-                    textAlign: TextAlign.center,
-                    style: calistogaRegular20PrimaryDark),
-                Text(widget.counselor.specialize,
-                    textAlign: TextAlign.center,
-                    style: calistogaRegular10TextDark),
-                const SizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text("Select date and time",
-                            style: calistogaRegular16TextDark),
-                      ),
-                      CalendarDatePicker2(
-                        config: CalendarDatePicker2Config(),
-                        value: _dates,
-                        onValueChanged: (dates) {
-                          _dates = dates;
-
-                          print(_dates.toString());
-                        },
-                      ),
-                      TimeSelector(
-                          startTime: DateTime.now().copyWith(hour: 10),
-                          callback: setAppointment),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 30,
-                        width: 130,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: primaryColor),
-                        child: InkWell(
-                          onTap: () {
-                            submit();
-                            Navigator.of(context).pushNamed(
-                                'bookingConfirmation',
-                                arguments: appointment);
-                          },
-                          child: const Text(
-                            'Book now',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.orange,
+        ),
+      ),
+      bottomNavigationBar: BottomNavBar(
+        callback: (p0) {},
+        index: 4,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.asset("asset/images/MaleUser.png"),
+            Text(widget.counselor.name,
+                textAlign: TextAlign.center,
+                style: calistogaRegular20PrimaryDark),
+            Text(widget.counselor.specialize,
+                textAlign: TextAlign.center, style: calistogaRegular10TextDark),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Select date and time",
+                        style: calistogaRegular16TextDark),
+                  ),
+                  CalendarDatePicker2(
+                    config: CalendarDatePicker2Config(),
+                    value: _dates,
+                    onValueChanged: (dates) {
+                      _dates = dates;
+                      getTimeSlots();
+                      print(_dates.toString());
+                    },
+                  ),
+                  TimeSelector(
+                      startTime: DateTime.now().copyWith(hour: 10),
+                      callback: setAppointment),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 30,
+                    width: 130,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: primaryColor),
+                    child: InkWell(
+                      onTap: () {
+                        submit();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookingConfirmedpage(
+                                appointmentDetails: appointment,
+                              ),
+                            ));
+                      },
+                      child: const Text(
+                        'Book now',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-                TimeButton(),
-              ],
+                ],
+              ),
             ),
-          ),
+            TimeButton(
+              hours: availableTimeSlots,
+            ),
+          ],
         ),
       ),
     );

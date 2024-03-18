@@ -25,9 +25,13 @@ class MyCard extends StatelessWidget {
             color: Colors.orange,
           ),
           onTap: () {
-            Navigator.of(context).pushNamed(
-             '/counselorProfile', arguments: counselorModel
-            );
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CounselorProfile(
+                    counselor: counselorModel, counselorModel: counselorModel,
+                  ),
+                ));
           },
         ),
       ),

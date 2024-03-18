@@ -13,9 +13,11 @@ class CategoryModel {
 
 List categoryDataList = [
   CategoryModel(
-      categoryname: "Mask", imagePath: "asset/images/Masks.jpg", active: false),
+      categoryname: "Mask", imagePath: "asset/images/Mask.jpg", active: false),
   CategoryModel(
-      categoryname: "cane", imagePath: "asset/images/Cane.jpg", active: false),
+      categoryname: "Handloom",
+      imagePath: "asset/images/Handloom.jpg",
+      active: false),
   CategoryModel(
       categoryname: "Batik",
       imagePath: "asset/images/Batik.jpg",
@@ -26,18 +28,15 @@ List categoryDataList = [
       active: false),
   CategoryModel(
       categoryname: "Pottery",
-      imagePath: "asset/images/Pottery.jpg",
+      imagePath: "asset/images/Pottery1.jpg",
       active: false),
   CategoryModel(
       categoryname: "ResinArt",
       imagePath: "asset/images/ResinArt.jpg",
-      active: false),
+      active: false),    
   CategoryModel(
-      categoryname: "ResinArt",
-      imagePath: "asset/images/ResinArt.jpg",
+      categoryname: "Basket",
+      imagePath: "asset/images/Basket.jpg",
       active: false),
-  CategoryModel(
-      categoryname: "ResinArt",
-      imagePath: "asset/images/ResinArt.jpg",
-      active: false),
+  
 ];

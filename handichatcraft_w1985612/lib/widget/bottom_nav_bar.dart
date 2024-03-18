@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
+  final int? index;
   final Function(int) callback;
-  const BottomNavBar({super.key, required this.callback});
+  const BottomNavBar({super.key, required this.callback, this.index});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _currentIndex = 0;
+  @override
+  void initState() {
+    _currentIndex = widget.index ?? 0;
+    // TODO: implement initState
+    super.initState();
+  }
+
+ late int _currentIndex;
 
   @override
   Widget build(BuildContext context) {

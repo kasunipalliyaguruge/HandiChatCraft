@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handichatcraft_w1985612/pages/account_nav.dart';
+import 'package:handichatcraft_w1985612/pages/counselor_page.dart';
 import 'package:handichatcraft_w1985612/pages/rating_page.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 
@@ -35,7 +35,7 @@ class _MyWidgetState extends State<MyWidget> {
         RatingPage(),
         Placeholder(),
         Placeholder(),
-        AccountNavigator(),
+        CounselorPage(),
       ][_selectedPage],
     );
   }
