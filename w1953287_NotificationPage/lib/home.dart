@@ -40,19 +40,28 @@ class _NotificationViewState extends State<NotificationView> {
       
     );
   }
-  PreferredSizeWidget appBar() {
-    return AppBar(
-      title: Text('Notifications'),
-      titleTextStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 25,
-          fontWeight: FontWeight.bold, // Set the fontWeight to bold
+   PreferredSizeWidget appBar() {
+  return AppBar(
+    title: Center(
+      child: Text(
+        'Notifications',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
         ),
-        backgroundColor: Colors.orangeAccent,
-
-      
-    );
-  }
+      ),
+    ),
+    leading: IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        // Navigate back when the button is pressed
+        Navigator.of(context).pop();
+      },
+    ),
+    backgroundColor: Colors.orangeAccent,
+  );
+}
   Widget listView() {
     return ListView.separated(itemBuilder: ((context, index) {
       return ListViewItem(index);
