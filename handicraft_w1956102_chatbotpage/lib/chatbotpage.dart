@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class Chatbotpage extends StatelessWidget{
@@ -7,9 +6,9 @@ const Chatbotpage({super.key});
 
     @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(    
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
+        preferredSize: Size.fromHeight(115.0),
         child: Container(
           decoration: BoxDecoration(
             boxShadow: [
@@ -28,9 +27,9 @@ const Chatbotpage({super.key});
            // ignore: prefer_const_literals_to_create_immutables
            children: [
              Image.asset(
-               'lib/icons/bot.png',
-               height: 30,
-               width: 30,
+               'lib/icons/chat-bot.png',
+               height: 32,
+               width: 32,
              ),
              SizedBox(height: 10),
              Text(
@@ -39,7 +38,7 @@ const Chatbotpage({super.key});
              color: Color.fromARGB(222, 222, 133, 24),
              fontWeight: FontWeight.bold,
               ),
-             ),
+             )
            ],
           )
          ),
