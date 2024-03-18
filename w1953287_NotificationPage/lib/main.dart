@@ -4,6 +4,7 @@ import 'package:push_notifications/home.dart';
 
 import 'firebase_options.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async{
   await Firebase.initializeApp(

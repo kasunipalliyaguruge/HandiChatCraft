@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^2.25.5
   firebase_messaging: ^14.7.17 
+  flutter_local_notifications: ^16.3.2
   firebase_messaging_platform_interface: ^4.5.25 
   firebase_messaging_web: ^3.6.6 
   flutter_lints: ^2.0.3 
