@@ -28,7 +28,19 @@ class _ChatbotpageState extends State<Chatbotpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Handibot'),
+         leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/chat-bot.png',
+            fit:BoxFit.contain,
+          ),
+        ), 
+        title: Text('Handibot',
+        style: TextStyle(
+        color: Color.fromARGB(222, 222, 133, 24),
+             fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       // ignore: avoid_unnecessary_containers
       body: Container(
@@ -37,13 +49,13 @@ class _ChatbotpageState extends State<Chatbotpage> {
             Expanded(child: MessagesScreen(messages: messages)),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              color: Color.fromARGB(255, 172, 159, 136),
+              color: Color.fromARGB(255, 231, 231, 230),
               child: Row(
                 children: [
                   Expanded(
                       child: TextField(
                     controller: _controller,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                   )),
                   IconButton(
                       onPressed: () {
