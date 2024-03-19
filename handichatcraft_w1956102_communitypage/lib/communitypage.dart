@@ -47,6 +47,25 @@ class Communitypage extends StatelessWidget {
               onTap: () {
                 launchURL('https://craftscouncil.gov.lk/');
               }),
+              const SizedBox(height: 60),
+
+              ElevatedButton(
+                onPressed: (){},
+                style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(const Size(40, 50)),
+                  shape:MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20))
+                      ),
+                    ),
+                child: const Text(
+                'Notes',
+                style: TextStyle(
+                  color: Color.fromARGB(222, 222, 133, 24),
+                  fontWeight: FontWeight.bold,
+                ),
+               )
+            )
         ],
       ),
     );
@@ -69,9 +88,10 @@ class Communitypage extends StatelessWidget {
       ),
     );
   }
-
   void launchURL(String url) async {
+    // ignore: deprecated_member_use
     if (await canLaunch(url)) {
+      // ignore: deprecated_member_use
       await launch(url);
     } else {
       throw 'Could not launch $url';
