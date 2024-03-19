@@ -27,18 +27,18 @@ class _ChatbotpageState extends State<Chatbotpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-         leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(
-            'assets/chat-bot.png',
-            fit:BoxFit.contain,
-          ),
-        ), 
+           appBar: AppBar(
         title: Text('Handibot',
         style: TextStyle(
         color: Color.fromARGB(222, 222, 133, 24),
              fontWeight: FontWeight.bold,
+          ),
+        ),
+        leading: Padding (
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+             'lib/icons/chat-bot.png/',
+             fit: BoxFit.contain,
           ),
         ),
       ),
