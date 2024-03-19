@@ -20,7 +20,7 @@ class BookingCard extends StatelessWidget {
             children: [
               userDetails(bookingModel.counselor, context),
               //SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-              Divider(),
+              const Divider(),
               Expanded(child: bookingDetails(bookingModel)),
             ],
           ),

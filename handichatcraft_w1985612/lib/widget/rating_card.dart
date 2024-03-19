@@ -17,6 +17,7 @@ class RatingCard extends StatelessWidget {
       height: 100.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
+        color: const Color.fromARGB(255, 234, 234, 234)
       ),
       // Set the desired height
 
@@ -63,7 +64,7 @@ class RatingCard extends StatelessWidget {
               itemCount: 5,
               itemSize: 20.0,
               itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-              itemBuilder: (context, _) => Icon(
+              itemBuilder: (context, _) => const Icon(
                 Icons.star,
                 color: Colors.amber,
               ),
@@ -71,7 +72,7 @@ class RatingCard extends StatelessWidget {
                 // Handle rating updates here
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(feedback.feedback)

@@ -71,7 +71,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 List<IconData> listOfIcons = [
   Icons.home,
-  Icons.feedback_rounded,
+  Icons.rate_review,
   Icons.chat,
   Icons.calendar_month,
   Icons.person,

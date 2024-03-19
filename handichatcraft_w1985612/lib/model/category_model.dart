@@ -28,10 +28,10 @@ List categoryDataList = [
       active: false),
   CategoryModel(
       categoryname: "Pottery",
-      imagePath: "asset/images/Pottery1.jpg",
+      imagePath: "asset/images/Pottery.jpg",
       active: false),
   CategoryModel(
-      categoryname: "ResinArt",
+      categoryname: "Resin Art",
       imagePath: "asset/images/ResinArt.jpg",
       active: false),    
   CategoryModel(

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:handichatcraft_w1985612/widget/category.dart';
+import 'package:handichatcraft_w1985612/widget/constant.dart';
 import 'package:handichatcraft_w1985612/widget/counselor_list.dart';
 import 'package:handichatcraft_w1985612/widget/search_box.dart';
 
@@ -27,7 +28,6 @@ class _CounselorPageState extends State<CounselorPage> {
                 .toList();
       },
     );
-    
   }
 
   void getCounselors() {
@@ -52,16 +52,32 @@ class _CounselorPageState extends State<CounselorPage> {
     getCounselors();
   }
 
-  
-
-
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      
+      appBar: AppBar(
+        backgroundColor: white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.orange,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+
+            },
+            icon: const Icon(
+              Icons.account_circle,
+              color: Colors.orange,
+            ),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -94,7 +110,7 @@ class _CounselorPageState extends State<CounselorPage> {
             const SizedBox(
               height: 10,
             ),
-            Container(
+            SizedBox(
               height: 100,
               child: CategoryCard(
                 callback: filter,
@@ -104,7 +120,6 @@ class _CounselorPageState extends State<CounselorPage> {
               height: 30,
             ),
             CounselorList(
-              
               filteredList: filteredList,
             ),
             const SizedBox(

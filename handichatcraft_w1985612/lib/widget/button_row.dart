@@ -82,7 +82,7 @@ class ButtonRow extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: selected == index && row == active
                     ? primaryColor
-                    : Color.fromARGB(255, 233, 204, 167),
+                    : Color.fromARGB(255, 230, 200, 162),
               ),
             ),
           ),

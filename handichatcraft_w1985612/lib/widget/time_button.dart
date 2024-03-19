@@ -33,8 +33,8 @@ class _TimeButtonState extends State<TimeButton> {
         scrollDirection: Axis.horizontal,
         itemCount: timeSlots.length,
         itemBuilder: (context, index) => Padding(
-          padding: EdgeInsets.only(right: 8),
-          child: Container(
+          padding: const EdgeInsets.only(right: 8),
+          child: SizedBox(
             height: 10, // Adjust the height as needed
             width: 150, // Adjust the width as needed
 
@@ -50,8 +50,8 @@ class _TimeButtonState extends State<TimeButton> {
                   backgroundColor: selectedtime == index
                       ? primaryColor
                       : const Color.fromARGB(255, 228, 197, 157),
-                  textStyle: TextStyle(
-                    color: Colors.black,
+                  textStyle: const TextStyle(
+                    color: Colors.black38,
                   )),
             ),
           ),

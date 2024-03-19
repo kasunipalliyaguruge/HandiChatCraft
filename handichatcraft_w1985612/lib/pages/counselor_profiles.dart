@@ -129,7 +129,7 @@ class CounselorProfile extends StatelessWidget {
                               ),
                             ));
                       },
-                      child: Text(
+                      child: const Text(
                         "Appointment",
                         style: TextStyle(
                           fontFamily: "Lalezar",
@@ -140,7 +140,7 @@ class CounselorProfile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],

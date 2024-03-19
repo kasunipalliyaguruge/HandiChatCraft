@@ -116,7 +116,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             height: 40,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 40, right: 40),
+            padding: const EdgeInsets.only(left: 40, right: 40),
             child: SizedBox(
               height: 200,
               width: 400,
@@ -127,7 +127,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 decoration: const InputDecoration(
                     hintText: "type something...",
                     filled: true,
-                    fillColor: Colors.grey),
+                    fillColor: Color.fromARGB(255, 234, 234, 234)),
               ),
             ),
           ),
