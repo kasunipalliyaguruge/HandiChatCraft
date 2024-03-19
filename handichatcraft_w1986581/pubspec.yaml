@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore: ^4.15.5
   firebase_storage: ^11.6.6
   insta_image_viewer: ^1.0.2
+  syncfusion_flutter_pdfviewer: ^24.2.8
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +83,8 @@ flutter:
     - assets/work.png
     - assets/articles.png
     - assets/pdf.png
+
+    - assets/SDGP.pdf
 
     
   #   - images/a_dot_ham.jpeg

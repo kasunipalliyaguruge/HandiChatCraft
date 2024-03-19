@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1986581/home.dart';
+import 'package:handichatcraft_w1986581/verifyEmail.dart';
+
 
 class Articles extends StatefulWidget {
   const Articles({super.key});
@@ -78,8 +81,11 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 7, vsync: this);
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(
-          color: Color.fromARGB(154, 83, 28, 1),
+        leading: BackButton(
+          color: const Color.fromARGB(154, 83, 28, 1),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const Home()));
+          },
         ),
       ),
       body: Column(
@@ -135,6 +141,9 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       tileColor: const Color.fromARGB(255, 216, 216, 216),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder:(context) => const VerifyEmail()));
+                      },
                       leading: ClipRRect(
                         child: Image.asset(
                           handiImage,
@@ -144,6 +153,7 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                         ),
                       ),
                       title: Text(
+                        overflow: TextOverflow.ellipsis,
                         batikPdf[index],
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -154,22 +164,23 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                     );
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 0),
-                  child: ListView.separated(
+                ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   separatorBuilder: (context, index) {
                     return const SizedBox(
                       height: 10,
                     );
                   },
-                  itemCount: 19,
+                  itemCount: 15,
                   itemBuilder: (context, index) {
                     return ListTile(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                       tileColor: const Color.fromARGB(255, 216, 216, 216),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder:(context) => const VerifyEmail()));
+                      },
                       leading: ClipRRect(
                         child: Image.asset(
                           handiImage,
@@ -179,6 +190,7 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                         ),
                       ),
                       title: Text(
+                        overflow: TextOverflow.ellipsis,
                         handloomPdf[index],
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -188,7 +200,6 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                       ),
                     );
                   },
-                ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),

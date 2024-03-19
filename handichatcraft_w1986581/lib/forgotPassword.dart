@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1986581/client.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -57,8 +58,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             fontFamily: 'Calistoga',
           ),
         ),
-        leading: const BackButton(
-          color: Color.fromARGB(154, 83, 28, 1),
+        leading: BackButton(
+          color: const Color.fromARGB(154, 83, 28, 1),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const Client()));
+          },
         ),
       ),
       body: Container(

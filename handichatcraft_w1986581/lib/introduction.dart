@@ -61,7 +61,7 @@ class Introduction extends StatelessWidget {
                 left: 50,
                 right: 50,
                 child: Text(
-                  'The handicraft industry is a diverse and creative sector that involves the production of handmade items using various skills and traditional techniques.',
+                  'This application provides services only for Sri Lankan Handicrafts Industry such as Batik, Handloom, Resin, Masks, Jewelry, Baskets and Pottery.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 22,

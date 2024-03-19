@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1986581/home.dart';
 
 class Images extends StatefulWidget {
   const Images({super.key});
@@ -62,8 +63,11 @@ class _ImagesState extends State<Images> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 7, vsync: this);
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(
-          color: Color.fromARGB(154, 83, 28, 1),
+        leading: BackButton(
+          color: const Color.fromARGB(154, 83, 28, 1),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const Home()));
+          },
         ),
       ),
       body: Column(
