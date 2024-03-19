@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1986581/home.dart';
+import 'package:insta_image_viewer/insta_image_viewer.dart';
 
 class Images extends StatefulWidget {
   const Images({super.key});
@@ -10,44 +11,120 @@ class Images extends StatefulWidget {
 
 class _ImagesState extends State<Images> with TickerProviderStateMixin {
 
-  final List<String> images = [
-    'assets/w1.png',
-    'assets/w2.png',
-    'assets/w3.png',
-    'assets/w1.png',
-    'assets/w2.png',
-    'assets/w3.png',
-    'assets/w1.png',
-    'assets/w2.png',
-    'assets/w3.png',
+  final List<String> batik = [
+    'assets/B1.png',
+    'assets/B2.png',
+    'assets/B3.png',
+    'assets/B4.png',
+    'assets/B5.png',
+    'assets/B6.png',
+    'assets/B7.png',
+    'assets/B8.png',
+    'assets/B9.png',
+    'assets/B10.png',
+    'assets/B11.png',
+    'assets/B12.png',
+    'assets/B13.png',
   ];
 
   final List<String> handloom = [
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
+    'assets/H1.png',
+    'assets/H2.png',
+    'assets/H3.png',
+    'assets/H4.png',
+    'assets/H5.png',
+    'assets/H6.png',
+    'assets/H7.png',
+    'assets/H8.png',
+    'assets/H9.png',
+    'assets/H10.png',
+    'assets/H11.png',
+    'assets/H12.png',
+    'assets/H13.png',
+    'assets/H14.png',
+    'assets/H15.png',
+    'assets/H16.png',
+    'assets/H17.png',
+    'assets/H18.png',
+    'assets/H19.jpg',
   ];
 
   final List<String> resin = [
-    'assets/w3.png',
-    'assets/w3.png',
-    'assets/w3.png',
+    'assets/R1.png',
+    'assets/R2.png',
+    'assets/R3.png',
+    'assets/R4.png',
+    'assets/R5.png',
+    'assets/R6.png',
+    'assets/R7.png',
+    'assets/R8.png',
+    'assets/R9.png',
+    'assets/R10.png',
+    'assets/R11.png',
+    'assets/R12.png',
+    'assets/R13.png',
+    'assets/R14.png',
+    'assets/R15.png',
+    'assets/R16.png',
+    'assets/R17.png',
+    'assets/R18.jpg',
+    'assets/R19.jpg',
   ];
 
   final List<String> masks = [
+    'assets/M1.jpg',
+    'assets/M2.jpg',
+    'assets/M3.jpg',
+    'assets/M4.jpg',
+    'assets/M5.jpg',
+    'assets/M6.jpg',
+    'assets/M7.jpg',
+    'assets/M8.jpg',
+    'assets/M9.jpg',
+    'assets/M10.jpg',
+    'assets/M11.jpg',
+    'assets/M12.jpg',
+    'assets/M13.jpg',
+    'assets/M14.jpg',
+    'assets/M15.jpg',
+    'assets/M16.jpg',
+    'assets/M17.jpg',
+    'assets/M18.jpg',
+    'assets/M19.jpg',
+    'assets/M20.jpg',
+    'assets/M21.jpg',
+    'assets/M22.jpg',
 
   ];
 
   final List<String> jewelry = [
-
+    'assets/J1.jpg',
+    'assets/J2.jpg',
+    'assets/J3.jpg',
+    'assets/J4.jpg',
+    'assets/J5.jpg',
+    'assets/J6.jpg',
+    'assets/J7.jpg',
+    'assets/J8.jpg',
+    'assets/J9.jpg',
+    'assets/J10.jpg',
+    'assets/J11.jpg',
+    'assets/J12.jpg',
+    'assets/J13.jpg',
+    'assets/J14.jpg',
+    'assets/J15.jpg',
+    'assets/J16.jpg',
+    'assets/J17.jpg',
+    'assets/J18.jpg',
+    'assets/J19.jpg',
+    'assets/J20.jpg',
+    'assets/J21.jpg',
+    'assets/J22.jpg',
+    'assets/J23.jpg',
+    'assets/J24.jpg',
+    'assets/J25.jpg',
+    'assets/J26.jpg',
+    'assets/J27.jpg',
   ];
 
   final List<String> basket = [
@@ -116,152 +193,148 @@ class _ImagesState extends State<Images> with TickerProviderStateMixin {
                   physics: const BouncingScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
-                        itemCount: images.length, 
+                        itemCount: batik.length, 
                   itemBuilder: (context, index) {
-                    return Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(images[index]),
-                          fit: BoxFit.cover,
+                    return InstaImageViewer(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(batik[index]),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                        borderRadius: BorderRadius.circular(14),
                       ),
                     );
                   }
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
-                          itemCount: handloom.length, 
-                    itemBuilder: (context, index) {
-                      return Container(
+                GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+                        itemCount: handloom.length, 
+                  itemBuilder: (context, index) {
+                    return InstaImageViewer(
+                      child: Container(
                         height: 100,
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(handloom[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      );
-                    }
-                  ),
+                      ),
+                    );
+                  }
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
-                          itemCount: resin.length, 
-                    itemBuilder: (context, index) {
-                      return Container(
+                GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+                        itemCount: resin.length, 
+                  itemBuilder: (context, index) {
+                    return InstaImageViewer(
+                      child: Container(
                         height: 100,
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(resin[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      );
-                    }
-                  ),
+                      ),
+                    );
+                  }
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
-                          itemCount: masks.length, 
-                    itemBuilder: (context, index) {
-                      return Container(
+                GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+                        itemCount: masks.length, 
+                  itemBuilder: (context, index) {
+                    return InstaImageViewer(
+                      child: Container(
                         height: 100,
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(masks[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      );
-                    }
-                  ),
+                      ),
+                    );
+                  }
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
-                          itemCount: jewelry.length, 
-                    itemBuilder: (context, index) {
-                      return Container(
+                GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+                        itemCount: jewelry.length, 
+                  itemBuilder: (context, index) {
+                    return InstaImageViewer(
+                      child: Container(
                         height: 100,
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(jewelry[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      );
-                    }
-                  ),
+                      ),
+                    );
+                  }
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
-                          itemCount: basket.length, 
-                    itemBuilder: (context, index) {
-                      return Container(
+                GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+                        itemCount: basket.length, 
+                  itemBuilder: (context, index) {
+                    return InstaImageViewer(
+                      child: Container(
                         height: 100,
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(basket[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      );
-                    }
-                  ),
+                      ),
+                    );
+                  }
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
-                          itemCount: pottery.length, 
-                    itemBuilder: (context, index) {
-                      return Container(
+                GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+                        itemCount: pottery.length, 
+                  itemBuilder: (context, index) {
+                    return InstaImageViewer(
+                      child: Container(
                         height: 100,
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(pottery[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                      );
-                    }
-                  ),
+                      ),
+                    );
+                  }
                 ),
               ],
             ),
