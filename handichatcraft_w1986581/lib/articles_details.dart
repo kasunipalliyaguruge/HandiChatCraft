@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:handichatcraft_w1986581/home.dart';
+import 'package:handichatcraft_w1986581/pdf_screen.dart';
 import 'package:handichatcraft_w1986581/verifyEmail.dart';
-
+import 'package:handichatcraft_w1986581/pdf_viewer.dart';
 
 class Articles extends StatefulWidget {
   const Articles({super.key});
@@ -75,6 +77,7 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
   final List<String> potteryPdf = [
 
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +174,7 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                       height: 10,
                     );
                   },
-                  itemCount: 15,
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     return ListTile(
                       shape: RoundedRectangleBorder(
@@ -179,7 +182,7 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                       ),
                       tileColor: const Color.fromARGB(255, 216, 216, 216),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder:(context) => const VerifyEmail()));
+                        Get.to(()=>PdfScreen(index: index));
                       },
                       leading: ClipRRect(
                         child: Image.asset(
@@ -191,7 +194,7 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                       ),
                       title: Text(
                         overflow: TextOverflow.ellipsis,
-                        handloomPdf[index],
+                        handloom[index],
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,

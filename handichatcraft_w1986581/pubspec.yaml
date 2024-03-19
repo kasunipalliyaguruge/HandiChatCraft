@@ -42,6 +42,8 @@ dependencies:
   firebase_storage: ^11.6.6
   insta_image_viewer: ^1.0.2
   syncfusion_flutter_pdfviewer: ^24.2.8
+  easy_pdf_viewer: ^1.0.8
+  get:
 
 dev_dependencies:
   flutter_test:
@@ -85,7 +87,7 @@ flutter:
     - assets/pdf.png
 
     - assets/SDGP.pdf
-
+    - assets/
     
   #   - images/a_dot_ham.jpeg
 

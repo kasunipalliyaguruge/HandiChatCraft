@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:handichatcraft_w1986581/introduction.dart';
 import 'package:handichatcraft_w1986581/welocme.dart';
 import 'package:device_preview/device_preview.dart';
@@ -26,7 +27,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       // ignore: deprecated_member_use
       scrollBehavior: MyCustomScrollBehavior(),
       useInheritedMediaQuery: true,
