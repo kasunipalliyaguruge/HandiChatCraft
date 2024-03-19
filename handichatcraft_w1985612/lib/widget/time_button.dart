@@ -1,60 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
 import 'package:intl/intl.dart';
 
 class TimeButton extends StatefulWidget {
   final List<int> hours;
-  const TimeButton({super.key, required this.hours});
+  final Function(int) callBack;
+  const TimeButton({super.key, required this.hours, required this.callBack});
 
   @override
   State<TimeButton> createState() => _TimeButtonState();
 }
 
 class _TimeButtonState extends State<TimeButton> {
-  late int selectedtime = -1;
-  late List<DateTime> timeSlots;
+  int selectedtime = -1;
+  List<DateTime> timeSlots = [];
 
   @override
-  void initState() {
-    setState(() {
-      timeSlots =
-          widget.hours.map((hour) => DateTime(2000, 1, 1, hour)).toList();
-    });
-
-    print(timeSlots);
-    super.initState();
+  void didUpdateWidget(TimeButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    timeSlots = widget.hours.map((hour) => DateTime(2000, 1, 1, hour)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: timeSlots.length,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: SizedBox(
-            height: 10, // Adjust the height as needed
-            width: 150, // Adjust the width as needed
-
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  selectedtime = index;
-                });
-              },
-              child: Text(
-                  "${DateFormat('HH a').format(timeSlots[index]).toString()} - ${DateFormat('HH a').format(timeSlots[index].add(Duration(hours: 1))).toString()}"),
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: selectedtime == index
-                      ? primaryColor
-                      : const Color.fromARGB(255, 228, 197, 157),
-                  textStyle: const TextStyle(
-                    color: Colors.black38,
-                  )),
-            ),
-          ),
+    return GridView.builder(
+      shrinkWrap: true,
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+      itemCount: timeSlots.length,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              selectedtime = index;
+            });
+            widget.callBack(timeSlots[index].hour);
+          },
+          child: Text(
+              "${DateFormat('HH a').format(timeSlots[index]).toString()} - ${DateFormat('HH a').format(timeSlots[index].add(Duration(hours: 1))).toString()}"),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: selectedtime == index
+                  ? primaryColor
+                  : const Color.fromARGB(255, 228, 197, 157),
+              textStyle: const TextStyle(
+                color: Colors.black38,
+              )),
         ),
       ),
     );

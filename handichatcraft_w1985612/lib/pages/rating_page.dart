@@ -14,6 +14,8 @@ class RatingPage extends StatefulWidget {
 }
 
 class _RatingPageState extends State<RatingPage> {
+  final Stream<QuerySnapshot> _feedbackStream =
+      FirebaseFirestore.instance.collection('Feedbacks').snapshots();
   double rating = 0;
   bool onHold = false;
   List<FeedbackModel> feedbacks = [];
@@ -78,7 +80,7 @@ class _RatingPageState extends State<RatingPage> {
                   radius: 40, // Adjust the radius as needed
                   backgroundColor:
                       Colors.grey, // Set your desired background color
-                  child: Text(rating.toString(),
+                  child: Text(rating.toStringAsFixed(1),
                       style: calistogaRegular36TextDark),
                 ),
                 RatingBar.builder(
@@ -117,15 +119,28 @@ class _RatingPageState extends State<RatingPage> {
               height: 20,
             ),
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: feedbacks.length,
-                itemBuilder: (context, index) => RatingCard(
-                  feedback: feedbacks[index],
-                  callback: deleteFeedback,
-                ),
-              ),
-            ),
+                child: StreamBuilder<QuerySnapshot>(
+              stream: _feedbackStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text("error");
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                return ListView(
+                  children: snapshot.data!.docs
+                      .map(
+                        (e) => RatingCard(
+                          feedback: FeedbackModel.fromFirestore(
+                              e as DocumentSnapshot<Map<String, dynamic>>),
+                          callback: deleteFeedback,
+                        ),
+                      )
+                      .toList(),
+                );
+              },
+            ))
           ],
         ),
       ),

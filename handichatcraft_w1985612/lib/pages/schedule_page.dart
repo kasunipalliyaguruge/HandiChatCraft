@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
@@ -23,8 +25,10 @@ class _SchedulePageState extends State<SchedulePage> {
       BookingModel(widget.counselor, "Anne Marie", DateTime.now());
   late FirebaseFirestore db;
   List<int> timeSlots = [];
-  List<int> availableTimeSlots = [10, 11, 12, 14, 15, 16];
+  List<int> availableTimeSlots = [];
   void getTimeSlots() {
+    availableTimeSlots = [10, 11, 12, 14, 15, 16];
+
     FirebaseFirestore.instance
         .collection('Appointments')
         .where('counselor_name', isEqualTo: appointment.counselor.name)
@@ -37,18 +41,16 @@ class _SchedulePageState extends State<SchedulePage> {
         .get()
         .then(
       (QuerySnapshot querySnapshot) {
+        timeSlots = [];
         querySnapshot.docs.forEach((doc) {
           timeSlots.add((doc["dateTime"] as Timestamp).toDate().hour);
           //print(doc["counselor_name"]);
-          print((doc["dateTime"] as Timestamp).toDate());
         });
-        availableTimeSlots
-            .removeWhere((element) => timeSlots.contains(element));
-        List<int> temp = List.from(availableTimeSlots);
+
         setState(() {
-          availableTimeSlots = timeSlots;
+          availableTimeSlots
+              .removeWhere((element) => timeSlots.contains(element));
         });
-        print(availableTimeSlots);
       },
       onError: (e) => print("Error completing: $e"),
     );
@@ -77,13 +79,9 @@ class _SchedulePageState extends State<SchedulePage> {
     print("Appointment successfully");
   }
 
-  void setAppointment(DateTime dateTime) {
+  void setAppointment(int hour) {
     appointment.dateTime = appointment.dateTime.copyWith(
-        hour: dateTime.hour,
-        minute: 0,
-        second: 0,
-        microsecond: 0,
-        millisecond: 0);
+        hour: hour, minute: 0, second: 0, microsecond: 0, millisecond: 0);
   }
 
   @override
@@ -122,17 +120,17 @@ class _SchedulePageState extends State<SchedulePage> {
                         style: calistogaRegular16TextDark),
                   ),
                   CalendarDatePicker2(
-                    config: CalendarDatePicker2Config(),
+                    config: CalendarDatePicker2Config(firstDate: DateTime.now().add( const Duration(days: 1))),
                     value: _dates,
                     onValueChanged: (dates) {
                       _dates = dates;
                       getTimeSlots();
-                      print(_dates.toString());
                     },
                   ),
-                  TimeSelector(
-                      startTime: DateTime.now().copyWith(hour: 10),
-                      callback: setAppointment),
+                  TimeButton(
+                    callBack: setAppointment,
+                    hours: availableTimeSlots,
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -166,9 +164,6 @@ class _SchedulePageState extends State<SchedulePage> {
                   ),
                 ],
               ),
-            ),
-            TimeButton(
-              hours: availableTimeSlots,
             ),
           ],
         ),
