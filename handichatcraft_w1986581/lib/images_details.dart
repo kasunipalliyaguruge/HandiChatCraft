@@ -47,6 +47,7 @@ class _ImagesState extends State<Images> with TickerProviderStateMixin {
     'assets/H17.png',
     'assets/H18.png',
     'assets/H19.jpg',
+    'assets/H20.jpg',
   ];
 
   final List<String> resin = [
@@ -128,7 +129,28 @@ class _ImagesState extends State<Images> with TickerProviderStateMixin {
   ];
 
   final List<String> basket = [
-
+    'assets/S1.jpg',
+    'assets/S2.jpg',
+    'assets/S3.jpg',
+    'assets/S4.jpg',
+    'assets/S5.jpg',
+    'assets/S6.jpg',
+    'assets/S7.jpg',
+    'assets/S8.jpg',
+    'assets/S9.jpg',
+    'assets/S10.jpg',
+    'assets/S11.jpg',
+    'assets/S12.jpg',
+    'assets/S13.jpg',
+    'assets/S14.jpg',
+    'assets/S15.jpg',
+    'assets/S16.jpg',
+    'assets/S17.jpg',
+    'assets/S18.jpg',
+    'assets/S19.jpg',
+    'assets/S20.jpg',
+    'assets/S21.jpg',
+    'assets/S22.jpg',
   ];
 
   final List<String> pottery = [
