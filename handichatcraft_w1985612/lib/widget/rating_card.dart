@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:handichatcraft_w1985612/model/feedback_model.dart';
 import 'package:handichatcraft_w1985612/pages/feedback_page.dart';
+import 'package:handichatcraft_w1985612/widget/constant.dart';
 
 class RatingCard extends StatelessWidget {
   final FeedbackModel feedback;
@@ -20,9 +21,16 @@ class RatingCard extends StatelessWidget {
       // Set the desired height
 
       child: ListTile(
-        leading: Icon(Icons.account_circle_rounded,
-            size: 40.0, color: Colors.orange),
-        title: Text(feedback.clientName),
+        leading: const Icon(Icons.account_circle_rounded,
+            size: 40.0, color: textDark),
+        title: Text(
+          feedback.clientName,
+          style: const TextStyle(
+            color: dark1, // Text color
+            fontFamily: "Calistoga", // Font family
+            fontSize: 16, // Font size
+          ),
+        ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

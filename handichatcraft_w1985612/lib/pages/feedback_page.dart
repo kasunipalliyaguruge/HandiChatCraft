@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:handichatcraft_w1985612/model/feedback_model.dart';
-import 'package:handichatcraft_w1985612/pages/rating_page.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
 
@@ -69,8 +68,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   backgroundColor:
                       Colors.grey, // Set your desired background color
                   child: Icon(
-                    Icons.account_circle_rounded,
-                    size: 30,
+                    Icons.person,
+                    size: 50,
                     color: Colors.orange,
                   ),
                 ),
@@ -79,7 +78,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   "Anne Marie",
-                  style: TextStyle(fontSize: 24, color: textDark1),
+                  style: calistogaRegular36TextDark,
                 ),
               ),
             ],
@@ -125,7 +124,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 controller: _feedback,
                 expands: true,
                 maxLines: null,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     hintText: "type something...",
                     filled: true,
                     fillColor: Colors.grey),

@@ -68,7 +68,6 @@ class _RatingPageState extends State<RatingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
         child: Column(
           children: [
@@ -79,15 +78,9 @@ class _RatingPageState extends State<RatingPage> {
                   radius: 40, // Adjust the radius as needed
                   backgroundColor:
                       Colors.grey, // Set your desired background color
-                  child: Text(
-                    rating.toString(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.deepOrangeAccent,
-                    ),
-                  ),
+                  child: Text(rating.toString(),
+                      style: calistogaRegular36TextDark),
                 ),
-                
                 RatingBar.builder(
                   minRating: 1,
                   initialRating: 0,

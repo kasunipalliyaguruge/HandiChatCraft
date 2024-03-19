@@ -20,7 +20,7 @@ class SchedulePage extends StatefulWidget {
 class _SchedulePageState extends State<SchedulePage> {
   List<DateTime?> _dates = [];
   late BookingModel appointment =
-      BookingModel(widget.counselor, "Anne", DateTime.now());
+      BookingModel(widget.counselor, "Anne Marie", DateTime.now());
   late FirebaseFirestore db;
   List<int> timeSlots = [];
   List<int> availableTimeSlots = [10, 11, 12, 14, 15, 16];

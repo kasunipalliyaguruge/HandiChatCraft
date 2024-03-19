@@ -35,6 +35,7 @@ class CounselorProfile extends StatelessWidget {
         children: [
           const Center(
             child: CircleAvatar(
+              backgroundImage: AssetImage("asset/images/User.jpg"),
               radius: 60,
             ),
           ),

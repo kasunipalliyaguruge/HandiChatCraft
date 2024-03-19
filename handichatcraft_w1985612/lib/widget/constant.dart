@@ -8,6 +8,7 @@ const Color white = Colors.white;
 const Color textDark36 = Color(0xff7E500B);
 const Color textDark24 = Color(0xffB67E11);
 const Color textDark1 = Color(0xff80590E);
+const Color dark1 = Color(0xff694611);
 
 //font styles
 

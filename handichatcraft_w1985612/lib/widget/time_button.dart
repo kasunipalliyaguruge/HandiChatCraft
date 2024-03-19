@@ -28,15 +28,15 @@ class _TimeButtonState extends State<TimeButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: timeSlots.length,
         itemBuilder: (context, index) => Padding(
-          padding: EdgeInsets.only(right: 8, bottom: 8, top: 8),
+          padding: EdgeInsets.only(right: 8),
           child: Container(
-            height: 80, // Adjust the height as needed
-            width: 180, // Adjust the width as needed
+            height: 10, // Adjust the height as needed
+            width: 150, // Adjust the width as needed
 
             child: ElevatedButton(
               onPressed: () {
@@ -47,9 +47,12 @@ class _TimeButtonState extends State<TimeButton> {
               child: Text(
                   "${DateFormat('HH a').format(timeSlots[index]).toString()} - ${DateFormat('HH a').format(timeSlots[index].add(Duration(hours: 1))).toString()}"),
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    selectedtime == index ? primaryColor : Colors.orange[50],
-              ),
+                  backgroundColor: selectedtime == index
+                      ? primaryColor
+                      : const Color.fromARGB(255, 228, 197, 157),
+                  textStyle: TextStyle(
+                    color: Colors.black,
+                  )),
             ),
           ),
         ),

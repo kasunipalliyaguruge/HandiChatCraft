@@ -31,11 +31,11 @@ class _MyWidgetState extends State<MyWidget> {
         },
       ),
       body: [
-        Placeholder(),
-        RatingPage(),
-        Placeholder(),
-        Placeholder(),
-        CounselorPage(),
+        const Placeholder(),
+        const RatingPage(),
+        const Placeholder(),
+        const Placeholder(),
+        const CounselorPage(),
       ][_selectedPage],
     );
   }

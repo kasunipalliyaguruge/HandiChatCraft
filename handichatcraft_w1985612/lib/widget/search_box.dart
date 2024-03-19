@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SearchBox extends StatefulWidget {
+  
   const SearchBox({super.key});
 
   @override
@@ -8,9 +9,11 @@ class SearchBox extends StatefulWidget {
 }
 
 class _SearchBoxState extends State<SearchBox> {
+  
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       width: 300,
       child: TextField(
