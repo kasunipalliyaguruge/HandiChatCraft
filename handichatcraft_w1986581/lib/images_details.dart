@@ -146,15 +146,31 @@ class _ImagesState extends State<Images> with TickerProviderStateMixin {
     'assets/S15.jpg',
     'assets/S16.jpg',
     'assets/S17.jpg',
+    'assets/S24.jpg',
     'assets/S18.jpg',
     'assets/S19.jpg',
     'assets/S20.jpg',
     'assets/S21.jpg',
     'assets/S22.jpg',
-  ];
+    'assets/S23.jpg',
+  ]; 
 
   final List<String> pottery = [
-
+    'assets/P1.jpg',
+    'assets/P2.jpg',
+    'assets/P3.jpg',
+    'assets/P4.jpg',
+    'assets/P5.jpg',
+    'assets/P6.jpg',
+    'assets/P7.jpg',
+    'assets/P8.jpg',
+    'assets/P9.jpg',
+    'assets/P10.jpg',
+    'assets/P11.jpg',
+    'assets/P12.jpg',
+    'assets/P13.jpg',
+    'assets/P14.jpg',
+    'assets/P15.jpg',
   ];
 
   @override
