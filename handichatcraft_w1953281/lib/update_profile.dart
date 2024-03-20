@@ -1,311 +1,295 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
 
-import 'settings_page.dart';
+class EditProfilePage extends StatefulWidget {
+  final String initialName; // Define initialName parameter
+  final Function(String) onUpdateName; // Define onUpdateName parameter
 
-class UpdateProfilePage extends StatefulWidget {
-  const UpdateProfilePage({super.key});
+  const EditProfilePage({
+    Key? key,
+    required this.initialName,
+    required this.onUpdateName,
+  }) : super(key: key);
 
   @override
-  State<UpdateProfilePage> createState() => _UpdateProfilePageState();
+  _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _UpdateProfilePageState extends State<UpdateProfilePage> {
-  // Variable to hold the image path
+class _EditProfilePageState extends State<EditProfilePage> {
   String _imagePath = 'assets/profile.png';
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  late User _user;
+  late String _firstName = '';
+  late String _lastName = '';
+  late String _email = '';
+  late String _phoneNumber = '';
+  late String _interestedIn = '';
+  late String _specializedIn = '';
+  bool _isLoading = true;
+  final _formKey = GlobalKey<FormState>();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _interestedInController = TextEditingController();
+  final _specializedInController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfile();
+    _firstNameController.text = widget.initialName; // Set initial name
+  }
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _phoneNumberController.dispose();
+    _interestedInController.dispose();
+    _specializedInController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadProfile() async {
+    _user = _auth.currentUser!;
+    DocumentSnapshot<Map<String, dynamic>> doc;
+    if (_user != null) {
+      doc = await _firestore.collection('clients').doc(_user.uid).get();
+      if (doc.exists) {
+        setState(() {
+          _firstName = doc['firstName'] ?? '';
+          _lastName = doc['lastName'] ?? '';
+          _email = doc['email'] ?? '';
+          _phoneNumber = doc['phoneNumber'] ?? '';
+          _interestedIn = doc['interestedIn'] ?? '';
+          _isLoading = false;
+        });
+      } else {
+        doc = await _firestore.collection('counselors').doc(_user.uid).get();
+        if (doc.exists) {
+          setState(() {
+            _firstName = doc['firstName'] ?? '';
+            _lastName = doc['lastName'] ?? '';
+            _email = doc['email'] ?? '';
+            _phoneNumber = doc['phoneNumber'] ?? '';
+            _specializedIn = doc['specializedIn'] ?? '';
+            _isLoading = false;
+          });
+        }
+      }
+      _lastNameController.text = _lastName;
+      _emailController.text = _email;
+      _phoneNumberController.text = _phoneNumber;
+      _interestedInController.text = _interestedIn;
+      _specializedInController.text = _specializedIn;
+    }
+  }
+
+  void _saveChanges() async {
+    if (_formKey.currentState!.validate()) {
+      final clientDoc = _firestore.collection('clients').doc(_user.uid);
+      final counselorDoc = _firestore.collection('counselors').doc(_user.uid);
+
+      if (_interestedIn.isNotEmpty &&
+          await clientDoc.get().then((doc) => doc.exists)) {
+        await clientDoc.update({
+          'firstName': _firstNameController.text,
+          'lastName': _lastNameController.text,
+          'email': _emailController.text,
+          'phoneNumber': _phoneNumberController.text,
+          'interestedIn': _interestedInController.text,
+        });
+      } else if (_specializedIn.isNotEmpty &&
+          await counselorDoc.get().then((doc) => doc.exists)) {
+        await counselorDoc.update({
+          'firstName': _firstNameController.text,
+          'lastName': _lastNameController.text,
+          'email': _emailController.text,
+          'phoneNumber': _phoneNumberController.text,
+          'specializedIn': _specializedInController.text,
+        });
+      }
+
+      // Update the name using setState
+      setState(() {
+        _firstName = _firstNameController.text;
+      });
+
+      // Call onUpdateName to update the name
+      widget.onUpdateName(_firstNameController.text);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SettingsPage()));
-          },
-          icon: const Icon(Icons.arrow_back_outlined),
-        ),
-        leadingWidth: 100,
+        title: Text('Edit Profile'),
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: GestureDetector(
-          onTap: () {
-            showPopupMenu(context);
-          },
-          child: Stack(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(left: 124, right: 20, top: 25),
-                child: const CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 1, 39, 70),
-                  radius: 60,
-                  backgroundImage: AssetImage('assets/profile.png'),
-                  //child: Text('Sri Lanka',
-
-                  //)
-                ),
-              ),
-              Positioned(
-                top: 113,
-                left: 220,
-                child: GestureDetector(
-                  onTap: () {
-                    showPopupMenu(context);
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 4,
-                        color: Colors.white,
-                      ),
-                      color: const Color.fromARGB(255, 233, 129, 60),
-                    ),
-                    child: const Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Container(
-                  margin: const EdgeInsets.only(left: 25, right: 25, top: 180),
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    /*boxShadow: [
-                        BoxShadow(
-                            color: Color.fromARGB(255, 181, 179, 177),
-                            spreadRadius: 1,
-                            blurRadius: 8,
-                            offset: Offset(4, 4)),
-                      ],*/
-                  ),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.person_2_outlined,
-                          color: Color.fromARGB(255, 233, 129, 60),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      showPopupMenu(context);
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(
+                              left: 124, right: 20, top: 25),
+                          child: const CircleAvatar(
+                            backgroundColor: Color.fromARGB(255, 1, 39, 70),
+                            radius: 60,
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 233, 129, 60),
-                                width: 2.0)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                                width: 1.0)),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        hintText: "First Name",
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 233, 129, 60))),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 25, right: 25, top: 260),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  /*boxShadow: [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 181, 179, 177),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(4, 4)),
-                    ],*/
-                ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.person_2_outlined,
-                        color: Color.fromARGB(255, 233, 129, 60),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 233, 129, 60),
-                              width: 2.0)),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              width: 1.0)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      hintText: "Last Name",
-                      hintStyle:
-                          TextStyle(color: Color.fromARGB(255, 233, 129, 60))),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 25, right: 25, top: 340),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  /*boxShadow: [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 181, 179, 177),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(4, 4)),
-                    ],*/
-                ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.email_outlined,
-                        color: Color.fromARGB(255, 233, 129, 60),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 233, 129, 60),
-                              width: 2.0)),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              width: 1.0)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      hintText: "Email",
-                      hintStyle:
-                          TextStyle(color: Color.fromARGB(255, 233, 129, 60))),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 25, right: 25, top: 420),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.phone,
-                        color: Color.fromARGB(255, 233, 129, 60),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 233, 129, 60),
-                              width: 2.0)),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              width: 1.0)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      hintText: "Phone No",
-                      hintStyle:
-                          TextStyle(color: Color.fromARGB(255, 233, 129, 60))),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 25, right: 25, top: 503),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.list,
-                        color: Color.fromARGB(255, 233, 129, 60),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 233, 129, 60),
-                              width: 2.0)),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              width: 1.0)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      hintText: "Interested In",
-                      hintStyle:
-                          TextStyle(color: Color.fromARGB(255, 233, 129, 60))),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 25, top: 600),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(150, 45),
-                    backgroundColor: const Color.fromARGB(255, 206, 204, 202),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 4, 4, 4), fontSize: 18),
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 220, top: 600),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(150, 45),
-                    backgroundColor: const Color.fromARGB(255, 221, 127, 12),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Positioned(
-                top: 113,
-                left: 220,
-                child: GestureDetector(
-                  onTap: () {
-                    showPopupMenu(context);
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 4,
-                        color: Colors.white,
-                      ),
-                      color: const Color.fromARGB(255, 233, 129, 60),
-                    ),
-                    child: const Icon(
-                      Icons.edit,
-                      color: Colors.white,
+                        Positioned(
+                          top: 113,
+                          left: 220,
+                          child: GestureDetector(
+                            onTap: () {
+                              showPopupMenu(context);
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 4,
+                                  color: Colors.white,
+                                ),
+                                color: const Color.fromARGB(255, 233, 129, 60),
+                              ),
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  SizedBox(height: 10),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Text(
+                          'User Details:',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 10),
+                        TextFormField(
+                          controller: _firstNameController,
+                          decoration: InputDecoration(labelText: 'First Name'),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your first name';
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          controller: _lastNameController,
+                          decoration: InputDecoration(labelText: 'Last Name'),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your last name';
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          controller: _emailController,
+                          decoration: InputDecoration(labelText: 'Email'),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your email';
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          controller: _phoneNumberController,
+                          decoration:
+                              InputDecoration(labelText: 'Phone Number'),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your phone number';
+                            }
+                            return null;
+                          },
+                        ),
+                        if (_interestedIn.isNotEmpty)
+                          TextFormField(
+                            controller: _interestedInController,
+                            decoration:
+                                InputDecoration(labelText: 'Interested In'),
+                          ),
+                        if (_specializedIn.isNotEmpty)
+                          TextFormField(
+                            controller: _specializedInController,
+                            decoration:
+                                InputDecoration(labelText: 'Specialized In'),
+                          ),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              onPressed: _saveChanges,
+                              child: Text('Save'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancel'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
+  }
+
+  Future<void> _saveProfilePicture(String imagePath) async {
+    try {
+      Reference ref = FirebaseStorage.instance
+          .ref()
+          .child('profile_images')
+          .child('${_user.uid}.jpg');
+      UploadTask uploadTask = ref.putFile(File(imagePath));
+      String imageUrl = await (await uploadTask).ref.getDownloadURL();
+
+      await _firestore.collection('users').doc(_user.uid).update({
+        'profile_picture': imageUrl,
+      });
+      setState(() {
+        _imagePath = imagePath;
+      });
+    } catch (e) {
+      print('Error uploading profile picture: $e');
+    }
   }
 
   void showPopupMenu(BuildContext context) {
@@ -350,6 +334,8 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       setState(() {
         _imagePath = pickedFile.path!;
       });
+      // Save the profile picture
+      _saveProfilePicture(pickedFile.path!);
     }
   }
 
@@ -370,6 +356,44 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
           ],
         );
       },
+    );
+  }
+}
+
+class ImagePickerPage extends StatelessWidget {
+  final String imagePath;
+  final Function(String) onSaveImage;
+
+  const ImagePickerPage({
+    Key? key,
+    required this.imagePath,
+    required this.onSaveImage,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit Profile Picture'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(child: Image.file(File(imagePath))),
+          ElevatedButton(
+            onPressed: () async {
+              final picker = ImagePicker();
+              final pickedFile =
+                  await picker.pickImage(source: ImageSource.gallery);
+              if (pickedFile != null) {
+                onSaveImage(pickedFile.path);
+                Navigator.pop(context);
+              }
+            },
+            child: Text('Choose a new image'),
+          ),
+        ],
+      ),
     );
   }
 }
