@@ -54,16 +54,22 @@ class _ChatbotpageState extends State<Chatbotpage> {
       // ignore: avoid_unnecessary_containers
       body: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(child: MessagesScreen(messages: messages)),
-            Text(
-              'HandiBot gives you answers to questions about handicrafts such as Batik, Masks, Handicrafts, Pottery, Jewelry, and Basket.',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+              'HandiBot gives you answers to questions about handicrafts such as Batik, Masks, Handloom, Pottery, Jewelry, Rasin Arts,and Basket.',
+               textAlign: TextAlign.center,
                style: TextStyle(
-                color: Colors.orange,
+                color: Color.fromARGB(255, 94, 58, 5),
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
                ),
-              ),
+            ),
+          ),
+
+            Expanded(child: MessagesScreen(messages: messages)),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               color: Color.fromARGB(255, 231, 231, 230),

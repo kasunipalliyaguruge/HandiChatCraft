@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257791458072",
+    "project_id": "communitypagereal",
+    "storage_bucket": "communitypagereal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257791458072:android:bb3256f786a8636b67fc6d",
+        "android_client_info": {
+          "package_name": "com.example.handichatcraft_w1956102_communitypage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGPqqDdrYilYZc94-ge6iMrxZgJMrI6WE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -49,23 +49,25 @@ class Communitypage extends StatelessWidget {
               }),
               const SizedBox(height: 60),
 
-              ElevatedButton(
-                onPressed: (){},
-                style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(const Size(40, 50)),
-                  shape:MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))
+              Padding(
+                padding: const EdgeInsets.only(right: 80, left: 80),
+                child: ElevatedButton(
+                  onPressed: (){},
+                  style: ButtonStyle(
+                    shape:MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))
+                        ),
                       ),
-                    ),
-                child: const Text(
-                'Notes',
-                style: TextStyle(
-                  color: Color.fromARGB(222, 222, 133, 24),
-                  fontWeight: FontWeight.bold,
-                ),
-               )
-            )
+                  child: const Text(
+                  'Notes',
+                  style: TextStyle(
+                    color: Color.fromARGB(222, 222, 133, 24),
+                    fontWeight: FontWeight.bold,
+                  ),
+                 )
+                            ),
+              )
         ],
       ),
     );
