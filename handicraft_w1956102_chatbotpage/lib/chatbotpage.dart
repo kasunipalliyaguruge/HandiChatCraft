@@ -27,19 +27,28 @@ class _ChatbotpageState extends State<Chatbotpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-           appBar: AppBar(
-        title: Text('Handibot',
-        style: TextStyle(
-        color: Color.fromARGB(222, 222, 133, 24),
-             fontWeight: FontWeight.bold,
-          ),
-        ),
-        leading: Padding (
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(
-             'lib/icons/chat-bot.png/',
-             fit: BoxFit.contain,
-          ),
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+            width: 50,
+            height: 50,
+            child: Image.asset(
+              'lib/icons/chat-bot.png',
+              fit: BoxFit.contain,
+              ),
+            ),
+            SizedBox(width: 8),
+            Text(
+              'HandiBot',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.orange,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ], 
         ),
       ),
       // ignore: avoid_unnecessary_containers
@@ -47,6 +56,14 @@ class _ChatbotpageState extends State<Chatbotpage> {
         child: Column(
           children: [
             Expanded(child: MessagesScreen(messages: messages)),
+            Text(
+              'HandiBot gives you answers to questions about handicrafts such as Batik, Masks, Handicrafts, Pottery, Jewelry, and Basket.',
+               style: TextStyle(
+                color: Colors.orange,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+               ),
+              ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               color: Color.fromARGB(255, 231, 231, 230),
