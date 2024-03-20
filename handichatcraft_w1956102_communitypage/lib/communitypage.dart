@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1956102_communitypage/pages/notes.dart';
 // ignore: depend_on_referenced_packages
 import 'package:url_launcher/url_launcher.dart';
 
 class Communitypage extends StatelessWidget {
   const Communitypage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class Communitypage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 80, left: 80),
                 child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: () => const Notes(),
                   style: ButtonStyle(
                     shape:MaterialStateProperty.all(
                       RoundedRectangleBorder(
@@ -66,8 +68,8 @@ class Communitypage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                  )
-                            ),
-              )
+               ),
+           )
         ],
       ),
     );

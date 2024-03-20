@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1956102_communitypage/communitypage.dart';
+import 'package:handichatcraft_w1956102_communitypage/firebase_options.dart';
+import 'package:handichatcraft_w1956102_communitypage/pages/notes.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     DevicePreview(
       enabled: true,
@@ -26,6 +30,14 @@ class MyApp extends StatelessWidget {
       title: 'Community Page',
       debugShowCheckedModeBanner: false,
       home: Communitypage(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Notes(),
     );
   }
 }
