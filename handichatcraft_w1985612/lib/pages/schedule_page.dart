@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/pages/booking_confirmed_page.dart';
+import 'package:handichatcraft_w1985612/services/email_service.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
 import 'package:handichatcraft_w1985612/widget/button_row.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
@@ -75,6 +76,9 @@ class _SchedulePageState extends State<SchedulePage> {
       "Client_name": appointment.userName,
       "counselor_name": appointment.counselor.name,
       "dateTime": appointment.dateTime,
+    }).then((value) {
+      //EmailService emailService = EmailService();
+      //emailService.sendEmail();
     });
     print("Appointment successfully");
   }
@@ -120,7 +124,8 @@ class _SchedulePageState extends State<SchedulePage> {
                         style: calistogaRegular16TextDark),
                   ),
                   CalendarDatePicker2(
-                    config: CalendarDatePicker2Config(firstDate: DateTime.now().add( const Duration(days: 1))),
+                    config: CalendarDatePicker2Config(
+                        firstDate: DateTime.now().add(const Duration(days: 1))),
                     value: _dates,
                     onValueChanged: (dates) {
                       _dates = dates;
