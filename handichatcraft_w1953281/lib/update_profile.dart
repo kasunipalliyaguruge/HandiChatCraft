@@ -196,7 +196,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         SizedBox(height: 10),
                         TextFormField(
                           controller: _firstNameController,
-                          decoration: InputDecoration(labelText: 'First Name'),
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Color.fromARGB(255, 233, 129, 60),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 233, 129, 60),
+                                      width: 2.0)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      width: 1.0)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              labelText: 'First Name',
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 233, 129, 60))),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your first name';
@@ -206,7 +228,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         TextFormField(
                           controller: _lastNameController,
-                          decoration: InputDecoration(labelText: 'Last Name'),
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Color.fromARGB(255, 233, 129, 60),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 233, 129, 60),
+                                      width: 2.0)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      width: 1.0)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              labelText: 'Last Name',
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 233, 129, 60))),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your last name';
@@ -216,7 +260,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         TextFormField(
                           controller: _emailController,
-                          decoration: InputDecoration(labelText: 'Email'),
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Color.fromARGB(255, 233, 129, 60),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 233, 129, 60),
+                                      width: 2.0)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      width: 1.0)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              labelText: 'Email',
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 233, 129, 60))),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your email';
@@ -226,8 +292,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         TextFormField(
                           controller: _phoneNumberController,
-                          decoration:
-                              InputDecoration(labelText: 'Phone Number'),
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Color.fromARGB(255, 233, 129, 60),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 233, 129, 60),
+                                      width: 2.0)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      width: 1.0)),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              labelText: 'Phone Number',
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 233, 129, 60))),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your phone number';
@@ -238,14 +325,60 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         if (_interestedIn.isNotEmpty)
                           TextFormField(
                             controller: _interestedInController,
-                            decoration:
-                                InputDecoration(labelText: 'Interested In'),
+                            decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Color.fromARGB(255, 233, 129, 60),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                    borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 233, 129, 60),
+                                        width: 2.0)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                    borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        width: 1.0)),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15))),
+                                labelText: 'Interested In',
+                                labelStyle: TextStyle(
+                                    color: Color.fromARGB(255, 233, 129, 60))),
                           ),
                         if (_specializedIn.isNotEmpty)
                           TextFormField(
                             controller: _specializedInController,
-                            decoration:
-                                InputDecoration(labelText: 'Specialized In'),
+                            decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Color.fromARGB(255, 233, 129, 60),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                    borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 233, 129, 60),
+                                        width: 2.0)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                    borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        width: 1.0)),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15))),
+                                labelText: 'Specialized In',
+                                labelStyle: TextStyle(
+                                    color: Color.fromARGB(255, 233, 129, 60))),
                           ),
                         SizedBox(height: 20),
                         Row(
