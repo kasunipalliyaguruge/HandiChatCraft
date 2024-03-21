@@ -257,6 +257,7 @@ import 'community_page.dart';
 import 'edit_profile_page.dart';
 import 'home_page.dart';
 import 'setting_page.dart';
+import 'update_profile.dart';
 import 'widget/counselor_list.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -378,7 +379,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   foregroundColor: const Color.fromARGB(223, 233, 105, 7),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: const Color(0xFFF5F6F9),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -415,18 +415,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   foregroundColor: const Color.fromARGB(223, 233, 105, 7),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: const Color(0xFFF5F6F9),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CounselorList(
-                        filteredList: [],
-                      ), // Create an instance of CounselorList
-                    ),
-                  );
-                },
+                onPressed: () {},
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -453,7 +443,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   foregroundColor: const Color.fromARGB(223, 233, 105, 7),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: const Color(0xFFF5F6F9),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -487,7 +476,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   foregroundColor: const Color.fromARGB(223, 233, 105, 7),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: const Color(0xFFF5F6F9),
                 ),
                 onPressed: () {
                   Navigator.push(

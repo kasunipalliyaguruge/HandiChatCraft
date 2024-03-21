@@ -386,14 +386,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           children: [
                             ElevatedButton(
                               onPressed: _saveChanges,
-                              child: Text('Save'),
+                              child: Text(
+                                'Save',
+                                style: TextStyle(color: Colors.orange),
+                              ),
                             ),
                             SizedBox(width: 10),
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text('Cancel'),
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: Colors.orange),
+                              ),
                             ),
                           ],
                         ),
