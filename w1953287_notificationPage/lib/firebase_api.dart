@@ -38,10 +38,10 @@ final _localNotifications = FlutterLocalNotificationsPlugin();
     const settings = InitializationSettings(android: android, iOS: iOS);
     await _localNotifications.initialize(
       settings,
-      onSelectNotification: (payload) {
-        final message = RemoteMessage.fromMap(jsonDecode(payload!));
-        handleMessage(message);
-      },
+     // onSelectNotification: (payload) {
+       // final message = RemoteMessage.fromMap(jsonDecode(payload!));
+      //  handleMessage(message);
+    //  },
     );
     final platform = _localNotifications.resolvePlatformSpecificImplementation<
     AndroidFlutterLocalNotificationsPlugin>();
