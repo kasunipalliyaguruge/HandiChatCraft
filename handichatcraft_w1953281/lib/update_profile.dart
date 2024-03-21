@@ -388,6 +388,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               onPressed: _saveChanges,
                               child: Text('Save'),
                             ),
+                            SizedBox(width: 10),
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pop(context);
