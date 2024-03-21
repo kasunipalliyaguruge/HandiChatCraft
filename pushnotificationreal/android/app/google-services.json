@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "853942530418",
+    "project_id": "push-notifications-real",
+    "storage_bucket": "push-notifications-real.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853942530418:android:5cfebeb5a44a00c5062deb",
+        "android_client_info": {
+          "package_name": "com.example.pushnotificationreal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC25pqqQZ9j29JvODsu6Wem4ekIrchteVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
