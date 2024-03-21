@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:handichatcraft_w1956102_communitypage/services/firestore.dart';
 
-
 class Notes extends StatefulWidget {
   const Notes({super.key});
 
@@ -20,6 +19,9 @@ class _NotesState extends State<Notes> {
   void openNotebox(String? docID){
     showDialog(context: context, builder: (context) =>  AlertDialog(
       title: const Text('Add Note'),
+      titleTextStyle: const TextStyle(
+        color: Colors.orange
+      ),
       content: TextField(controller: textController,
       ),
       actions: [
@@ -36,11 +38,16 @@ class _NotesState extends State<Notes> {
             textController.clear();
             Navigator.pop(context);
           },
-          child:const Text('Add'),
+          child:const Text(
+            'Add',
+          style: TextStyle(
+            color: Colors.orange,
+          ),
+         ),   
         ),
       ],
-      ),
-    );
+    ),
+   );
   }
 
   @override
@@ -58,6 +65,7 @@ class _NotesState extends State<Notes> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => openNotebox(null),
+        backgroundColor: Colors.orange,
         child: const Icon(Icons.add),
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -82,17 +90,18 @@ class _NotesState extends State<Notes> {
                     children: [
                       IconButton(
                         onPressed: ()=> openNotebox(docID),
-                        icon: const Icon(Icons.settings),
+                        icon: const Icon(Icons.edit),
+                        color: Colors.orange,
                       ),
 
                       IconButton(
                         onPressed: () => firestoreServices.deleteNotes(docID),
                         icon: const Icon(Icons.delete),
+                        color: Colors.orange,
                       )
                     ],
                   ),
                 );
-
               },
             );
           }

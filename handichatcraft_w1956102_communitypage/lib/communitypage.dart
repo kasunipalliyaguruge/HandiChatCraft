@@ -6,7 +6,6 @@ import 'package:url_launcher/url_launcher.dart';
 class Communitypage extends StatelessWidget {
   const Communitypage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +51,16 @@ class Communitypage extends StatelessWidget {
               const SizedBox(height: 60),
 
               Padding(
-                padding: const EdgeInsets.only(right: 80, left: 80),
+                padding: const EdgeInsets.only(right: 70, left: 70),
                 child: ElevatedButton(
-                  onPressed: () => const Notes(),
+                  onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Notes(   
+                              ),
+                          ));
+                      },
                   style: ButtonStyle(
                     shape:MaterialStateProperty.all(
                       RoundedRectangleBorder(
@@ -66,6 +72,7 @@ class Communitypage extends StatelessWidget {
                   style: TextStyle(
                     color: Color.fromARGB(222, 222, 133, 24),
                     fontWeight: FontWeight.bold,
+                    fontSize: 17,
                   ),
                  )
                ),
