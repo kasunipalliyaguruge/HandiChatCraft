@@ -20,7 +20,7 @@ List categoryDataList = [
       active: false),
   CategoryModel(
       categoryname: "Batik",
-      imagePath: "asset/images/Batik.jpg",
+      imagePath: "asset/images/Batik.jpeg",
       active: false),
   CategoryModel(
       categoryname: "Jewellery",

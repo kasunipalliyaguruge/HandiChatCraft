@@ -23,7 +23,7 @@ class RatingCard extends StatelessWidget {
 
       child: ListTile(
         leading: const Icon(Icons.account_circle_rounded,
-            size: 40.0, color: textDark),
+            size: 40.0, color: Colors.orange),
         title: Text(
           feedback.clientName,
           style: const TextStyle(

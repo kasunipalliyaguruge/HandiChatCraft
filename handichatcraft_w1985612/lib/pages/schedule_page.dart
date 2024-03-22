@@ -6,7 +6,6 @@ import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/pages/booking_confirmed_page.dart';
 import 'package:handichatcraft_w1985612/services/email_service.dart';
 import 'package:handichatcraft_w1985612/widget/bottom_nav_bar.dart';
-import 'package:handichatcraft_w1985612/widget/button_row.dart';
 import 'package:handichatcraft_w1985612/widget/constant.dart';
 import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
@@ -77,8 +76,8 @@ class _SchedulePageState extends State<SchedulePage> {
       "counselor_name": appointment.counselor.name,
       "dateTime": appointment.dateTime,
     }).then((value) {
-      EmailService emailService = EmailService();
-      emailService.sendEmail();
+      // EmailService emailService = EmailService();
+      // emailService.sendEmail();
     });
     print("Appointment successfully");
   }
