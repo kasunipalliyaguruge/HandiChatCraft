@@ -16,6 +16,8 @@ class Communitypage extends StatelessWidget {
           style: TextStyle(
             color: Color.fromARGB(222, 222, 133, 24),
             fontWeight: FontWeight.bold,
+            fontFamily: 'Calistoga',
+            fontSize: 25
           ),
         ),
       ),
@@ -29,50 +31,53 @@ class Communitypage extends StatelessWidget {
                 launchURL('https://craftscouncil.gov.lk/');
               }),
           _buildRectangle(
-              text: "Rectangle 2 - Click Here",
+              text: "Sri Lanka Export Development Board - Click Here",
               onTap: () {
-                launchURL('https://craftscouncil.gov.lk/');
+                launchURL('https://www.srilankabusiness.com');
+              }), 
+          _buildRectangle(
+              text: "Lak Shilpa - Click Here",
+              onTap: () {
+                launchURL('https://lakshilpa.com');
               }),
           _buildRectangle(
-              text: "Rectangle 3 - Click Here",
+              text: "Laksala - Click Here",
               onTap: () {
-                launchURL('https://craftscouncil.gov.lk/');
+                launchURL('http://laksalasl.weebly.com');
               }),
           _buildRectangle(
-              text: "Rectangle 4 - Click Here",
+              text: "Happy Market - Click Here",
               onTap: () {
-                launchURL('https://craftscouncil.gov.lk/');
-              }),
-          _buildRectangle(
-              text: "Rectangle 5 - Click Here",
-              onTap: () {
-                launchURL('https://craftscouncil.gov.lk/');
+                launchURL('https://happymarket.lk/');
               }),
               const SizedBox(height: 60),
 
               Padding(
-                padding: const EdgeInsets.only(right: 70, left: 70),
+                padding: const EdgeInsets.only(right: 80, left: 80),
                 child: ElevatedButton(
                   onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Notes(   
-                              ),
+                              builder: (context) => const Notes(),
                           ));
                       },
                   style: ButtonStyle(
                     shape:MaterialStateProperty.all(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))
+                        borderRadius: BorderRadius.circular(30),),
                         ),
+                        backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(231, 211, 118, 3)
+                        ),
+                        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 5))
                       ),
                   child: const Text(
                   'Notes',
                   style: TextStyle(
-                    color: Color.fromARGB(222, 222, 133, 24),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
+                    color: Color.fromARGB(222, 255, 255, 255),
+                    fontFamily: 'Lalezar',
+                    fontSize: 25,
                   ),
                  )
                ),
@@ -86,15 +91,18 @@ class Communitypage extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(232, 134, 83, 5),
+          color: const Color.fromARGB(232, 203, 161, 97),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 20),
+          style: const TextStyle(
+            fontSize: 17,
+            fontFamily: 'Calistoga'
+            ),
         ),
       ),
     );

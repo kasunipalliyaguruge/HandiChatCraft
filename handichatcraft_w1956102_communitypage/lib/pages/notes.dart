@@ -20,7 +20,8 @@ class _NotesState extends State<Notes> {
     showDialog(context: context, builder: (context) =>  AlertDialog(
       title: const Text('Add Note'),
       titleTextStyle: const TextStyle(
-        color: Colors.orange
+        color: Colors.orange,
+        fontFamily: 'Calistoga',
       ),
       content: TextField(controller: textController,
       ),
@@ -41,7 +42,8 @@ class _NotesState extends State<Notes> {
           child:const Text(
             'Add',
           style: TextStyle(
-            color: Colors.orange,
+            color: Color.fromARGB(255, 250, 154, 0),
+            fontFamily: 'Calistoga',
           ),
          ),   
         ),
@@ -58,8 +60,10 @@ class _NotesState extends State<Notes> {
         title: const Text(
           'My Notes',
           style: TextStyle(
-            color: Colors.orange,
+            color: Color.fromARGB(222, 222, 133, 24),
+            fontFamily: 'Calistoga',
             fontWeight: FontWeight.bold,
+            fontSize: 25
             ), 
         ),
       ),

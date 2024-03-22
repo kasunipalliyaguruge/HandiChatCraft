@@ -59,7 +59,7 @@ class _ChatbotpageState extends State<Chatbotpage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-              'HandiBot gives you answers to questions about handicrafts such as Batik, Masks, Handloom, Pottery, Jewelry, Rasin Arts,and Basket.',
+              'HandiBot gives you answers to questions about handicrafts such as Batik, Masks, Handloom, Pottery, Jewelry, Resin Arts,and Basket.',
                textAlign: TextAlign.center,
                style: TextStyle(
                 color: Color.fromARGB(255, 94, 58, 5),
