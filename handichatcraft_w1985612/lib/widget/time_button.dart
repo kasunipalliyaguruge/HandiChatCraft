@@ -45,6 +45,7 @@ class _TimeButtonState extends State<TimeButton> {
                   : const Color.fromARGB(255, 228, 197, 157),
               textStyle: const TextStyle(
                 color: Colors.black38,
+                fontSize: 12,
               )),
         ),
       ),

@@ -36,7 +36,7 @@ class RatingCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit,color: Colors.orange),
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -47,7 +47,7 @@ class RatingCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete,color: Colors.orange),
               onPressed: () => callback(feedback.feedbackId),
             ),
           ],

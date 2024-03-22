@@ -77,8 +77,8 @@ class _SchedulePageState extends State<SchedulePage> {
       "counselor_name": appointment.counselor.name,
       "dateTime": appointment.dateTime,
     }).then((value) {
-      //EmailService emailService = EmailService();
-      //emailService.sendEmail();
+      EmailService emailService = EmailService();
+      emailService.sendEmail();
     });
     print("Appointment successfully");
   }

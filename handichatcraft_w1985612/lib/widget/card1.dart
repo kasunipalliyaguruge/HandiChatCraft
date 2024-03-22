@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:handichatcraft_w1985612/model/counselor_model.dart';
+
+class MyCard extends StatelessWidget {
+  const MyCard({Key? key, required this.counselorModel});
+
+  final CounselorModel counselorModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text(counselorModel.name),
+          subtitle: Text(counselorModel.specialize),
+          trailing: const Icon(Icons.arrow_forward_ios),
+          leading: const Icon(
+            Icons.account_circle_rounded,
+            size: 35,
+            color: Colors.orange,
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Placeholder()
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
