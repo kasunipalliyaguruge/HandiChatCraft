@@ -3,8 +3,8 @@ import 'package:handichatcraft_w1986581/pdf_viewer.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfScreen extends StatelessWidget {
-  PdfScreen({Key? key, required this.index}) : super(key: key);
-  int index;
+  const PdfScreen({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context) {

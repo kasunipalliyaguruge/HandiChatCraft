@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1986581/articles_details.dart';
 import 'package:handichatcraft_w1986581/images_details.dart';
 import 'package:handichatcraft_w1986581/workshop_detail.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -21,11 +22,14 @@ class HomeBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: width*.01),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: Center(
-                  child: Image(
-                    image: const AssetImage('assets/dance.png'),
-                    width: width * .3,
+                  child: LottieBuilder.asset(
+                    'assets/Animation - 1710863465634.json',
+                    height: 250,
+                    reverse: true,
+                    repeat: true,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

@@ -35,12 +35,13 @@ class MyWidget extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       home: const Welcome(),
+      initialRoute: '/PdfScreen',
       routes: {
         '/INtroduction':(context) => const Introduction(),
       },
     );
   }
-}
+}  
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override

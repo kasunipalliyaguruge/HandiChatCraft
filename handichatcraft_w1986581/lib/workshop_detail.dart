@@ -12,14 +12,14 @@ class Workshops extends StatefulWidget {
 class _WorkshopsState extends State<Workshops> with TickerProviderStateMixin {
 
   final List<String> images = [
-    'assets/w1.png',
-    'assets/w2.png',
-    'assets/w3.png',
-    'assets/w1.png',
-    'assets/w2.png',
-    'assets/w3.png',
-    'assets/w1.png',
-    'assets/w2.png',
+    'assets/BatikWorkshop1.jpg',
+    'assets/BatikWorkshop2.jpg',
+    'assets/BatikWorkshop3.jpg',
+    'assets/BatikWorkshop4.jpg',
+    'assets/BatikWorkshop5.jpg',
+    'assets/BatikWorkshop6.jpg',
+    'assets/BatikWorkshop7.jpg',
+    'assets/BatikWorkshop8.jpg',
     'assets/w3.png',
   ];
 
@@ -56,7 +56,7 @@ class _WorkshopsState extends State<Workshops> with TickerProviderStateMixin {
   ];
 
   final List<String> pottery = [
-
+    'assets/BatikWorkshop2.jpg'
   ];
 
   @override
