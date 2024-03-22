@@ -23,7 +23,7 @@ class RatingCard extends StatelessWidget {
 
       child: ListTile(
         leading: const Icon(Icons.account_circle_rounded,
-            size: 40.0, color: Colors.orange),
+            size: 40.0, color: textDark),
         title: Text(
           feedback.clientName,
           style: const TextStyle(
@@ -36,7 +36,7 @@ class RatingCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              icon: const Icon(Icons.edit,color: Colors.orange),
+              icon: const Icon(Icons.edit,color: textDark),
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -47,7 +47,7 @@ class RatingCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.delete,color: Colors.orange),
+              icon: const Icon(Icons.delete,color: textDark),
               onPressed: () => callback(feedback.feedbackId),
             ),
           ],
@@ -63,10 +63,10 @@ class RatingCard extends StatelessWidget {
               allowHalfRating: true,
               itemCount: 5,
               itemSize: 20.0,
-              itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+              itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
               itemBuilder: (context, _) => const Icon(
                 Icons.star,
-                color: Colors.amber,
+                color: Colors.orange,
               ),
               onRatingUpdate: (rating) {
                 // Handle rating updates here

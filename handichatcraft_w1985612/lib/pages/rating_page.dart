@@ -89,7 +89,7 @@ class _RatingPageState extends State<RatingPage> {
                   allowHalfRating: true,
                   itemBuilder: (context, _) => const Icon(
                     Icons.star,
-                    color: Colors.amber,
+                    color: Colors.orange,
                   ),
                   updateOnDrag: true,
                   onRatingUpdate: (newRating) {

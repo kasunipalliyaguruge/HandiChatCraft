@@ -122,15 +122,19 @@ class _SchedulePageState extends State<SchedulePage> {
                     child: Text("Select date and time",
                         style: calistogaRegular16TextDark),
                   ),
-                  CalendarDatePicker2(
-                    config: CalendarDatePicker2Config(
-                        firstDate: DateTime.now().add(const Duration(days: 1))),
-                    value: _dates,
-                    onValueChanged: (dates) {
-                      _dates = dates;
-                      getTimeSlots();
-                    },
+                  Container(
+                    color: const Color.fromARGB(255, 249, 166, 41),
+                    child: CalendarDatePicker2(
+                      config: CalendarDatePicker2Config(
+                          firstDate: DateTime.now().add(const Duration(days: 1))),
+                      value: _dates,
+                      onValueChanged: (dates) {
+                        _dates = dates;
+                        getTimeSlots();
+                      },
+                    ),
                   ),
+                  const SizedBox(height: 20,),
                   TimeButton(
                     callBack: setAppointment,
                     hours: availableTimeSlots,

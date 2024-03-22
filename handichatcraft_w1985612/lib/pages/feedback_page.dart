@@ -92,7 +92,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             allowHalfRating: true,
             itemBuilder: (context, _) => const Icon(
               Icons.star,
-              color: Colors.amber,
+              color: Colors.orange,
             ),
             updateOnDrag: true,
             onRatingUpdate: (rating) => setState(

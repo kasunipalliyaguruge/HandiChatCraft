@@ -42,7 +42,7 @@ dependencies:
   firebase_core: ^2.24.2
   cloud_firestore: ^4.15.5
   dio: ^5.4.1
-  table_calendar: ^3.0.9
+  
 
 dev_dependencies:
   flutter_test:

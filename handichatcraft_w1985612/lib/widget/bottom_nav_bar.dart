@@ -17,7 +17,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     super.initState();
   }
 
- late int _currentIndex;
+  late int _currentIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           onTap: () {
             setState(() {
               _currentIndex = index;
-              print(index);
             });
             widget.callback(_currentIndex);
           },

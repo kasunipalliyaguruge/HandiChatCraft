@@ -38,15 +38,22 @@ class _TimeButtonState extends State<TimeButton> {
             widget.callBack(timeSlots[index].hour);
           },
           child: Text(
-              "${DateFormat('HH a').format(timeSlots[index]).toString()} - ${DateFormat('HH a').format(timeSlots[index].add(Duration(hours: 1))).toString()}"),
-          style: ElevatedButton.styleFrom(
+              "${DateFormat('HH a').format(timeSlots[index]).toString()} - ${DateFormat('HH a').format(timeSlots[index].add(Duration(hours: 1))).toString()}",
+              
+              style: const TextStyle(fontSize: 15),
+              
+              ),
+              
+
+           style: ElevatedButton.styleFrom(
               backgroundColor: selectedtime == index
                   ? primaryColor
-                  : const Color.fromARGB(255, 228, 197, 157),
-              textStyle: const TextStyle(
-                color: Colors.black38,
-                fontSize: 12,
-              )),
+                  : Color.fromARGB(255, 239, 225, 207),
+               minimumSize: const Size(120, 100), // Adjust width and height
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20), // Adjust radius
+            ),
+          ),
         ),
       ),
     );
