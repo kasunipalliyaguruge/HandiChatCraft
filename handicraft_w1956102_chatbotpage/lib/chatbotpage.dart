@@ -6,7 +6,6 @@ import 'package:handicraft_w1956102_chatbotpage/messages.dart';
 class Chatbotpage extends StatefulWidget {
   const Chatbotpage({super.key});
 
-
   @override
   // ignore: library_private_types_in_public_api
   _ChatbotpageState createState() => _ChatbotpageState();
@@ -36,6 +35,7 @@ class _ChatbotpageState extends State<Chatbotpage> {
             height: 50,
             child: Image.asset(
               'lib/icons/chat-bot.png',
+              color: Color.fromARGB(255, 255, 153, 0),
               fit: BoxFit.contain,
               ),
             ),
@@ -44,8 +44,9 @@ class _ChatbotpageState extends State<Chatbotpage> {
               'HandiBot',
               style: TextStyle(
                 fontSize: 25,
-                color: Colors.orange,
+                color: Color.fromARGB(222, 222, 133, 24),
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Calistoga',
               ),
             )
           ], 
@@ -64,7 +65,7 @@ class _ChatbotpageState extends State<Chatbotpage> {
                style: TextStyle(
                 color: Color.fromARGB(255, 94, 58, 5),
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
+                fontFamily: 'Lalezar',
                ),
             ),
           ),

@@ -58,7 +58,7 @@ class _NotesState extends State<Notes> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'My Notes',
+          'Notes',
           style: TextStyle(
             color: Color.fromARGB(222, 222, 133, 24),
             fontFamily: 'Calistoga',
