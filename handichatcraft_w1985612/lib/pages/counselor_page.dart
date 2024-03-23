@@ -17,17 +17,39 @@ class _CounselorPageState extends State<CounselorPage> {
   int selectedCategory = -1;
   late List<CounselorModel> counselors = [];
   late List<CounselorModel> filteredList = [];
-  void filter(int cat) {
-    setState(
-      () {
-        selectedCategory = cat;
-        filteredList = selectedCategory == -1
-            ? counselors
-            : counselors
-                .where((element) => element.catId == selectedCategory)
-                .toList();
-      },
-    );
+  late List<CounselorModel> searchedList = [];
+
+  void filter(int cat, String name) {
+    selectedCategory = cat;
+
+    filteredList = selectedCategory == -1
+        ? counselors
+        : counselors
+            .where((element) => element.catId == selectedCategory)
+            .toList();
+
+    search(name);
+  }
+
+  void search(String name) {
+    if (name.isNotEmpty) {
+      List<CounselorModel> temp = [];
+
+      for (var element in filteredList) {
+        if (element.name.toLowerCase().contains(name.toLowerCase())) {
+          temp.add(element);
+        }
+      }
+
+      setState(() {
+        searchedList = temp;
+      });
+    } else {
+      //searchedList.clear();
+      setState(() {
+        searchedList = filteredList;
+      });
+    }
   }
 
   void getCounselors() {
@@ -39,6 +61,7 @@ class _CounselorPageState extends State<CounselorPage> {
 
         setState(() {
           filteredList = counselors;
+          searchedList = filteredList;
         });
       },
       onError: (e) => print("Error completing: $e"),
@@ -57,23 +80,13 @@ class _CounselorPageState extends State<CounselorPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.orange,
-          ),
-        ),
         actions: [
           IconButton(
-            onPressed: () {
-
-            },
+            onPressed: () {},
             icon: const Icon(
               Icons.account_circle,
               color: Colors.orange,
+              size: 40,
             ),
           ),
         ],
@@ -106,7 +119,9 @@ class _CounselorPageState extends State<CounselorPage> {
                 ),
               ),
             ),
-            const SearchBox(),
+            SearchBox(
+              callback: filter,
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -120,7 +135,7 @@ class _CounselorPageState extends State<CounselorPage> {
               height: 30,
             ),
             CounselorList(
-              filteredList: filteredList,
+              filteredList: searchedList,
             ),
             const SizedBox(
               height: 20,

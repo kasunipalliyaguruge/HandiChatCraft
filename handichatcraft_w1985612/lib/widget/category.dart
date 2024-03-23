@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/model/category_model.dart';
 
 class CategoryCard extends StatefulWidget {
-  final Function(int index) callback;
+  final Function(int,String) callback;
   const CategoryCard({super.key, required this.callback});
 
   @override
@@ -29,7 +29,7 @@ class _CategoryCardState extends State<CategoryCard> {
               }
               if (selected != -1) categoryDataList[index].active = true;
             });
-            widget.callback(selected);
+            widget.callback(selected,"");
           },
           child: Material(
             elevation: 3,

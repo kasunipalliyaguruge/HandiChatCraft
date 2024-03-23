@@ -1,7 +1,7 @@
-import 'dart:js_interop';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/pages/booking_confirmed_page.dart';
 import 'package:handichatcraft_w1985612/services/email_service.dart';
@@ -76,8 +76,8 @@ class _SchedulePageState extends State<SchedulePage> {
       "counselor_name": appointment.counselor.name,
       "dateTime": appointment.dateTime,
     }).then((value) {
-      // EmailService emailService = EmailService();
-      // emailService.sendEmail();
+      //EmailService emailService = EmailService();
+      //emailService.sendEmail(appointment,widget.counselor);
     });
     print("Appointment successfully");
   }
@@ -90,7 +90,9 @@ class _SchedulePageState extends State<SchedulePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor50,
       appBar: AppBar(
+        backgroundColor: primaryColor50,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -103,38 +105,53 @@ class _SchedulePageState extends State<SchedulePage> {
         callback: (p0) {},
         index: 4,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset("asset/images/MaleUser.png"),
-            Text(widget.counselor.name,
-                textAlign: TextAlign.center,
-                style: calistogaRegular20PrimaryDark),
-            Text(widget.counselor.specialize,
-                textAlign: TextAlign.center, style: calistogaRegular10TextDark),
-            const SizedBox(height: 15),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+      body: Column(
+        children: [
+            CircleAvatar(
+              backgroundImage:
+                  AssetImage(widget.counselor.isMale ? maleUser : femaleUser),
+              radius: 60,
+            ),
+          Text(widget.counselor.name,
+              textAlign: TextAlign.center,
+              style: calistogaRegular20PrimaryDark),
+          Text(widget.counselor.specialize,
+              textAlign: TextAlign.center, style: calistogaRegular10TextDark),
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: const Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Select date and time",
+                  style: calistogaRegular16TextDark),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Select date and time",
-                        style: calistogaRegular16TextDark),
-                  ),
-                  Container(
-                    color: const Color.fromARGB(255, 249, 166, 41),
-                    child: CalendarDatePicker2(
-                      config: CalendarDatePicker2Config(
-                          firstDate: DateTime.now().add(const Duration(days: 1))),
-                      value: _dates,
-                      onValueChanged: (dates) {
-                        _dates = dates;
-                        getTimeSlots();
-                      },
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),
+                        color: Color.fromARGB(255, 255, 237, 214),
+                      ),
+                      
+                      child: CalendarDatePicker2(
+                        config: CalendarDatePicker2Config(
+                            firstDate:
+                                DateTime.now().add(const Duration(days: 1))),
+                        value: _dates,
+                        onValueChanged: (dates) {
+                          _dates = dates;
+                          getTimeSlots();
+                        },
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   TimeButton(
                     callBack: setAppointment,
                     hours: availableTimeSlots,
@@ -173,8 +190,8 @@ class _SchedulePageState extends State<SchedulePage> {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

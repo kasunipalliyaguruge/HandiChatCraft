@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1985612/model/counselor_model.dart';
 import 'package:handichatcraft_w1985612/pages/counselor_profiles.dart';
+import 'package:handichatcraft_w1985612/widget/constant.dart';
 
 class MyCard extends StatelessWidget {
   const MyCard({super.key, required this.counselorModel});
@@ -19,11 +20,11 @@ class MyCard extends StatelessWidget {
           title: Text(counselorModel.name),
           subtitle: Text(counselorModel.specialize),
           trailing: const Icon(Icons.arrow_forward_ios),
-          leading: const Icon(
-            Icons.account_circle_rounded,
-            size: 35,
-            color: Colors.orange,
-          ),
+          leading: CircleAvatar(
+              child: Image.asset(counselorModel.isMale ? maleUser : femaleUser),
+                 
+              radius: 60,
+            ),
           onTap: () {
             Navigator.push(
                 context,

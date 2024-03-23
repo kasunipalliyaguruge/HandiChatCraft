@@ -55,3 +55,5 @@ const calistogaRegular36TextDark = TextStyle(
 );
 
 const String userIcon = "asset/images/MaleUser.png";
+const String femaleUser = "asset/images/woman.png";
+const String maleUser = "asset/images/man.png";

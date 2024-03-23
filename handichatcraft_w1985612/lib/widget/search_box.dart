@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 class SearchBox extends StatefulWidget {
-  
-  const SearchBox({super.key});
+  final Function(int, String) callback;
+
+  const SearchBox({super.key, required this.callback});
 
   @override
   State<SearchBox> createState() => _SearchBoxState();
 }
 
 class _SearchBoxState extends State<SearchBox> {
-  
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
       width: 300,
       child: TextField(
+        onChanged: (value) => widget.callback(-1,value),
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),

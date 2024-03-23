@@ -33,9 +33,10 @@ class CounselorProfile extends StatelessWidget {
       backgroundColor: primaryColor50,
       body: Column(
         children: [
-          const Center(
+          Center(
             child: CircleAvatar(
-              backgroundImage: AssetImage("asset/images/User.jpg"),
+              backgroundImage:
+                  AssetImage(counselorModel.isMale ? maleUser : femaleUser),
               radius: 60,
             ),
           ),

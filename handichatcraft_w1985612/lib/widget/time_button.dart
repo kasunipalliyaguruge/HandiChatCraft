@@ -24,34 +24,34 @@ class _TimeButtonState extends State<TimeButton> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      //padding: const EdgeInsets.all(10),
+      
       shrinkWrap: true,
       gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 2.5),
       itemCount: timeSlots.length,
       itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.only(right: 8),
-        child: ElevatedButton(
-          onPressed: () {
-            setState(() {
-              selectedtime = index;
-            });
-            widget.callBack(timeSlots[index].hour);
-          },
-          child: Text(
-              "${DateFormat('HH a').format(timeSlots[index]).toString()} - ${DateFormat('HH a').format(timeSlots[index].add(Duration(hours: 1))).toString()}",
-              
-              style: const TextStyle(fontSize: 15),
-              
-              ),
-              
-
-           style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(4.0),
+        child: SizedBox(
+          height: 50,
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                selectedtime = index;
+              });
+              widget.callBack(timeSlots[index].hour);
+            },
+            style: ElevatedButton.styleFrom(
               backgroundColor: selectedtime == index
-                  ? primaryColor
-                  : Color.fromARGB(255, 239, 225, 207),
-               minimumSize: const Size(120, 100), // Adjust width and height
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20), // Adjust radius
+                  ? const Color(0xff6750a4)
+                  : Color.fromARGB(255, 255, 237, 214),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20), // Adjust radius
+              ),
+            ),
+            child: Text(
+              "${DateFormat('HH a').format(timeSlots[index]).toString()} - ${DateFormat('HH a').format(timeSlots[index].add(Duration(hours: 1))).toString()}",
+              style: TextStyle(fontSize: 12,color: selectedtime == index? white:Colors.black),
             ),
           ),
         ),
