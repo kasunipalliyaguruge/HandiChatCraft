@@ -1,64 +1,35 @@
 import 'package:flutter/material.dart';
 
-class LanguageChangePage extends StatefulWidget {
-  const LanguageChangePage({super.key});
-
-  @override
-  _LanguageChangePageState createState() => _LanguageChangePageState();
-}
-
-class _LanguageChangePageState extends State<LanguageChangePage> {
-  String _selectedLanguage = 'en';
-
+class LanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Change language'),
+        title: Text('Language Settings'),
       ),
-      body: Column(
-        children: [
-          ListTile(
-            leading: const Icon(Icons.language),
-            title: const Text('Select language'),
-            trailing: DropdownButton<String>(
-              value:
-                  _selectedLanguage, // Set the initial value of the DropdownButton
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    _selectedLanguage =
-                        value; // Update the _selectedLanguage state variable
-                  });
-                }
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Select your preferred language:',
+              style: TextStyle(fontSize: 18.0),
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                // You can add functionality here if needed
               },
-              items: const [
-                DropdownMenuItem(
-                  value: 'en',
-                  child: Text('English'),
-                ),
-                DropdownMenuItem(
-                  value: 'es',
-                  child: Text('Español'),
-                ),
-                DropdownMenuItem(
-                  value: 'fr',
-                  child: Text('Français'),
-                ),
-              ],
+              child: Text('English'),
             ),
-          ),
-          const SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: () {
-              // Handle language change action
-            },
-            child: const Text(
-              'Change language',
-              style: TextStyle(color: Color.fromARGB(223, 233, 105, 7)),
+            SizedBox(
+                height: 10.0), // Added space between the buttons and message
+            Text(
+              'This app is available only in English.',
+              style: TextStyle(fontSize: 16.0, color: Colors.grey),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
