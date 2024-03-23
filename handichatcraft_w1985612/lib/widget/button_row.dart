@@ -77,13 +77,13 @@ class ButtonRow extends StatelessWidget {
                   index,
                 );
               },
-              child: Text(
-                  "${DateFormat('HH a').format(startTime.add(Duration(hours: index))).toString()} - ${DateFormat('HH a').format(startTime.add(Duration(hours: 1 * (index + 1)))).toString()}"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: selected == index && row == active
                     ? primaryColor
                     : const Color.fromARGB(255, 231, 201, 162),
               ),
+              child: Text(
+                  "${DateFormat('HH a').format(startTime.add(Duration(hours: index))).toString()} - ${DateFormat('HH a').format(startTime.add(Duration(hours: 1 * (index + 1)))).toString()}"),
             ),
           ),
         );

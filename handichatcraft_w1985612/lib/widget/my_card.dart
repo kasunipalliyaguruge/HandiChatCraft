@@ -21,9 +21,8 @@ class MyCard extends StatelessWidget {
           subtitle: Text(counselorModel.specialize),
           trailing: const Icon(Icons.arrow_forward_ios),
           leading: CircleAvatar(
-              child: Image.asset(counselorModel.isMale ? maleUser : femaleUser),
-                 
               radius: 60,
+              child: Image.asset(counselorModel.isMale ? maleUser : femaleUser),
             ),
           onTap: () {
             Navigator.push(

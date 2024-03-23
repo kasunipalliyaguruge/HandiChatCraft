@@ -44,7 +44,7 @@ class _TimeButtonState extends State<TimeButton> {
             style: ElevatedButton.styleFrom(
               backgroundColor: selectedtime == index
                   ? const Color(0xff6750a4)
-                  : Color.fromARGB(255, 255, 237, 214),
+                  : const Color.fromARGB(255, 255, 237, 214),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20), // Adjust radius
               ),

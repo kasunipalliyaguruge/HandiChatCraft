@@ -22,7 +22,7 @@ class SchedulePage extends StatefulWidget {
 class _SchedulePageState extends State<SchedulePage> {
   List<DateTime?> _dates = [];
   late BookingModel appointment =
-      BookingModel(widget.counselor, "Anne Marie", DateTime.now());
+      BookingModel(widget.counselor, "Anne Marie", DateTime.now(),"annemarie@gmail.com");
   late FirebaseFirestore db;
   List<int> timeSlots = [];
   List<int> availableTimeSlots = [];
@@ -98,7 +98,7 @@ class _SchedulePageState extends State<SchedulePage> {
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back),
-          color: Colors.orange,
+          color: white,
         ),
       ),
       bottomNavigationBar: BottomNavBar(
@@ -118,9 +118,9 @@ class _SchedulePageState extends State<SchedulePage> {
           Text(widget.counselor.specialize,
               textAlign: TextAlign.center, style: calistogaRegular10TextDark),
           const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: const Align(
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Align(
               alignment: Alignment.centerLeft,
               child: Text("Select date and time",
                   style: calistogaRegular16TextDark),
@@ -134,7 +134,7 @@ class _SchedulePageState extends State<SchedulePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),
-                        color: Color.fromARGB(255, 255, 237, 214),
+                        color: const Color.fromARGB(255, 255, 237, 214),
                       ),
                       
                       child: CalendarDatePicker2(

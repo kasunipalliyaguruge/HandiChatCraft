@@ -4,6 +4,7 @@ class BookingModel {
   CounselorModel counselor;
   String userName;
   DateTime dateTime;
+  String email;
 
-  BookingModel(this.counselor, this.userName, this.dateTime);
+  BookingModel(this.counselor, this.userName, this.dateTime, this.email);
 }

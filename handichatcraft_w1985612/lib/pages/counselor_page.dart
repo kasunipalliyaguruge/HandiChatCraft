@@ -92,7 +92,7 @@ class _CounselorPageState extends State<CounselorPage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             const Align(
@@ -114,11 +114,12 @@ class _CounselorPageState extends State<CounselorPage> {
                 style: TextStyle(
                   color: Colors.orange,
                   fontFamily: "Calistoga",
-                  fontSize: 30,
+                  fontSize: 27,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            const SizedBox(height: 20,),
             SearchBox(
               callback: filter,
             ),
