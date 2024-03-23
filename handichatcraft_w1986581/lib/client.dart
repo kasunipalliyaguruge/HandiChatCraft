@@ -26,8 +26,6 @@ class _ClientState extends State<Client> {
   var _currentItemSelected = "Client";
   var role = "Client";
 
-  final _formkey = GlobalKey<FormState>();
-  final _auth = FirebaseAuth.instance;
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController =  TextEditingController();
@@ -665,39 +663,39 @@ class _ClientState extends State<Client> {
                       padding: const EdgeInsets.only(top: 5.0, left: 40.0, right: 40.0,bottom: 10.0),
                       child: GestureDetector(
                         onTap: () {
-                          CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
-                          collectionReference.add({
-                            'First Name': fnameController.text,
-                            'Last Name': lnameController.text,
-                            'email': mailController.text,
-                            'interested in': interestController.text,
-                            'create password': passController.text,
-                            'confirm password': confirmPasswordController.text,
-                          });
+                          // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
+                          // collectionReference.add({
+                          //   'First Name': fnameController.text,
+                          //   'Last Name': lnameController.text,
+                          //   'email': mailController.text,
+                          //   'interested in': interestController.text,
+                          //   'create password': passController.text,
+                          //   'confirm password': confirmPasswordController.text,
+                          // });
                         
-                          if (role == 'Client') {
-                          CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
-                          collectionReference.add({
-                            'First Name': fnameController.text,
-                            'Last Name': lnameController.text,
-                            'email': mailController.text,
-                            'interested in': interestController.text,
-                            'create password': passController.text,
-                            'confirm password': confirmPasswordController.text,
-                          });
-                          } else if (role == 'Counselor') {
-                          CollectionReference collRef = FirebaseFirestore.instance.collection('Counselors');
-                          collRef.add({
-                            'name': fnameController.text,
-                            'email': mailController.text,
-                            'mobile number': numberController.text,
-                            'specialized in': specialController.text,
-                            'create password': passController.text,
-                            'confirm password': confirmPasswordController.text,
-                          });
-                          }
+                          // if (role == 'Client') {
+                          // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
+                          // collectionReference.add({
+                          //   'First Name': fnameController.text,
+                          //   'Last Name': lnameController.text,
+                          //   'email': mailController.text,
+                          //   'interested in': interestController.text,
+                          //   'create password': passController.text,
+                          //   'confirm password': confirmPasswordController.text,
+                          // });
+                          // } else if (role == 'Counselor') {
+                          // CollectionReference collRef = FirebaseFirestore.instance.collection('Counselors');
+                          // collRef.add({
+                          //   'name': fnameController.text,
+                          //   'email': mailController.text,
+                          //   'mobile number': numberController.text,
+                          //   'specialized in': specialController.text,
+                          //   'create password': passController.text,
+                          //   'confirm password': confirmPasswordController.text,
+                          // });
+                          // }
                           
-                          signUp(role, fnameController.text,lnameController.text, mailController.text, interestController.text, numberController.text, specialController.text, passController.text);
+                        signUp(role, fnameController.text,lnameController.text, mailController.text, interestController.text, numberController.text, specialController.text, passController.text);
                         },
                         child: Container(
                           height: 59,
@@ -881,7 +879,7 @@ class _ClientState extends State<Client> {
   //   ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
   // }
 
-  void signUp(String role, String fname, String lname, String email, String interestedIn, String mobileNumber, String specializedIn, String password) async {
+  void signUp(String role, String fname, String lname, String email, String interestController, String numberController, String specialController, String password) async {
   try {
     UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email,
@@ -892,10 +890,10 @@ class _ClientState extends State<Client> {
     if (role == 'Client') {
       CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
       await collectionReference.doc(userCredential.user!.uid).set({
-        'First Name': fname,
-        'Last Name' : lname,
+        'First Name': fnameController,
+        'Last Name' : lnameController,
         'email': email,
-        'interested in': interestedIn,
+        'interested in': interestController,
         'create password': passController.text,
         'confirm password': confirmPasswordController.text,
         // Add more fields as needed
@@ -903,11 +901,11 @@ class _ClientState extends State<Client> {
     } else if (role == 'Counselor') {
       CollectionReference collectionReference = FirebaseFirestore.instance.collection('Counselors');
       await collectionReference.doc(userCredential.user!.uid).set({
-        'First Name': fname,
-        'Last Name': lname,
+        'First Name': fnameController,
+        'Last Name': lnameController,
         'email': email,
-        'mobile number': mobileNumber,
-        'specialized in': specializedIn,
+        'mobile number': numberController,
+        'specialized in': specialController,
         'create password': passController.text,
         'confirm password': confirmPasswordController.text,
         // Add more fields as needed
