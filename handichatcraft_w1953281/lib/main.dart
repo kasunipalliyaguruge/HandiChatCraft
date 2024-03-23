@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:provider/provider.dart';
 import 'account_setting_page.dart';
 import 'settings_page.dart';
 import 'theme/provider.dart';
 import 'update_profile.dart';
-//import 'profile/theme/dark_mode_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

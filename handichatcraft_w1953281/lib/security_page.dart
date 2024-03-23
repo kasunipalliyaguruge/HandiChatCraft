@@ -1,230 +1,43 @@
 import 'package:flutter/material.dart';
 
 class SecurityPage extends StatelessWidget {
-  const SecurityPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Security'),
+        title: const Text(
+          'Security',
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(154, 196, 70, 7),
+            fontFamily: 'Calistoga',
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Account Security',
-              style: Theme.of(context).textTheme.headline6,
+              'App Security',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(154, 244, 86, 7),
+                fontFamily: 'Calistoga',
+              ),
             ),
-            ListTile(
-              title: Text('Change Password'),
-              onTap: () {
-                // Navigate to change password page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ChangePasswordPage1()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Enable Two-Factor Authentication'),
-              onTap: () {
-                // Toggle 2FA setting
-                if (!TwoFactorAuthentication.isEnabled) {
-                  TwoFactorAuthentication.enable();
-                } else {
-                  TwoFactorAuthentication.disable();
-                }
-                // You can add more logic here to handle 2FA state change
-              },
-            ),
-            Divider(),
+            SizedBox(height: 10.0),
             Text(
-              'Privacy Settings',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            ListTile(
-              title: Text('Manage Privacy Controls'),
-              onTap: () {
-                // Navigate to manage privacy controls page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PrivacyControlsPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Data Sharing Preferences'),
-              onTap: () {
-                // Navigate to data sharing preferences page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => DataSharingPreferencesPage()),
-                );
-              },
-            ),
-            Divider(),
-            Text(
-              'Device Security',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            ListTile(
-              title: Text('Manage Device Permissions'),
-              onTap: () {
-                // Navigate to manage device permissions page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => DevicePermissionsPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Remote Device Management'),
-              onTap: () {
-                // Navigate to remote device management page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => RemoteDeviceManagementPage()),
-                );
-              },
+              'Our commitment to safeguarding your data extends to our app security measures. We employ industry-standard encryption protocols to protect sensitive information transmitted through our application. Regular security audits and updates ensure that our app remains resilient against emerging threats. Additionally, stringent access controls and authentication mechanisms are in place to prevent unauthorized access. Your privacy and security are paramount, and we continuously strive to maintain the highest standards of protection within our application environment.',
+              style: TextStyle(
+                fontSize: 16.0,
+                fontFamily: 'Calistoga',
+              ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class ChangePasswordPage1 extends StatelessWidget {
-  const ChangePasswordPage1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Change Password'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Logic to change the password
-            Navigator.pop(context);
-            // You can add more logic here to handle password change
-          },
-          child: const Text('Change Password'),
-        ),
-      ),
-    );
-  }
-}
-
-class TwoFactorAuthentication {
-  static bool isEnabled = false;
-
-  static void enable() {
-    // Logic to enable 2FA
-    isEnabled = true;
-  }
-
-  static void disable() {
-    // Logic to disable 2FA
-    isEnabled = false;
-  }
-}
-
-class PrivacyControlsPage extends StatelessWidget {
-  const PrivacyControlsPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Manage Privacy Controls'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Logic to manage privacy controls
-            Navigator.pop(context);
-            // You can add more logic here to handle privacy controls
-          },
-          child: const Text('Manage Privacy Controls'),
-        ),
-      ),
-    );
-  }
-}
-
-class DataSharingPreferencesPage extends StatelessWidget {
-  const DataSharingPreferencesPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Data Sharing Preferences'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Logic to manage data sharing preferences
-            Navigator.pop(context);
-            // You can add more logic here to handle data sharing preferences
-          },
-          child: const Text('Manage Data Sharing Preferences'),
-        ),
-      ),
-    );
-  }
-}
-
-class DevicePermissionsPage extends StatelessWidget {
-  const DevicePermissionsPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Device Permissions'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Logic to manage device permissions
-            Navigator.pop(context);
-            // You can add more logic here to handle device permissions
-          },
-          child: const Text('Manage Device Permissions'),
-        ),
-      ),
-    );
-  }
-}
-
-class RemoteDeviceManagementPage extends StatelessWidget {
-  const RemoteDeviceManagementPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Remote Device Management'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Logic for remote device management
-            Navigator.pop(context);
-            // You can add more logic here to handle remote device management
-          },
-          child: const Text('Remote Device Management'),
         ),
       ),
     );

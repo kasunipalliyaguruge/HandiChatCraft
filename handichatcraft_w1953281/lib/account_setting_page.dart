@@ -37,10 +37,8 @@ class AccountSettingPage extends StatelessWidget {
                 foregroundColor: const Color.fromARGB(223, 233, 105, 7),
               ),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SecurityPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SecurityPage()));
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
