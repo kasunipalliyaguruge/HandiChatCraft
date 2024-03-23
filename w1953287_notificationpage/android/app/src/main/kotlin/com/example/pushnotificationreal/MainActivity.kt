@@ -1,4 +1,4 @@
-package com.google.firebase.presents.push_notifications
+package com.example.pushnotificationreal
 
 import io.flutter.embedding.android.FlutterActivity
 

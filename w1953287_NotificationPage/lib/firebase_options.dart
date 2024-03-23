@@ -17,7 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web; 
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCf4_k5-TnrIXaiBBdGNGXYeMS-7P1oOv4',
-    appId: '1:169795000595:web:6510656d813397dfbb62e6',
-    messagingSenderId: '169795000595',
-    projectId: 'notifications-fc763',
-    authDomain: 'notifications-fc763.firebaseapp.com',
-    storageBucket: 'notifications-fc763.appspot.com',
-    measurementId: 'G-80CXX68ZT7',
+    apiKey: 'AIzaSyA22CjZFoSZ0H21o9XsC0UwAyBQz0meFDU',
+    appId: '1:853942530418:web:6bc5970df3906fa8062deb',
+    messagingSenderId: '853942530418',
+    projectId: 'push-notifications-real',
+    authDomain: 'push-notifications-real.firebaseapp.com',
+    storageBucket: 'push-notifications-real.appspot.com',
+    measurementId: 'G-6D8XBJS5KL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA_4MJK1Qlsa96LW7fAvdqTD3vPOJz51ko',
-    appId: '1:169795000595:android:6a8d912029f933e0bb62e6',
-    messagingSenderId: '169795000595',
-    projectId: 'notifications-fc763',
-    storageBucket: 'notifications-fc763.appspot.com',
+    apiKey: 'AIzaSyC25pqqQZ9j29JvODsu6Wem4ekIrchteVM',
+    appId: '1:853942530418:android:5cfebeb5a44a00c5062deb',
+    messagingSenderId: '853942530418',
+    projectId: 'push-notifications-real',
+    storageBucket: 'push-notifications-real.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD_GMr2Vz03tDBupCeBUClm0oU6h2vXA4o',
-    appId: '1:169795000595:ios:2e1a522c1b73784bbb62e6',
-    messagingSenderId: '169795000595',
-    projectId: 'notifications-fc763',
-    storageBucket: 'notifications-fc763.appspot.com',
-    iosBundleId: 'com.google.firebase.presents.pushNotifications',
+    apiKey: 'AIzaSyAlt3GsEnLiSemYEoF9Ia_R3nYBmCsfTyo',
+    appId: '1:853942530418:ios:a8709170b9b45fc0062deb',
+    messagingSenderId: '853942530418',
+    projectId: 'push-notifications-real',
+    storageBucket: 'push-notifications-real.appspot.com',
+    iosBundleId: 'com.example.pushnotificationreal',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD_GMr2Vz03tDBupCeBUClm0oU6h2vXA4o',
-    appId: '1:169795000595:ios:1e54e25a2dacba68bb62e6',
-    messagingSenderId: '169795000595',
-    projectId: 'notifications-fc763',
-    storageBucket: 'notifications-fc763.appspot.com',
-    iosBundleId: 'com.google.firebase.presents.pushNotifications.RunnerTests',
+    apiKey: 'AIzaSyAlt3GsEnLiSemYEoF9Ia_R3nYBmCsfTyo',
+    appId: '1:853942530418:ios:7d97b2e3293e290c062deb',
+    messagingSenderId: '853942530418',
+    projectId: 'push-notifications-real',
+    storageBucket: 'push-notifications-real.appspot.com',
+    iosBundleId: 'com.example.pushnotificationreal.RunnerTests',
   );
 }

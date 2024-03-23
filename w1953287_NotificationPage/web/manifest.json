@@ -1,6 +1,6 @@
 {
-    "name": "push_notifications",
-    "short_name": "push_notifications",
+    "name": "pushnotificationreal",
+    "short_name": "pushnotificationreal",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
