@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1953281/language_page.dart';
 import 'package:handichatcraft_w1953281/notification_page.dart';
+import 'package:handichatcraft_w1953281/security_page.dart';
+import 'package:handichatcraft_w1953281/theme/dark_mode_page.dart';
 
 //import 'package:handicraft_profile/profile/update_profile.dart';
 //import 'package:settings_screen/settings_screen.dart';
 
+import 'change_password_page.dart';
 import 'settings_page.dart';
 
 class AccountSettingPage extends StatelessWidget {
@@ -18,7 +21,7 @@ class AccountSettingPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SettingsPage()));
+                MaterialPageRoute(builder: (context) => const ProfilePage()));
           },
           icon: const Icon(Icons.arrow_back_outlined),
         ),
@@ -37,7 +40,7 @@ class AccountSettingPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) => const SecurityPage()));
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
@@ -65,8 +68,10 @@ class AccountSettingPage extends StatelessWidget {
                 foregroundColor: const Color.fromARGB(223, 233, 105, 7),
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SettingsPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChangePasswordPage()));
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
@@ -97,7 +102,7 @@ class AccountSettingPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) => const ThemeChangePage()));
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
@@ -125,10 +130,8 @@ class AccountSettingPage extends StatelessWidget {
                 foregroundColor: const Color.fromARGB(223, 233, 105, 7),
               ),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const LanguageChangePage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LanguagePage()));
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,

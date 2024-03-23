@@ -24,36 +24,36 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late User _user;
-  late String _firstName = '';
-  late String _lastName = '';
-  late String _email = '';
-  late String _phoneNumber = '';
-  late String _interestedIn = '';
-  late String _specializedIn = '';
+  late String fname = '';
+  late String lname = '';
+  late String mail = '';
+  late String number = '';
+  late String interest = '';
+  late String special = '';
   bool _isLoading = true;
   final _formKey = GlobalKey<FormState>();
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
-  final _interestedInController = TextEditingController();
-  final _specializedInController = TextEditingController();
+  final _fnameController = TextEditingController();
+  final _lnameController = TextEditingController();
+  final _mailController = TextEditingController();
+  final _numberController = TextEditingController();
+  final _interestController = TextEditingController();
+  final _specialController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _loadProfile();
-    _firstNameController.text = widget.initialName; // Set initial name
+    _fnameController.text = widget.initialName; // Set initial name
   }
 
   @override
   void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _emailController.dispose();
-    _phoneNumberController.dispose();
-    _interestedInController.dispose();
-    _specializedInController.dispose();
+    _fnameController.dispose();
+    _lnameController.dispose();
+    _mailController.dispose();
+    _numberController.dispose();
+    _interestController.dispose();
+    _specialController.dispose();
     super.dispose();
   }
 
@@ -61,69 +61,69 @@ class _EditProfilePageState extends State<EditProfilePage> {
     _user = _auth.currentUser!;
     DocumentSnapshot<Map<String, dynamic>> doc;
     if (_user != null) {
-      doc = await _firestore.collection('clients').doc(_user.uid).get();
+      doc = await _firestore.collection('Clients').doc(_user.uid).get();
       if (doc.exists) {
         setState(() {
-          _firstName = doc['firstName'] ?? '';
-          _lastName = doc['lastName'] ?? '';
-          _email = doc['email'] ?? '';
-          _phoneNumber = doc['phoneNumber'] ?? '';
-          _interestedIn = doc['interestedIn'] ?? '';
+          fname = doc['FirstName'] ?? '';
+          lname = doc['LastName'] ?? '';
+          mail = doc['email'] ?? '';
+          number = doc['mobilenumber'] ?? '';
+          interest = doc['interestedin'] ?? '';
           _isLoading = false;
         });
       } else {
-        doc = await _firestore.collection('counselors').doc(_user.uid).get();
+        doc = await _firestore.collection('Counselors').doc(_user.uid).get();
         if (doc.exists) {
           setState(() {
-            _firstName = doc['firstName'] ?? '';
-            _lastName = doc['lastName'] ?? '';
-            _email = doc['email'] ?? '';
-            _phoneNumber = doc['phoneNumber'] ?? '';
-            _specializedIn = doc['specializedIn'] ?? '';
+            fname = doc['FirstName'] ?? '';
+            lname = doc['LastName'] ?? '';
+            mail = doc['email'] ?? '';
+            number = doc['mobilenumber'] ?? '';
+            special = doc['specializedin'] ?? '';
             _isLoading = false;
           });
         }
       }
-      _lastNameController.text = _lastName;
-      _emailController.text = _email;
-      _phoneNumberController.text = _phoneNumber;
-      _interestedInController.text = _interestedIn;
-      _specializedInController.text = _specializedIn;
+      _lnameController.text = lname;
+      _mailController.text = mail;
+      _numberController.text = number;
+      _interestController.text = interest;
+      _specialController.text = special;
     }
   }
 
   void _saveChanges() async {
     if (_formKey.currentState!.validate()) {
-      final clientDoc = _firestore.collection('clients').doc(_user.uid);
-      final counselorDoc = _firestore.collection('counselors').doc(_user.uid);
+      final clientDoc = _firestore.collection('Clients').doc(_user.uid);
+      final counselorDoc = _firestore.collection('Counselors').doc(_user.uid);
 
-      if (_interestedIn.isNotEmpty &&
+      if (interest.isNotEmpty &&
           await clientDoc.get().then((doc) => doc.exists)) {
         await clientDoc.update({
-          'firstName': _firstNameController.text,
-          'lastName': _lastNameController.text,
-          'email': _emailController.text,
-          'phoneNumber': _phoneNumberController.text,
-          'interestedIn': _interestedInController.text,
+          'FirstName': _fnameController.text,
+          'LastName': _lnameController.text,
+          'email': _mailController.text,
+          'mobilenumber': _numberController.text,
+          'interestedin': _interestController.text,
         });
-      } else if (_specializedIn.isNotEmpty &&
+      } else if (special.isNotEmpty &&
           await counselorDoc.get().then((doc) => doc.exists)) {
         await counselorDoc.update({
-          'firstName': _firstNameController.text,
-          'lastName': _lastNameController.text,
-          'email': _emailController.text,
-          'phoneNumber': _phoneNumberController.text,
-          'specializedIn': _specializedInController.text,
+          'FirstName': _fnameController.text,
+          'LastName': _lnameController.text,
+          'email': _mailController.text,
+          'mobilenumber': _numberController.text,
+          'specializedin': _specialController.text,
         });
       }
 
       // Update the name using setState
       setState(() {
-        _firstName = _firstNameController.text;
+        fname = _fnameController.text;
       });
 
       // Call onUpdateName to update the name
-      widget.onUpdateName(_firstNameController.text);
+      widget.onUpdateName(_fnameController.text);
     }
   }
 
@@ -131,12 +131,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile'),
+        title: const Text('Edit Profile'),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -150,8 +150,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           padding: const EdgeInsets.only(
                               left: 124, right: 20, top: 25),
                           child: const CircleAvatar(
-                            backgroundColor: Color.fromARGB(255, 1, 39, 70),
+                            backgroundColor: Color.fromARGB(255, 255, 198, 107),
                             radius: 60,
+                            backgroundImage: AssetImage('assets/profile.png'),
                           ),
                         ),
                         Positioned(
@@ -182,23 +183,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Form(
                     key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Text(
-                          'User Details:',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         TextFormField(
-                          controller: _firstNameController,
+                          controller: _fnameController,
                           decoration: const InputDecoration(
                               prefixIcon: Icon(
-                                Icons.email,
+                                Icons.person_2_outlined,
                                 color: Color.fromARGB(255, 233, 129, 60),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -226,11 +222,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             return null;
                           },
                         ),
+                        const SizedBox(height: 20),
                         TextFormField(
-                          controller: _lastNameController,
+                          controller: _lnameController,
                           decoration: const InputDecoration(
                               prefixIcon: Icon(
-                                Icons.email,
+                                Icons.person_2_outlined,
                                 color: Color.fromARGB(255, 233, 129, 60),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -258,8 +255,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             return null;
                           },
                         ),
+                        const SizedBox(height: 20),
                         TextFormField(
-                          controller: _emailController,
+                          controller: _mailController,
                           decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.email,
@@ -290,11 +288,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             return null;
                           },
                         ),
+                        const SizedBox(height: 20),
                         TextFormField(
-                          controller: _phoneNumberController,
+                          controller: _numberController,
                           decoration: const InputDecoration(
                               prefixIcon: Icon(
-                                Icons.email,
+                                Icons.phone,
                                 color: Color.fromARGB(255, 233, 129, 60),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -322,12 +321,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             return null;
                           },
                         ),
-                        if (_interestedIn.isNotEmpty)
+                        const SizedBox(height: 20),
+                        if (interest.isNotEmpty)
                           TextFormField(
-                            controller: _interestedInController,
+                            controller: _interestController,
                             decoration: const InputDecoration(
                                 prefixIcon: Icon(
-                                  Icons.email,
+                                  Icons.list,
                                   color: Color.fromARGB(255, 233, 129, 60),
                                 ),
                                 focusedBorder: OutlineInputBorder(
@@ -351,12 +351,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 labelStyle: TextStyle(
                                     color: Color.fromARGB(255, 233, 129, 60))),
                           ),
-                        if (_specializedIn.isNotEmpty)
+                        const SizedBox(height: 20),
+                        if (special.isNotEmpty)
                           TextFormField(
-                            controller: _specializedInController,
+                            controller: _specialController,
                             decoration: const InputDecoration(
                                 prefixIcon: Icon(
-                                  Icons.email,
+                                  Icons.list,
                                   color: Color.fromARGB(255, 233, 129, 60),
                                 ),
                                 focusedBorder: OutlineInputBorder(
@@ -380,23 +381,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 labelStyle: TextStyle(
                                     color: Color.fromARGB(255, 233, 129, 60))),
                           ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ElevatedButton(
                               onPressed: _saveChanges,
-                              child: Text(
+                              child: const Text(
                                 'Save',
                                 style: TextStyle(color: Colors.orange),
                               ),
                             ),
-                            SizedBox(width: 10),
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text(
+                              child: const Text(
                                 'Cancel',
                                 style: TextStyle(color: Colors.orange),
                               ),
@@ -514,7 +514,7 @@ class ImagePickerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile Picture'),
+        title: const Text('Edit Profile Picture'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -530,7 +530,7 @@ class ImagePickerPage extends StatelessWidget {
                 Navigator.pop(context);
               }
             },
-            child: Text('Choose a new image'),
+            child: const Text('Choose a new image'),
           ),
         ],
       ),
