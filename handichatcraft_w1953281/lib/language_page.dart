@@ -20,7 +20,10 @@ class LanguagePage extends StatelessWidget {
               onPressed: () {
                 // You can add functionality here if needed
               },
-              child: Text('English'),
+              child: Text(
+                'English',
+                style: TextStyle(color: Colors.orange),
+              ),
             ),
             SizedBox(
                 height: 10.0), // Added space between the buttons and message
