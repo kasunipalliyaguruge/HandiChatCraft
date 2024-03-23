@@ -56,6 +56,11 @@ class MyApp extends StatelessWidget {
             '/accountsettingepage': (context) => AccountSettingPage(),
 
       },
+
     );
+          }
+          )
+          );
   }
+}
 }
