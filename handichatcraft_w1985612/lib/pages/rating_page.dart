@@ -123,10 +123,10 @@ class _RatingPageState extends State<RatingPage> {
               stream: _feedbackStream,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return Text("error");
+                  return const Text("error");
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
                 return ListView(
                   children: snapshot.data!.docs

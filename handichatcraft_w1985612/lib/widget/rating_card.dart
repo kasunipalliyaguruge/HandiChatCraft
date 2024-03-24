@@ -18,11 +18,10 @@ class RatingCard extends StatelessWidget {
         width: 300.0, // Set the desired width
         height: 100.0,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: const Color.fromARGB(255, 234, 234, 234)
-        ),
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromARGB(255, 234, 234, 234)),
         // Set the desired height
-      
+
         child: ListTile(
           leading: const Icon(Icons.account_circle_rounded,
               size: 40.0, color: textDark),
@@ -38,7 +37,7 @@ class RatingCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
-                icon: const Icon(Icons.edit,color: textDark),
+                icon: const Icon(Icons.edit, color: textDark),
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -49,7 +48,7 @@ class RatingCard extends StatelessWidget {
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.delete,color: textDark),
+                icon: const Icon(Icons.delete, color: textDark),
                 onPressed: () => callback(feedback.feedbackId),
               ),
             ],
@@ -79,9 +78,7 @@ class RatingCard extends StatelessWidget {
               ),
               Text(feedback.feedback)
             ],
-          ),
-      
-          // Text and Rating Bar on the right
+          ), // Text and Rating Bar on the right
         ),
       )),
     );

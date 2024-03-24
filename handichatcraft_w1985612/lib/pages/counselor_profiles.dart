@@ -64,14 +64,14 @@ class CounselorProfile extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Text(counselorModel.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: primaryDark,
                                 fontSize: 20,
                                 fontFamily: "Calistoga")),
                         Text(
                           counselorModel.specialize,
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: textDark,
                               fontSize: 15,
                               fontFamily: "Calistoga"),
@@ -81,7 +81,7 @@ class CounselorProfile extends StatelessWidget {
                   ),
                   Container(
                     padding: const EdgeInsets.only(right: 25, left: 25),
-                    child: Column(
+                    child: const Column(
                       children: <Widget>[
                         Align(
                           alignment: Alignment.centerLeft,

@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:handichatcraft_w1985612/model/booking_model.dart';
 import 'package:handichatcraft_w1985612/pages/booking_confirmed_page.dart';
 import 'package:handichatcraft_w1985612/services/email_service.dart';
@@ -76,8 +74,8 @@ class _SchedulePageState extends State<SchedulePage> {
       "counselor_name": appointment.counselor.name,
       "dateTime": appointment.dateTime,
     }).then((value) {
-      //EmailService emailService = EmailService();
-      //emailService.sendEmail(appointment,widget.counselor);
+      EmailService emailService = EmailService();
+      emailService.sendEmail(appointment,widget.counselor);
     });
     print("Appointment successfully");
   }
