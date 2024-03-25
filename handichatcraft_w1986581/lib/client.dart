@@ -879,7 +879,7 @@ class _ClientState extends State<Client> {
   //   ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
   // }
 
-  void signUp(String role, String fname, String lname, String email, String interestController, String numberController, String specialController, String password) async {
+  void signUp(String role, String fname, String lname, String email, String interestedIn, String mobileNumber, String specializedIn, String password) async {
   try {
     UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email,
@@ -890,10 +890,11 @@ class _ClientState extends State<Client> {
     if (role == 'Client') {
       CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
       await collectionReference.doc(userCredential.user!.uid).set({
-        'First Name': fnameController,
-        'Last Name' : lnameController,
+        'FirstName': fname,
+        'LastName' : lname,
         'email': email,
-        'interested in': interestController,
+        'mobilenumber': mobileNumber,
+        'interestedin': interestedIn,
         'create password': passController.text,
         'confirm password': confirmPasswordController.text,
         // Add more fields as needed
@@ -901,11 +902,11 @@ class _ClientState extends State<Client> {
     } else if (role == 'Counselor') {
       CollectionReference collectionReference = FirebaseFirestore.instance.collection('Counselors');
       await collectionReference.doc(userCredential.user!.uid).set({
-        'First Name': fnameController,
-        'Last Name': lnameController,
+        'FirstName': fname,
+        'LastName': lname,
         'email': email,
-        'mobile number': numberController,
-        'specialized in': specialController,
+        'mobilenumber': mobileNumber,
+        'specializedin': specializedIn,
         'create password': passController.text,
         'confirm password': confirmPasswordController.text,
         // Add more fields as needed
@@ -922,3 +923,4 @@ class _ClientState extends State<Client> {
 }
 
 }
+
