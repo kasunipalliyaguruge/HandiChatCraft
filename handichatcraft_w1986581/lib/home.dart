@@ -11,33 +11,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex  = 0;
 
+    List pages = [
+    const HomeBody(),
+    const Placeholder(),
+    const Placeholder(),
+    const Placeholder(),
+    const Placeholder(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: const HomeBody(),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        title: const Text('Hello Anne',
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          color: Color.fromARGB(154, 196, 70, 7), 
-          fontFamily: 'Calistoga', 
-          fontWeight: FontWeight.bold, 
-          fontSize: 24,
-        ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              color:  const Color(0x9AC44607),
-              icon: const Icon(Icons.notifications_active),
-              onPressed:() {},
-            ),
-          ),
-        ],     
-      ),
+      body: pages[_currentIndex],
       bottomNavigationBar: Container(
         height: 60,
         decoration: const BoxDecoration(

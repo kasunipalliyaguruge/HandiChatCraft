@@ -14,6 +14,28 @@ class HomeBody extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 235, 206, 152),
+        title: const Text('Hello Anne',
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          color: Color.fromARGB(154, 196, 70, 7), 
+          fontFamily: 'Calistoga', 
+          fontWeight: FontWeight.bold, 
+          fontSize: 24,
+        ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              color:  const Color(0x9AC44607),
+              icon: const Icon(Icons.notifications_active),
+              onPressed:() {},
+            ),
+          ),
+        ],     
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(40.0),

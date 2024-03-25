@@ -83,6 +83,15 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 7, vsync: this);
     return Scaffold(
       appBar: AppBar(
+        title: const Text('You can find Articles here',
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          color: Color.fromARGB(154, 196, 70, 7), 
+          fontFamily: 'Calistoga', 
+          fontWeight: FontWeight.bold, 
+          fontSize: 15,
+        ),
+        ),
         leading: BackButton(
           color: const Color.fromARGB(154, 83, 28, 1),
           onPressed: () {
