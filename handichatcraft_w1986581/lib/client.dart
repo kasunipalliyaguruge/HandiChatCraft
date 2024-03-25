@@ -717,38 +717,6 @@ class _ClientState extends State<Client> {
                           child: GestureDetector(
                             onTap: () {
                               _formkey.currentState!.validate();
-                              // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
-                              // collectionReference.add({
-                              //   'First Name': fnameController.text,
-                              //   'Last Name': lnameController.text,
-                              //   'email': mailController.text,
-                              //   'interested in': interestController.text,
-                              //   'create password': passController.text,
-                              //   'confirm password': confirmPasswordController.text,
-                              // });
-                            
-                              // if (role == 'Client') {
-                              // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
-                              // collectionReference.add({
-                              //   'First Name': fnameController.text,
-                              //   'Last Name': lnameController.text,
-                              //   'email': mailController.text,
-                              //   'interested in': interestController.text,
-                              //   'create password': passController.text,
-                              //   'confirm password': confirmPasswordController.text,
-                              // });
-                              // } else if (role == 'Counselor') {
-                              // CollectionReference collRef = FirebaseFirestore.instance.collection('Counselors');
-                              // collRef.add({
-                              //   'name': fnameController.text,
-                              //   'email': mailController.text,
-                              //   'mobile number': numberController.text,
-                              //   'specialized in': specialController.text,
-                              //   'create password': passController.text,
-                              //   'confirm password': confirmPasswordController.text,
-                              // });
-                              // }
-                              
                             signUp(role, fnameController.text,lnameController.text, mailController.text, interestController.text, numberController.text, specialController.text, passController.text);
                             },
                             child: Container(
@@ -814,52 +782,6 @@ class _ClientState extends State<Client> {
     );
   }
 
-  // void route() {
-  //   User? user = FirebaseAuth.instance.currentUser;
-  //   var kk = FirebaseFirestore.instance
-  //   .collection('Client')
-  //   .doc(user!.uid)
-  //   .get()
-  //   .then((DocumentSnapshot documentSnapshot){
-  //     if (documentSnapshot.exists) {
-  //       if(documentSnapshot.get('role') == 'Counselor') {
-  //         Navigator.pushReplacement(
-  //           context, MaterialPageRoute(
-  //             builder: (context) => const Home(),
-  //           ),
-  //         );
-  //       } else {
-  //         Navigator.pushReplacement(
-  //         context, 
-  //         MaterialPageRoute(
-  //           builder: (context) => const Home(),
-  //         ),
-  //       );
-  //       }
-  //     } else {
-  //       print('Document does not exist on the database');
-  //     }
-  //   });
-  // }
-
-  // void signIn(String email, String password) async {
-  //   if(_formkey.currentState!.validate()) {
-  //     try {
-  //       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //         email: email, 
-  //         password: password,
-  //         );
-  //         // route();
-  //     } on FirebaseAuthException catch (e) {
-  //       if(e.code == 'user-not-found') {
-  //         print('No user found for that email.');
-  //       } else if(e.code == 'wrong-password') {
-  //         print('wrong password provided for that user.');
-  //       }
-  //     }
-  //   }
-  // }
-
   void signIn(String email, String password) async {
   try {
     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -915,25 +837,6 @@ class _ClientState extends State<Client> {
     }
   }
 }
- 
-
-  // void signUp(String role, String name, String email, String interested, String number, String special, String password) async{
-  //   const CircularProgressIndicator();
-  //   if(_formkey.currentState!.validate()) {
-  //     await _auth
-  //     .createUserWithEmailAndPassword(
-  //       email: email, password: password)
-  //       .then((value) => {postDetailsToFirestore(role, name, email, interested, number, special, password)})
-  //       .catchError((e) {});
-  //   }
-  // }
-
-  // postDetailsToFirestore(String role, String name, String email, String interested, String number, String special, String password) async {
-  //   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  //   var user = _auth.currentUser;
-  //   CollectionReference ref = FirebaseFirestore.instance.collection('users');
-  //   ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
-  // }
 
   void signUp(String role, String fname, String lname, String email, String interestedIn, String mobileNumber, String specializedIn, String password) async {
   try {

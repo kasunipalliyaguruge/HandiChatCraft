@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:handichatcraft_w1986581/home.dart';
 import 'package:handichatcraft_w1986581/pdf_screen.dart';
-import 'package:handichatcraft_w1986581/verifyEmail.dart';
 import 'package:handichatcraft_w1986581/pdf_viewer.dart';
 
 class Articles extends StatefulWidget {
@@ -144,9 +143,9 @@ class _ArticlesState extends State<Articles> with TickerProviderStateMixin {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       tileColor: const Color.fromARGB(255, 216, 216, 216),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder:(context) => const VerifyEmail()));
-                      },
+                      // onTap: () {
+                      //   Navigator.push(context, MaterialPageRoute(builder:(context) => const VerifyEmail()));
+                      // },
                       leading: ClipRRect(
                         child: Image.asset(
                           handiImage,
