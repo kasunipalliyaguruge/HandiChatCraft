@@ -12,43 +12,39 @@ class Workshops extends StatefulWidget {
 class _WorkshopsState extends State<Workshops> with TickerProviderStateMixin {
 
   final List<String> images = [
-    'assets/BatikWorkshop1.jpg',
-    'assets/BatikWorkshop2.jpg',
-    'assets/BatikWorkshop3.jpg',
-    'assets/BatikWorkshop4.jpg',
-    'assets/BatikWorkshop5.jpg',
-    'assets/BatikWorkshop6.jpg',
-    'assets/BatikWorkshop7.jpg',
-    'assets/BatikWorkshop8.jpg',
-    'assets/w3.png',
+   'assets/WorkshopBatik1.jpg',
+    'assets/WorkshopBatik2.jpg',
+    'assets/WorkshopBatik3.jpg',
+    'assets/WorkshopBatik4.jpg',
+    'assets/WorkshopBatik5.jpg',
+    'assets/WorkshopBatik6.jpg',
+    'assets/WorkshopBatik7.jpg',
+    'assets/WorkshopBatik8.jpg',
+    
   ];
 
   final List<String> handloom = [
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
-    'assets/w1.png',
+  
   ];
 
   final List<String> resin = [
-    'assets/w3.png',
-    'assets/w3.png',
-    'assets/w3.png',
+    'assets/WorkshopResin1.jpg',
   ];
 
   final List<String> masks = [
-
+    'assets/WorkshopMasks1.jpg',
+    'assets/WorkshopMasks2.png',
   ];
 
   final List<String> jewelry = [
-
+    'assets/WorkshopJewellery1.jpg',
+    'assets/WorkshopJewellery2.jpg',
+    'assets/WorkshopJewellery3.jpg',
+    'assets/WorkshopJewellery4.jpg',
+    'assets/WorkshopJewellery5.jpg',
+    'assets/WorkshopJewellery6.png',
+    'assets/WorkshopJewellery7.jpg',
+    'assets/WorkshopJewellery8.png', 
   ];
 
   final List<String> basket = [
@@ -56,7 +52,7 @@ class _WorkshopsState extends State<Workshops> with TickerProviderStateMixin {
   ];
 
   final List<String> pottery = [
-    'assets/BatikWorkshop2.jpg'
+    'assets/WorkshopPottery1.jpg'
   ];
 
   @override
@@ -64,6 +60,15 @@ class _WorkshopsState extends State<Workshops> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 7, vsync: this);
     return Scaffold(
       appBar: AppBar(
+        title: const Text('You can find upcoming workshops here',
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          color: Color.fromARGB(154, 196, 70, 7), 
+          fontFamily: 'Calistoga', 
+          fontWeight: FontWeight.bold, 
+          fontSize: 15,
+        ),
+        ),
         leading: BackButton(
           color: const Color.fromARGB(154, 83, 28, 1),
           onPressed: () {
