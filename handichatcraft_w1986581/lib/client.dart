@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:handichatcraft_w1986581/forgotPassword.dart';
 import 'package:handichatcraft_w1986581/home.dart';
 
+final _formkey = GlobalKey<FormState>();
+
 class Client extends StatefulWidget {
   const Client({super.key});
 
@@ -58,702 +60,756 @@ class _ClientState extends State<Client> {
           stops: [0.0, 1.0],
           tileMode: TileMode.clamp)
         ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [          
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isSignupScreen = false;
-                    });
-                  },
-                  child: Column(
-                    children: [
-                      const Text(
-                        "Sign In",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFF5F3709),
-                        ),
-                      ),
-                  if(!isSignupScreen)     
-                      Container(
-                        height: 2,
-                        width: 100,
-                        color: const Color(0xFFAF803A),
-                      )
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isSignupScreen = true;
-                    });
-                  },
-                  child: Column(
-                    children: [
-                      const Text(
-                        "Sign Up",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFF5F3709),
-                        ),
-                      ),
-                  if(isSignupScreen)    
-                      Container(
-                        height: 2,
-                        width: 100,
-                        color: const Color(0xFFAF803A),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            if (!isSignupScreen)
-            Container(
-              margin: const EdgeInsets.only(top: 190),
-              child: Column(
-                children: [
-                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20.0),
-                    child: TextFormField(
-                      controller: emailController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Email",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Email cannot be empty";
-                        }
-                        if (!RegExp(
-                          "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-                            return ("Please enter a valid email");
-                          } else {
-                            return null;
-                          }
-                      },
-                      onSaved: (value) {
-                        emailController.text = value!;
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(  
-                      controller: passwordController,
-                      obscureText: _isObscure3,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color:  Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Password",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                      validator: (value) {
-                        RegExp regExp = RegExp(r'^.{6}$');
-                        if (value!.isEmpty) {
-                          return "Password cannot be empty";
-                        }
-                        if (!regExp.hasMatch(value)) {
-                          return ("Please enter valid password min. 6 character");
-                        } else {
-                          return null;
-                        }
-                      },
-                      onSaved: (value) {
-                        passwordController.text = value!;
-                      },
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Checkbox(
-                        value: isChecked, 
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked = value ?? false;
-                          });
-                        }
-                      ),
-                      const Text(
-                        "Remember password",
-                        style: TextStyle(
-                          color: Color(0xFFA65911),
-                          fontSize: 15,
-                          fontFamily: 'Calistoga',
-                        ),
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    bottom: 70,
-                    right: 50,
-                    left: 50,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 140.0, right: 40.0, left: 40.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
-                          signIn(emailController.text, passwordController.text);
-                   
-                        },
-                        child: Container(
-                          height: 59,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(231, 211, 118, 3),
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [          
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isSignupScreen = false;
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Sign In",
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontFamily: 'Calistoga',
+                            color: Color(0xFF5F3709),
                           ),
-                          child: const Center(
-                            child: Text(
-                              'Sign In',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: 'Lalezar',
+                        ),
+                    if(!isSignupScreen)     
+                        Container(
+                          height: 2,
+                          width: 100,
+                          color: const Color(0xFFAF803A),
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isSignupScreen = true;
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontFamily: 'Calistoga',
+                            color: Color(0xFF5F3709),
+                          ),
+                        ),
+                    if(isSignupScreen)    
+                        Container(
+                          height: 2,
+                          width: 100,
+                          color: const Color(0xFFAF803A),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              if (!isSignupScreen)
+              Container(
+                margin: const EdgeInsets.only(top: 190),
+                child: Form(
+                  key: _formkey,
+                  child: Column(
+                    children: [
+                       Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: TextFormField(
+                          controller: emailController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Email",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Email cannot be empty";
+                            }
+                            if (!RegExp(
+                              "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+                                return ("Please enter a valid email");
+                              } else {
+                                return null;
+                              }
+                          },
+                          onSaved: (value) {
+                            emailController.text = value!;
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(  
+                          controller: passwordController,
+                          obscureText: _isObscure3,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color:  Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Password",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                          ),
+                          validator: (value) {
+                            RegExp regExp = RegExp(r'^.{6}$');
+                            if (value!.isEmpty) {
+                              return "Password cannot be empty";
+                            }
+                            if (!regExp.hasMatch(value)) {
+                              return ("Please enter valid password min. 6 character");
+                            } else {
+                              return null;
+                            }
+                          },
+                          onSaved: (value) {
+                            passwordController.text = value!;
+                          },
+                          keyboardType: TextInputType.visiblePassword,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Checkbox(
+                            value: isChecked, 
+                            onChanged: (value) {
+                              setState(() {
+                                isChecked = value ?? false;
+                              });
+                            }
+                          ),
+                          const Text(
+                            "Remember password",
+                            style: TextStyle(
+                              color: Color(0xFFA65911),
+                              fontSize: 15,
+                              fontFamily: 'Calistoga',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        bottom: 70,
+                        right: 50,
+                        left: 50,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 140.0, right: 40.0, left: 40.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
+                              signIn(emailController.text, passwordController.text);
+                       
+                            },
+                            child: Container(
+                              height: 59,
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(231, 211, 118, 3),
+                                borderRadius: BorderRadius.all(Radius.circular(30)),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'Lalezar',
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
+                      Positioned(
+                        bottom: 50,
+                        right: 50,
+                        left: 50,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10.0, bottom: 40.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const ForgotPassword()));
+                            },
+                            child: const Center(
+                              child: Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(
+                                    color: Color(0xFFA65911),
+                                    fontSize: 16,
+                                    fontFamily: 'Calistoga',
+                                  ),
+                                ),
+                              ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                         width: 500,
+                         margin: const EdgeInsets.only(bottom: 10),
+                         child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "Don't have an account?",
+                            style: const TextStyle(
+                              color: Color(0xFFA65911),
+                              fontSize: 16,
+                              fontFamily: 'Calistoga',
+                            ),
+                            children: [
+                              TextSpan(
+                                text: " Sign Up",
+                                style: const TextStyle(
+                                  color: Color(0xFF70573F),
+                                  fontSize: 16,
+                                  fontFamily: 'Calistoga',
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                ..onTap =() {
+                                  setState(() {
+                                    isSignupScreen = true;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ]),
+                ),
+              ),
+              if(isSignupScreen)
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Role :  ",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Calistoga',
+                        fontWeight: FontWeight.bold,
+                        color:  Color(0xFFA65911),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 50,
-                    right: 50,
-                    left: 50,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0, bottom: 40.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const ForgotPassword()));
-                        },
-                        child: const Center(
+                    DropdownButton<String>(
+                      dropdownColor: Colors.white,
+                      isDense: true,
+                      isExpanded: false,
+                      iconDisabledColor: const Color(0xFFA65911),
+                      focusColor: Colors.white,
+                      items: options.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
                           child: Text(
-                              'Forgot Password?',
-                              style: TextStyle(
+                            dropDownStringItem,
+                            style: const TextStyle(
+                              color:  Color(0xFF70573F),
+                              fontSize: 18,
+                              fontFamily: 'Calistoga',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      }).toList(), 
+                      onChanged: (newValueSelected) {
+                        setState(() {
+                          _currentItemSelected = newValueSelected!;
+                          role = newValueSelected;
+                        });
+                      },
+                      value: _currentItemSelected,
+                    ),
+                  ],
+                ),
+              ),
+              if (isSignupScreen)
+              Container(
+                margin: const EdgeInsets.only(top: 25.0),
+                child: Form(
+                  key: _formkey,
+                  child: Column(
+                    children: [
+                       Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(
+                          controller: fnameController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "First Name",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                          // validator: (name) => name!.length < 3 ? 'Required': null,
+                          // autovalidateMode: AutovalidateMode.onUserInteraction,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextField(
+                          controller: lnameController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Last Name",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            ),  
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(
+                          controller: mailController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Email",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Email cannot be empty";
+                            }
+                            if (!RegExp(
+                              "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+                                return ("Please enter a valid email");
+                              } else {
+                                return null;
+                              }
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          onChanged: (value) {},
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(
+                          controller: interestController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.thumb_up,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Interested In (for client)",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (role == 'Client' && (value == null || value.isEmpty)) {
+                              return 'Interested In is required for clients';
+                            }
+                            return null;
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(
+                          controller: numberController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.phone,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Mobile Number (for both)",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Mobile number is required';
+                            }
+                              if (value.length != 10) {
+                                return 'Mobile number should be 10 digits';
+                              }
+                            return null;
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          keyboardType: TextInputType.phone,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(
+                          controller: specialController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.folder_special,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Specialized In (for counselor)",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (role == 'Counselor' && (value == null || value.isEmpty)) {
+                              return 'Specialized In is required for counselors';
+                            }
+                            return null;
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(
+                          controller: passController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Create Password",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                          ),
+                          validator: (value) {
+                            RegExp regExp = RegExp(r'^.{6}$');
+                            if (value!.isEmpty) {
+                              return "Password cannot be empty";
+                            }
+                            if (!regExp.hasMatch(value)) {
+                              return ("Please enter valid password min. 6 character");
+                            } else {
+                              return null;
+                            }
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          onChanged: (value) {},
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: TextFormField(
+                          controller: confirmPasswordController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFF3F3F3),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Color(0xFFD19C4C),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFAF803A)),
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),       
+                            ),
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: "Confirm Password",
+                            hintStyle: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Calistoga',
+                              color: Color(0xFFB1A4A4),
+                            ),
+                          ),
+                          validator: (value) {
+                            if(confirmPasswordController.text != passController.text) {
+                              return "Password did not match";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {},
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Checkbox(
+                            value: isChecked, 
+                            onChanged: (value) {
+                              setState(() {
+                                isChecked = value ?? false;
+                              });
+                            }
+                          ),
+                          const Text(
+                            "Remember password",
+                            style: TextStyle(
+                              color: Color(0xFFA65911),
+                              fontSize: 15,
+                              fontFamily: 'Calistoga',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 50,
+                        left: 50,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5.0, left: 40.0, right: 40.0,bottom: 10.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              _formkey.currentState!.validate();
+                              // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
+                              // collectionReference.add({
+                              //   'First Name': fnameController.text,
+                              //   'Last Name': lnameController.text,
+                              //   'email': mailController.text,
+                              //   'interested in': interestController.text,
+                              //   'create password': passController.text,
+                              //   'confirm password': confirmPasswordController.text,
+                              // });
+                            
+                              // if (role == 'Client') {
+                              // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
+                              // collectionReference.add({
+                              //   'First Name': fnameController.text,
+                              //   'Last Name': lnameController.text,
+                              //   'email': mailController.text,
+                              //   'interested in': interestController.text,
+                              //   'create password': passController.text,
+                              //   'confirm password': confirmPasswordController.text,
+                              // });
+                              // } else if (role == 'Counselor') {
+                              // CollectionReference collRef = FirebaseFirestore.instance.collection('Counselors');
+                              // collRef.add({
+                              //   'name': fnameController.text,
+                              //   'email': mailController.text,
+                              //   'mobile number': numberController.text,
+                              //   'specialized in': specialController.text,
+                              //   'create password': passController.text,
+                              //   'confirm password': confirmPasswordController.text,
+                              // });
+                              // }
+                              
+                            signUp(role, fnameController.text,lnameController.text, mailController.text, interestController.text, numberController.text, specialController.text, passController.text);
+                            },
+                            child: Container(
+                              height: 59,
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(231, 211, 118, 3),
+                                borderRadius: BorderRadius.all(Radius.circular(30)),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'Sign Up',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'Lalezar',
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: SizedBox(
+                          width: 500,
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: "Already have an account?",
+                              style: const TextStyle(
                                 color: Color(0xFFA65911),
                                 fontSize: 16,
                                 fontFamily: 'Calistoga',
                               ),
+                              children: [
+                                TextSpan(
+                                  text: " Sign In",
+                                  style: const TextStyle(
+                                    color: Color(0xFF70573F),
+                                    fontSize: 16,
+                                    fontFamily: 'Calistoga',
+                                  ),
+                                  recognizer: TapGestureRecognizer()  
+                                  ..onTap =() {
+                                    setState(() {
+                                      isSignupScreen = false;
+                                    });
+                                  },           
+                                ),
+                              ],
                             ),
                           ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                     width: 500,
-                     margin: const EdgeInsets.only(bottom: 10),
-                     child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Don't have an account?",
-                        style: const TextStyle(
-                          color: Color(0xFFA65911),
-                          fontSize: 16,
-                          fontFamily: 'Calistoga',
-                        ),
-                        children: [
-                          TextSpan(
-                            text: " Sign Up",
-                            style: const TextStyle(
-                              color: Color(0xFF70573F),
-                              fontSize: 16,
-                              fontFamily: 'Calistoga',
-                            ),
-                            recognizer: TapGestureRecognizer()
-                            ..onTap =() {
-                              setState(() {
-                                isSignupScreen = true;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ]),
-            ),
-            if(isSignupScreen)
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Role :  ",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Calistoga',
-                      fontWeight: FontWeight.bold,
-                      color:  Color(0xFFA65911),
-                    ),
-                  ),
-                  DropdownButton<String>(
-                    dropdownColor: Colors.white,
-                    isDense: true,
-                    isExpanded: false,
-                    iconDisabledColor: const Color(0xFFA65911),
-                    focusColor: Colors.white,
-                    items: options.map((String dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropDownStringItem,
-                        child: Text(
-                          dropDownStringItem,
-                          style: const TextStyle(
-                            color:  Color(0xFF70573F),
-                            fontSize: 18,
-                            fontFamily: 'Calistoga',
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      );
-                    }).toList(), 
-                    onChanged: (newValueSelected) {
-                      setState(() {
-                        _currentItemSelected = newValueSelected!;
-                        role = newValueSelected;
-                      });
-                    },
-                    value: _currentItemSelected,
-                  ),
-                ],
-              ),
-            ),
-            if (isSignupScreen)
-            Container(
-              margin: const EdgeInsets.only(top: 25.0),
-              child: Column(
-                children: [
-                   Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(
-                      controller: fnameController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "First Name",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextField(
-                      controller: lnameController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Last Name",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(
-                      controller: mailController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Email",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Email cannot be empty";
-                        }
-                        if (!RegExp(
-                          "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-                            return ("Please enter a valid email");
-                          } else {
-                            return null;
-                          }
-                      },
-                      onChanged: (value) {},
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(
-                      controller: interestController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.thumb_up,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Interested In (for client)",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(
-                      controller: numberController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.phone,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Mobile Number (for counselor)",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(
-                      controller: specialController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.folder_special,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Specialized In (for counselor)",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(
-                      controller: passController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Create Password",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                      validator: (value) {
-                        RegExp regExp = RegExp(r'^.{6}$');
-                        if (value!.isEmpty) {
-                          return "Password cannot be empty";
-                        }
-                        if (!regExp.hasMatch(value)) {
-                          return ("Please enter valid password min. 6 character");
-                        } else {
-                          return null;
-                        }
-                      },
-                      onChanged: (value) {},
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: TextFormField(
-                      controller: confirmPasswordController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F3F3),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Color(0xFFD19C4C),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFAF803A)),
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),       
-                        ),
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Confirm Password",
-                        hintStyle: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Calistoga',
-                          color: Color(0xFFB1A4A4),
-                        ),
-                      ),
-                      validator: (value) {
-                        if(confirmPasswordController.text != passController.text) {
-                          return "Password did not match";
-                        } else {
-                          return null;
-                        }
-                      },
-                      onChanged: (value) {},
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Checkbox(
-                        value: isChecked, 
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked = value ?? false;
-                          });
-                        }
-                      ),
-                      const Text(
-                        "Remember password",
-                        style: TextStyle(
-                          color: Color(0xFFA65911),
-                          fontSize: 15,
-                          fontFamily: 'Calistoga',
                         ),
                       ),
                     ],
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 50,
-                    left: 50,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 5.0, left: 40.0, right: 40.0,bottom: 10.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
-                          // collectionReference.add({
-                          //   'First Name': fnameController.text,
-                          //   'Last Name': lnameController.text,
-                          //   'email': mailController.text,
-                          //   'interested in': interestController.text,
-                          //   'create password': passController.text,
-                          //   'confirm password': confirmPasswordController.text,
-                          // });
-                        
-                          // if (role == 'Client') {
-                          // CollectionReference collectionReference = FirebaseFirestore.instance.collection('Clients');
-                          // collectionReference.add({
-                          //   'First Name': fnameController.text,
-                          //   'Last Name': lnameController.text,
-                          //   'email': mailController.text,
-                          //   'interested in': interestController.text,
-                          //   'create password': passController.text,
-                          //   'confirm password': confirmPasswordController.text,
-                          // });
-                          // } else if (role == 'Counselor') {
-                          // CollectionReference collRef = FirebaseFirestore.instance.collection('Counselors');
-                          // collRef.add({
-                          //   'name': fnameController.text,
-                          //   'email': mailController.text,
-                          //   'mobile number': numberController.text,
-                          //   'specialized in': specialController.text,
-                          //   'create password': passController.text,
-                          //   'confirm password': confirmPasswordController.text,
-                          // });
-                          // }
-                          
-                        signUp(role, fnameController.text,lnameController.text, mailController.text, interestController.text, numberController.text, specialController.text, passController.text);
-                        },
-                        child: Container(
-                          height: 59,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(231, 211, 118, 3),
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: 'Lalezar',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: SizedBox(
-                      width: 500,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "Already have an account?",
-                          style: const TextStyle(
-                            color: Color(0xFFA65911),
-                            fontSize: 16,
-                            fontFamily: 'Calistoga',
-                          ),
-                          children: [
-                            TextSpan(
-                              text: " Sign In",
-                              style: const TextStyle(
-                                color: Color(0xFF70573F),
-                                fontSize: 16,
-                                fontFamily: 'Calistoga',
-                              ),
-                              recognizer: TapGestureRecognizer()  
-                              ..onTap =() {
-                                setState(() {
-                                  isSignupScreen = false;
-                                });
-                              },           
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),    
-        ]),
+                ),
+              ),    
+          ]),
+        ),
       ),
     );
   }
@@ -923,4 +979,3 @@ class _ClientState extends State<Client> {
 }
 
 }
-
