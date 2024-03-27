@@ -36,8 +36,8 @@ jobs:
           channel: 'stable'
       # 12
       - name: Get dependencies
-        #run: flutter pub get
-        run: pwd 
+        run: flutter pub get
+        #run: pwd 
 
       # Runs a set of commands using the runners shell
       - name: Start release build
