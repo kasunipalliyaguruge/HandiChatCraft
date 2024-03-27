@@ -3,13 +3,14 @@ name: Android Release
 # 1
 on:
   # 2
+  workflow_dispatch:
   push:
     branches: [ "dev" ]
   pull_request:
     branches: [ "dev" ]
 
   # 3
-  workflow_dispatch:
+  
 
 # 4
 jobs:
