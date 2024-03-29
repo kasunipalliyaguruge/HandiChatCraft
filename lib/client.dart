@@ -243,7 +243,7 @@ class _ClientState extends State<Client> {
                           padding: const EdgeInsets.only(top: 140.0, right: 40.0, left: 40.0),
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
+                              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const Home()));
                               signIn(emailController.text, passwordController.text);
                        
                             },

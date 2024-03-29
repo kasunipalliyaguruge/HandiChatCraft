@@ -62,11 +62,15 @@ class _WorkshopsState extends State<Articles> with TickerProviderStateMixin {
   ];
 
   final List<String> basket = [
-
+    'assets/articles/Hand5.jpg',
+    'assets/articles/Hand6.jpg',
+    'assets/articles/Hand7.jpg',
   ];
 
   final List<String> pottery = [
-
+    'assets/articles/Hand5.jpg',
+    'assets/articles/Hand6.jpg',
+    'assets/articles/Hand7.jpg',
   ];
 
   @override
